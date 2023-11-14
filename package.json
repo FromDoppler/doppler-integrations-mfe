@@ -1,0 +1,62 @@
+{
+  "name": "doppler-integrations-mfe",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "@types/react-query": "^1.2.9",
+    "eclint": "2.8.1",
+    "prettier": "3.0.3"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^4.16.1",
+    "@testing-library/jest-dom": "6.1.4",
+    "@testing-library/react": "14.1.0",
+    "@testing-library/user-event": "14.5.1",
+    "@types/history": "5.0.0",
+    "@types/jest": "29.5.8",
+    "@types/node": "20.9.0",
+    "@types/react": "18.2.37",
+    "@types/react-dom": "18.2.15",
+    "@types/react-router-dom": "5.3.3",
+    "axios": "1.4.0",
+    "history": "5.3.0",
+    "react": "18.2.0",
+    "react-cool-onclickoutside": "1.7.0",
+    "react-dom": "18.2.0",
+    "react-intl": "6.4.4",
+    "react-router-dom": "6.14.1",
+    "react-scripts": "5.0.1",
+    "typescript": "5.1.6",
+    "web-vitals": "3.3.2"
+  },
+  "scripts": {
+    "verify-format": "yarn prettier-check && yarn eclint-check",
+    "fix-format": "yarn prettier-fix && yarn eclint-fix",
+    "eclint-fix": "eclint fix",
+    "eclint-check": "eclint check",
+    "prettier-fix": "prettier --write \"**/**\"",
+    "prettier-check": "prettier --check \"**/**\"",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!axios)/\"",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

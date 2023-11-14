@@ -1,0 +1,15 @@
+node_modules
+build
+.vscode
+*.log
+.git
+.gitignore
+Dockerfile*
+doppler-jenkins-ci.groovy
+.doppler-ci
+
+# Allow copying encrypted secrets only (SOPS)
+*.[sS]ecret.*
+**/[sS]ecret.*
+!*.[eE]ncrypted.[sS]ecret.*
+!**/[eE]ncrypted.[sS]ecret.*
