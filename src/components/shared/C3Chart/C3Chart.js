@@ -3,13 +3,6 @@ import c3 from "c3";
 import { useEffect, useRef } from "react";
 import { C3ChartStyled } from "./C3Chart.styles";
 
-// export const C3Chart = ({ config, dataOptions, data }) => {
-//   const build = { ...config, data: data, bindto: "#chart" };
-//   c3.generate(build);
-
-//   return;
-// };
-
 export const C3Chart = ({ config, dataOptions, data }) => {
   const chartEl = useRef(null);
   const chart = useRef(null);
