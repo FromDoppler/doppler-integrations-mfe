@@ -20,15 +20,15 @@ export const AssistedShoppingSection = () => {
         </div>
       </HeaderSection>
 
-      <form action="#" className="form-filters">
-        <div className="col-sm-12 col-md-4 col-lg-4 m-b-12">
-          <Dropdown />
-        </div>
-        <div className="col-sm-12 col-md-4 col-lg-4 m-b-12">
-          <Dropdown />
-        </div>
-      </form>
       <div className="dp-container">
+        <form action="#" className="form-filters">
+          <div className="col-sm-12 col-md-4 col-lg-4 m-b-12">
+            <Dropdown />
+          </div>
+          <div className="col-sm-12 col-md-4 col-lg-4 m-b-12">
+            <Dropdown />
+          </div>
+        </form>
         <div className="dp-rowflex dp-dashboard-panel">
           <Kpi
             iconClass="dpicon iconapp-shopping-complete"
