@@ -4,6 +4,7 @@ import { Campaign } from "./Campaign";
 import { ConfigurationDemo } from "./ConfigurationDemo";
 import { RequireAuth } from "./application";
 import { SessionDemo } from "./SessionDemo";
+import { AssistedShoppingSection } from "./AssistedShopping";
 
 export const App = () => (
   <Routes>
@@ -27,5 +28,13 @@ export const App = () => (
         }
       />
     </Route>
+    <Route
+      path="/assisted-shopping"
+      element={
+        <RequireAuth>
+          <AssistedShoppingSection />
+        </RequireAuth>
+      }
+    />
   </Routes>
 );
