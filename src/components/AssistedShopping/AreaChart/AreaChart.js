@@ -68,7 +68,7 @@ export const AreaChart = () => {
     };
 
     fetchData();
-  });
+  }, []);
 
   return (
     <div className="dp-box-shadow">
