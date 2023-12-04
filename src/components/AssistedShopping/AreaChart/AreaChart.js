@@ -30,7 +30,7 @@ export const AreaChart = () => {
 
   const [chartConfig] = useState({
     legend: {
-      show: false,
+      show: true,
     },
     color: {
       pattern: ["#fbb224", "#B58FC1"],
