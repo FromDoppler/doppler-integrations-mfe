@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 export const Table = (data) => {
   const [expandedTables, setExpandedTables] = useState([]);
@@ -60,8 +60,8 @@ export const Table = (data) => {
           </thead>
           <tbody>
             {dataTable.map((summaryByCampaign, summaryIndex) => (
-              <>
-                <tr key={`summaryKey-${summaryIndex}`}>
+              <React.Fragment key={`summaryKey-${summaryIndex}`}>
+                <tr>
                   <td>
                     <span className="dp-name-text">
                       <button
@@ -154,7 +154,7 @@ export const Table = (data) => {
                 ) : (
                   <></>
                 )}
-              </>
+              </React.Fragment>
             ))}
           </tbody>
         </table>
