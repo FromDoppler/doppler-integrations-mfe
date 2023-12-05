@@ -2,7 +2,7 @@ export const Dropdown = () => {
   return (
     <fieldset className="filter">
       <label
-        for="list-selection"
+        htmlFor="list-selection"
         className="labelcontrol"
         aria-disabled="false"
         data-required="false"
