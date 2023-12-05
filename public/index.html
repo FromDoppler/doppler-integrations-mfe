@@ -59,25 +59,25 @@
       initFonts: true,
     };
     new AssetServices().load(
-      "https://cdn.fromdoppler.com/doppler-style-guide/asset-manifest-V1.json",
+      "https://cdn.fromdoppler.com/doppler-style-guide/asset-manifest-INT.json",
     );
 
     window["doppler-session-mfe-configuration"] = {
-      dopplerLegacyBaseUrl: "https://appqa.fromdoppler.net",
+      dopplerLegacyBaseUrl: "https://appint.fromdoppler.net",
       useDummies: false,
     };
     new AssetServices().load(
-      "https://cdn.fromdoppler.com/doppler-session-mfe/asset-manifest-main.json",
+      "https://cdn.fromdoppler.com/doppler-session-mfe/asset-manifest-INT.json",
     );
 
     window["doppler-menu-mfe-configuration"] = {
       dopplerMenuElementId: "doppler-menu-mfe",
-      dopplerLegacyBaseUrl: "https://appqa.fromdoppler.net",
+      dopplerLegacyBaseUrl: "https://appint.fromdoppler.net",
       beamerId: "wCWRrvwa50706",
     };
     assetServices.load({
       manifestURL:
-        "https://cdn.fromdoppler.com/doppler-menu-mfe/asset-manifest-main.json",
+        "https://cdn.fromdoppler.com/doppler-menu-mfe/asset-manifest-INT.json",
     });
   </script>
   <!-- End Use AssetServices -->
