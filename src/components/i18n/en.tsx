@@ -1,4 +1,10 @@
 export const messages_en = {
+  AssistedShopping: {
+    automation: "Automation",
+    clasica: "Classic",
+    social: "Social",
+    testab: "Test A/B",
+  },
   campaign: `Campaign`,
   campaign_title: `Campaign {idCampaign}`,
   campaigns: `Campaigns`,

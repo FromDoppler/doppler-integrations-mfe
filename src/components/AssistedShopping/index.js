@@ -3,6 +3,7 @@ import { HeaderSection } from "../shared/HeaderSection/HeaderSection";
 import { Dropdown } from "../shared/Dropdown/Dropdown";
 import { AreaChart } from "./AreaChart/AreaChart";
 import { Table } from "./Table/Table";
+import { DonutChart } from "./DonutChart/DonutChart";
 
 export const AssistedShoppingSection = () => {
   const tableData = [
@@ -38,6 +39,8 @@ export const AssistedShoppingSection = () => {
       campaigns: [],
     },
   ];
+
+  const donutData = [{ clasica: 37, testab: 10, social: 33, automation: 20 }];
 
   return (
     <>
@@ -115,6 +118,8 @@ export const AssistedShoppingSection = () => {
         <AreaChart />
         <br />
         <Table tableData={tableData} />
+        <br />
+        <DonutChart data={donutData} title="Ingresos por Campaña" />
       </div>
     </>
   );
