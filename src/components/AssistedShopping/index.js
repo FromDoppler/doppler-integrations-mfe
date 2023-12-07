@@ -4,6 +4,7 @@ import { Dropdown } from "../shared/Dropdown/Dropdown";
 import { AreaChart } from "./AreaChart/AreaChart";
 import { Table } from "./Table/Table";
 import { DonutChart } from "./DonutChart/DonutChart";
+import { BarChart } from "./BarChart/BarChart";
 
 export const AssistedShoppingSection = () => {
   const tableData = [
@@ -120,6 +121,8 @@ export const AssistedShoppingSection = () => {
         <Table tableData={tableData} />
         <br />
         <DonutChart data={donutData} title="Ingresos por Campaña" />
+        <br />
+        <BarChart />
       </div>
     </>
   );
