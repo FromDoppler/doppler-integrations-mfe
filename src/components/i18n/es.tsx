@@ -1,7 +1,12 @@
 export const messages_es = {
   AssistedShopping: {
+    abandonedCart: "Carrito abandonado",
     automation: "Automation",
+    campaignBehavior: "Comp. en campaña",
     clasica: "Clasica",
+    pendingPayment: "pago pendiente",
+    productRetarget: "Producto visitado",
+    siteBehavior: "Comp en sitio",
     social: "Social",
     testab: "Test A/B",
   },
