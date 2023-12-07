@@ -55,11 +55,16 @@ export const DonutChart = ({ data, title }) => {
 
   if (state != null) {
     return (
-      <C3Chart
-        config={state.chartConfig}
-        dataOptions={chartDataOptions}
-        data={state.chartData}
-      />
+      <div className="dp-box-shadow">
+        <div className="col-sm-12 col-md-4 col-lg-4 m-b-12">
+          <h6 className="title-reports-box">Ingresos por campañas</h6>
+        </div>
+        <C3Chart
+          config={state.chartConfig}
+          dataOptions={chartDataOptions}
+          data={state.chartData}
+        />
+      </div>
     );
   } else {
     return <></>;
