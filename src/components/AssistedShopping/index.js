@@ -42,6 +42,15 @@ export const AssistedShoppingSection = () => {
   ];
 
   const donutData = [{ clasica: 37, testab: 10, social: 33, automation: 20 }];
+  const donutData2 = [
+    {
+      abandonedCart: 35,
+      campaignBehavior: 10,
+      productRetarget: 15,
+      pendingPayment: 20,
+      siteBehavior: 20,
+    },
+  ];
 
   return (
     <>
@@ -123,6 +132,8 @@ export const AssistedShoppingSection = () => {
         <DonutChart data={donutData} title="Ingresos por Campaña" />
         <br />
         <BarChart />
+        <br />
+        <DonutChart data={donutData2} title="Ventas por tipo de campaña" />
       </div>
     </>
   );
