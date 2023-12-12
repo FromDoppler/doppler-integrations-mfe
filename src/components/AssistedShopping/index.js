@@ -5,6 +5,7 @@ import { AreaChart } from "./AreaChart/AreaChart";
 import { Table } from "./Table/Table";
 import { DonutChart } from "./DonutChart/DonutChart";
 import { BarChart } from "./BarChart/BarChart";
+import { Kpi } from "../shared/kpi/Kpi";
 
 export const AssistedShoppingSection = () => {
   const tableData = [
@@ -51,6 +52,33 @@ export const AssistedShoppingSection = () => {
       siteBehavior: 20,
     },
   ];
+  const kpiData = [
+    {
+      iconClass: "shopping-complete",
+      value: "950",
+      title: "Total de Ventas",
+    },
+    {
+      iconClass: "dollar-money",
+      value: "$18.200.00",
+      title: "Total de ganacia",
+    },
+    {
+      iconClass: "shopping-bag",
+      value: "$40.00",
+      title: "Ganancia promedio",
+    },
+    {
+      iconClass: "capital",
+      value: "2.0 %",
+      title: "Tasa de conversión",
+    },
+    {
+      iconClass: "sales-growth",
+      value: "32 %",
+      title: "Retorno Inversión",
+    },
+  ];
 
   return (
     <>
@@ -76,55 +104,8 @@ export const AssistedShoppingSection = () => {
           </div>
           <div className="col-sm-12 col-md-4 col-lg-4 m-b-12"></div>
         </form>
-        <div className="dp-wrapper-as-kpi">
-          <ul>
-            <li>
-              <div className="dp-kpi-card">
-                <span className="dp-assisted-sales-icon dpicon iconapp-shopping-complete"></span>
-                <div className="dp-assisted-sales-text">
-                  <h3>950</h3>
-                  <span>Total de Ventas</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="dp-kpi-card">
-                <span className="dp-assisted-sales-icon dpicon iconapp-dollar-money"></span>
-                <div className="dp-assisted-sales-text">
-                  <h3>$18.200.00 </h3>
-                  <span>Total de ganacia</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="dp-kpi-card">
-                <span className="dp-assisted-sales-icon dpicon iconapp-shopping-bag"></span>
-                <div className="dp-assisted-sales-text">
-                  <h3>$40.00</h3>
-                  <span>Ganancia promedio</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="dp-kpi-card">
-                <span className="dp-assisted-sales-icon dpicon iconapp-capital"></span>
-                <div className="dp-assisted-sales-text">
-                  <h3>2.0%</h3>
-                  <span>Tasa de conversión</span>
-                </div>
-              </div>
-            </li>
-            <li>
-              <div className="dp-kpi-card">
-                <span className="dp-assisted-sales-icon dpicon iconapp-sales-growth"></span>
-                <div className="dp-assisted-sales-text">
-                  <h3>32 %</h3>
-                  <span>Retorno Inversión</span>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
+        <Kpi data={kpiData} />
+        <br />
         <AreaChart />
         <br />
         <Table tableData={tableData} />

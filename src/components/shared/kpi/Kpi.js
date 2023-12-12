@@ -1,20 +1,27 @@
-import PropTypes from "prop-types";
+import { useIntl } from "react-intl";
 
-export const Kpi = ({ iconClass, kpiValue, kpiTitleId }) => {
+export const Kpi = ({ data }) => {
+  const intl = useIntl();
+
   return (
-    <div className="col-lg-2 col-md-2 col-sm-12" role="figure">
-      <div className="dp-dashboard-kpi">
-        <span className={`dp-dashboard-icon ${iconClass}`} />
-        <span className="dp-kpi-value dp-bold">{kpiValue}</span>
-        <p className="dp-kpi-title dp-bold">{kpiTitleId}</p>
-      </div>
+    <div className="dp-wrapper-as-kpi">
+      <ul>
+        {data.map((kpi, index) => (
+          <li key={index}>
+            <div className="dp-kpi-card">
+              <span
+                className={`dp-assisted-sales-icon dpicon iconapp-${kpi.iconClass}`}
+              ></span>
+              <div className="dp-assisted-sales-text">
+                <h3>{kpi.value}</h3>
+                <span>
+                  {intl.formatMessage({ id: `AssistedShopping.${kpi.title}` })}
+                </span>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
-};
-
-Kpi.propTypes = {
-  iconClass: PropTypes.string.isRequired,
-  kpiValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-    .isRequired,
-  kpiTitleId: PropTypes.string.isRequired,
 };
