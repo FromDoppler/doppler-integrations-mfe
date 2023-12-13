@@ -71,8 +71,8 @@ export const BarChart = () => {
   }, []);
 
   return (
-    <div className="dp-box-shadow">
-      <div className="col-sm-12 col-md-4 col-lg-4 m-b-12">
+    <div className="">
+      <div className="">
         <h6 className="title-reports-box">Ingresos por tipo de automation</h6>
       </div>
       <C3Chart

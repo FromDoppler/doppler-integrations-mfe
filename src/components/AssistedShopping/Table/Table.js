@@ -23,16 +23,8 @@ export const Table = (data) => {
   };
 
   return (
-    <div className="dp-block-wlp dp-box-shadow">
-      <header className="dp-header-campaing dp-rowflex m-b-18">
-        <div className="col-lg-6 col-md-12">
-          <div className="dp-calification">
-            <span className="dp-useremail-campaign">
-              <strong>Ingresos por campañas</strong>
-            </span>
-          </div>
-        </div>
-      </header>
+    <div className="">
+      <h6 class="title-reports-box">Ingresos por campañas</h6>
       <div className="dp-table-responsive">
         <table
           className="dp-c-table dp-nested-table"
