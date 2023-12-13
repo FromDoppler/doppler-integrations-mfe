@@ -7,15 +7,21 @@ export const Kpi = ({ data }) => {
     <div className="dp-wrapper-as-kpi">
       <ul>
         {data.map((kpi, index) => (
-          <li key={index}>
+          <li key={`kpi-${index}`}>
             <div className="dp-kpi-card">
               <span
-                className={`dp-assisted-sales-icon dpicon iconapp-${kpi.iconClass}`}
+                className={`dp-assisted-sales-icon dpicon iconapp-${intl.formatMessage(
+                  {
+                    id: `AssistedShopping.kpi.iconClass.${kpi.title}`,
+                  },
+                )}`}
               ></span>
               <div className="dp-assisted-sales-text">
                 <h3>{kpi.value}</h3>
                 <span>
-                  {intl.formatMessage({ id: `AssistedShopping.${kpi.title}` })}
+                  {intl.formatMessage({
+                    id: `AssistedShopping.kpi.${kpi.title}`,
+                  })}
                 </span>
               </div>
             </div>

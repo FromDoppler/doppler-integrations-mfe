@@ -54,29 +54,24 @@ export const AssistedShoppingSection = () => {
   ];
   const kpiData = [
     {
-      iconClass: "shopping-complete",
       value: "950",
-      title: "Total de Ventas",
+      title: "total_sales",
     },
     {
-      iconClass: "dollar-money",
       value: "$18.200.00",
-      title: "Total de ganacia",
+      title: "total_profit",
     },
     {
-      iconClass: "shopping-bag",
       value: "$40.00",
-      title: "Ganancia promedio",
+      title: "avg_profit",
     },
     {
-      iconClass: "capital",
       value: "2.0 %",
-      title: "Tasa de conversión",
+      title: "convertion_rate",
     },
     {
-      iconClass: "sales-growth",
       value: "32 %",
-      title: "Retorno Inversión",
+      title: "investment_return",
     },
   ];
 
