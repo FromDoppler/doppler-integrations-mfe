@@ -6,22 +6,24 @@ import { TestDopplerIntlProvider } from "../../i18n/TestDopplerIntlProvider";
 describe("Kpi component", () => {
   it("should render Kpi Component", async () => {
     // Arrange
-    const fakeKpi = {
-      kpiTitleId: "dashboard.campaigns.totalCampaigns",
-      kpiValue: 21.478,
-      iconClass: "deliveries",
-    };
+    const fakeKpi = [
+      {
+        value: "950",
+        title: "total_sales",
+      },
+    ];
 
     // Act
     render(
       <TestDopplerIntlProvider>
-        <Kpi {...fakeKpi} />
+        <Kpi data={fakeKpi} />
       </TestDopplerIntlProvider>,
     );
 
     // Assert
-    expect(screen.getByRole("figure")).toBeInTheDocument();
-    expect(screen.getByText(fakeKpi.kpiTitleId)).toBeInTheDocument();
-    expect(screen.getByText(fakeKpi.kpiValue)).toBeInTheDocument();
+    expect(
+      screen.getByText(`AssistedShopping.kpi.${fakeKpi[0].title}`),
+    ).toBeInTheDocument();
+    expect(screen.getByText(fakeKpi[0].value)).toBeInTheDocument();
   });
 });
