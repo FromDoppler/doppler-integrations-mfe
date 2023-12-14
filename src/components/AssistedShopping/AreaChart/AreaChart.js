@@ -71,15 +71,13 @@ export const AreaChart = () => {
   }, []);
 
   return (
-    <div className="dp-box-shadow">
-      <div className="col-sm-12">
-        <h6 className="title-reports-box">Envios VS Ventas Asistidas</h6>
-      </div>
+    <>
+      <h6 className="title-reports-box">Envios VS Ventas Asistidas</h6>
       <C3Chart
         config={chartConfig}
         dataOptions={chartDataOptions}
         data={state.chartData}
       />
-    </div>
+    </>
   );
 };

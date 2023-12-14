@@ -89,7 +89,7 @@ export const AssistedShoppingSection = () => {
           </p>
         </div>
       </HeaderSection>
-      <div className="dp-container">
+      <section className="dp-container">
         <form action="#" className="awa-form dp-rowflex">
           <div className="col-sm-12 col-md-4 col-lg-4 m-b-12">
             <Dropdown />
@@ -100,17 +100,58 @@ export const AssistedShoppingSection = () => {
           <div className="col-sm-12 col-md-4 col-lg-4 m-b-12"></div>
         </form>
         <Kpi data={kpiData} />
-        <br />
-        <AreaChart />
-        <br />
-        <Table tableData={tableData} />
-        <br />
-        <DonutChart data={donutData} title="Ingresos por Campaña" />
-        <br />
-        <BarChart />
-        <br />
-        <DonutChart data={donutData2} title="Ventas por tipo de campaña" />
-      </div>
+      </section>
+      <section className="dp-wrapp-assisted-sales">
+        <div className="dp-container">
+          <div className="dp-rowflex">
+            <div className="col-sm-12 m-b-24 m-t-24">
+              <div className="dp-box-shadow">
+                <AreaChart />
+              </div>
+            </div>
+            <div className="col-sm-12 col-lg-8 m-b-24">
+              <div className="dp-box-shadow">
+                <BarChart />
+              </div>
+            </div>
+            <div className="col-sm-12 col-lg-4 m-b-24">
+              <div className="dp-box-shadow">
+                <DonutChart
+                  data={donutData2}
+                  title="Ventas por tipo de campaña"
+                />
+              </div>
+            </div>
+            <div className="col-sm-12 col-lg-8 m-b-24">
+              <div className="dp-box-shadow">
+                <Table tableData={tableData} />
+              </div>
+            </div>
+            <div className="col-sm-12 col-lg-4 m-b-24">
+              <div className="dp-box-shadow">
+                <DonutChart data={donutData} title="Ingresos por Campaña" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer class="dp-footer m-t-12">
+        <div class="dp-container-fluid">
+          <div class="dp-rowflex">
+            <div class="col-sm-12 col-md-6 col-lg-6 m-b-12">
+              <span>Certificación de Calidad ISO 9001:2008</span>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6 m-b-12 dp-text-align">
+              <span>
+                © 2019 Doppler LLC. Todos los derechos reservados.
+                <a href="https://fromdoppler.com/privacidad">
+                  Políticas de privacidad y legales.
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </footer>
     </>
   );
 };

@@ -12,7 +12,6 @@ export const Dropdown = () => {
           <span className="dropdown-arrow"></span>
           <select
             id="list-selection"
-            className=""
             name="list-selection"
             aria-invalid="false"
           >
