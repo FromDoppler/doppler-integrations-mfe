@@ -23,7 +23,7 @@ export const Table = (data) => {
   };
 
   return (
-    <div className="">
+    <>
       <h6 class="title-reports-box">Ingresos por campañas</h6>
       <div className="dp-table-responsive">
         <table
@@ -96,7 +96,7 @@ export const Table = (data) => {
                     key={`expandableTableKey-${summaryIndex}`}
                   >
                     <td className="dp-latest-results"></td>
-                    <td className="dp-list-results">
+                    <td className="dp-list-results" colspan="4">
                       <table className="dp-table-results">
                         <thead>
                           <tr>
@@ -151,6 +151,6 @@ export const Table = (data) => {
           </tbody>
         </table>
       </div>
-    </div>
+    </>
   );
 };

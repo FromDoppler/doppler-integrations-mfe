@@ -71,15 +71,13 @@ export const BarChart = () => {
   }, []);
 
   return (
-    <div className="">
-      <div className="">
-        <h6 className="title-reports-box">Ingresos por tipo de automation</h6>
-      </div>
+    <>
+      <h6 className="title-reports-box">Ingresos por tipo de automation</h6>
       <C3Chart
         config={chartConfig}
         dataOptions={chartDataOptions}
         data={state.chartData}
       />
-    </div>
+    </>
   );
 };
