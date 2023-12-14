@@ -1,3 +1,7 @@
+const year = new Date().getFullYear();
+const urlSite = `https://www.fromdoppler.com`;
+const urlPrivacy = `${urlSite}/legal/privacidad`;
+
 export const messages_es = {
   AssistedShopping: {
     abandonedCart: "Carrito abandonado",
@@ -31,6 +35,12 @@ export const messages_es = {
   control_panel: `Panel de Control`,
   exit_edit_later: `Salir y editar luego`,
   exit_editor: `Salir del Editor`,
+  footer: {
+    copyright: `© ${year} Doppler LLC. Todos los derechos reservados.`,
+    iso: "Certificación de Calidad ISO 9001:2008",
+    legal_link: `${urlPrivacy}`,
+    legal_text: "Política de Privacidad y Legales.",
+  },
   home: `Inicio`,
   lists: `Listas`,
   save: `Guardar`,

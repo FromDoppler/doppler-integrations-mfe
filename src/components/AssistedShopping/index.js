@@ -6,6 +6,7 @@ import { Table } from "./Table/Table";
 import { DonutChart } from "./DonutChart/DonutChart";
 import { BarChart } from "./BarChart/BarChart";
 import { Kpi } from "../shared/kpi/Kpi";
+import { FooterSection } from "../shared/Footer/footer";
 
 export const AssistedShoppingSection = () => {
   const tableData = [
@@ -135,23 +136,7 @@ export const AssistedShoppingSection = () => {
           </div>
         </div>
       </section>
-      <footer class="dp-footer m-t-12">
-        <div class="dp-container-fluid">
-          <div class="dp-rowflex">
-            <div class="col-sm-12 col-md-6 col-lg-6 m-b-12">
-              <span>Certificación de Calidad ISO 9001:2008</span>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-6 m-b-12 dp-text-align">
-              <span>
-                © 2019 Doppler LLC. Todos los derechos reservados.
-                <a href="https://fromdoppler.com/privacidad">
-                  Políticas de privacidad y legales.
-                </a>
-              </span>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <FooterSection />
     </>
   );
 };

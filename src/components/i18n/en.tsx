@@ -1,3 +1,7 @@
+const year = new Date().getFullYear();
+const urlSite = `https://www.fromdoppler.com`;
+const urlPrivacy = `${urlSite}/en/legal/privacy`;
+
 export const messages_en = {
   AssistedShopping: {
     abandonedCart: "Abandoned cart",
@@ -31,6 +35,12 @@ export const messages_en = {
   control_panel: `Control Panel`,
   exit_edit_later: `Exit and edit later`,
   exit_editor: `Exit Editor`,
+  footer: {
+    copyright: `© ${year} Doppler LLC. All rights reserved.`,
+    iso: "ISO Quality Certification 9001:2008",
+    legal_link: `${urlPrivacy}`,
+    legal_text: "Privacy Policy & Legals.",
+  },
   home: `Home`,
   lists: `Lists`,
   save: `Save`,
