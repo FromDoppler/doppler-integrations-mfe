@@ -7,8 +7,11 @@ import { DonutChart } from "./DonutChart/DonutChart";
 import { BarChart } from "./BarChart/BarChart";
 import { Kpi } from "../shared/kpi/Kpi";
 import { FooterSection } from "../shared/Footer/footer";
+import { useIntl } from "react-intl";
 
 export const AssistedShoppingSection = () => {
+  const intl = useIntl();
+
   const tableData = [
     {
       name: "campañas",
@@ -31,6 +34,20 @@ export const AssistedShoppingSection = () => {
           income: 340000,
           conversion: 2,
         },
+        {
+          name: "campaña navidad 2024",
+          type: "clasica",
+          sales: 5,
+          income: 170000,
+          conversion: 5,
+        },
+        {
+          name: "Campaña Verano 2024",
+          type: "carrito abandonado",
+          sales: 10,
+          income: 340000,
+          conversion: 2,
+        },
       ],
     },
     {
@@ -39,7 +56,110 @@ export const AssistedShoppingSection = () => {
       sales: 42,
       revenue: 1400000,
       conversion: 2,
-      campaigns: [],
+      campaigns: [
+        {
+          name: "campaña navidad 2024",
+          type: "clasica",
+          sales: 5,
+          income: 170000,
+          conversion: 5,
+        },
+        {
+          name: "Campaña Verano 2024",
+          type: "carrito abandonado",
+          sales: 10,
+          income: 340000,
+          conversion: 2,
+        },
+        {
+          name: "campaña navidad 2024",
+          type: "clasica",
+          sales: 5,
+          income: 170000,
+          conversion: 5,
+        },
+        {
+          name: "Campaña Verano 2024",
+          type: "carrito abandonado",
+          sales: 10,
+          income: 340000,
+          conversion: 2,
+        },
+      ],
+    },
+    {
+      name: "Automations",
+      amount: 10,
+      sales: 42,
+      revenue: 1400000,
+      conversion: 2,
+      campaigns: [
+        {
+          name: "campaña navidad 2024",
+          type: "clasica",
+          sales: 5,
+          income: 170000,
+          conversion: 5,
+        },
+        {
+          name: "Campaña Verano 2024",
+          type: "carrito abandonado",
+          sales: 10,
+          income: 340000,
+          conversion: 2,
+        },
+        {
+          name: "campaña navidad 2024",
+          type: "clasica",
+          sales: 5,
+          income: 170000,
+          conversion: 5,
+        },
+        {
+          name: "Campaña Verano 2024",
+          type: "carrito abandonado",
+          sales: 10,
+          income: 340000,
+          conversion: 2,
+        },
+      ],
+    },
+    {
+      name: "Automations",
+      amount: 10,
+      sales: 42,
+      revenue: 1400000,
+      conversion: 2,
+      campaigns: [
+        {
+          name: "campaña navidad 2024",
+          type: "clasica",
+          sales: 5,
+          income: 170000,
+          conversion: 5,
+        },
+        {
+          name: "Campaña Verano 2024",
+          type: "carrito abandonado",
+          sales: 10,
+          income: 340000,
+          conversion: 2,
+        },
+        {
+          name: "campaña navidad 2024",
+          type: "clasica",
+          sales: 5,
+          income: 170000,
+          conversion: 5,
+        },
+        {
+          name: "Campaña Verano 2024",
+          type: "carrito abandonado",
+          sales: 10,
+          income: 340000,
+          conversion: 2,
+        },
+      ],
     },
   ];
 
@@ -83,20 +203,57 @@ export const AssistedShoppingSection = () => {
       </Helmet>
       <HeaderSection>
         <div className="col-sm-12 col-md-12 col-lg-12">
-          <h2>Reporte de métricas Ventas Asistidas</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
+          <h2>{intl.formatMessage({ id: `AssistedShopping.title` })}</h2>
+          <p>{intl.formatMessage({ id: `AssistedShopping.description` })}</p>
         </div>
       </HeaderSection>
       <section className="dp-container">
         <form action="#" className="awa-form dp-rowflex">
           <div className="col-sm-12 col-md-4 col-lg-4 m-b-12">
-            <Dropdown />
+            <Dropdown
+              title={intl.formatMessage({
+                id: `AssistedShopping.dropdowns.ecommerce_title`,
+              })}
+              options={[
+                { name: "Mercadoshops", value: 1 },
+                { name: "Tiendanube", value: 3 },
+                { name: "Adobe Commerce", value: 8 },
+                { name: "vtex", value: 5 },
+              ]}
+            />
           </div>
           <div className="col-sm-12 col-md-4 col-lg-4 m-b-12">
-            <Dropdown />
+            <Dropdown
+              title={intl.formatMessage({
+                id: `AssistedShopping.dropdowns.period_title`,
+              })}
+              options={[
+                {
+                  name: intl.formatMessage({
+                    id: `AssistedShopping.dropdowns.period_option1`,
+                  }),
+                  value: 1,
+                },
+                {
+                  name: intl.formatMessage({
+                    id: `AssistedShopping.dropdowns.period_option2`,
+                  }),
+                  value: 2,
+                },
+                {
+                  name: intl.formatMessage({
+                    id: `AssistedShopping.dropdowns.period_option3`,
+                  }),
+                  value: 3,
+                },
+                {
+                  name: intl.formatMessage({
+                    id: `AssistedShopping.dropdowns.period_option4`,
+                  }),
+                  value: 4,
+                },
+              ]}
+            />
           </div>
           <div className="col-sm-12 col-md-4 col-lg-4 m-b-12"></div>
         </form>
@@ -119,7 +276,9 @@ export const AssistedShoppingSection = () => {
               <div className="dp-box-shadow">
                 <DonutChart
                   data={donutData2}
-                  title="Ventas por tipo de campaña"
+                  title={intl.formatMessage({
+                    id: `AssistedShopping.automation_donut_chart_title`,
+                  })}
                 />
               </div>
             </div>
@@ -131,7 +290,12 @@ export const AssistedShoppingSection = () => {
             </div>
             <div className="col-sm-12 col-lg-4 m-b-24">
               <div className="dp-box-shadow">
-                <DonutChart data={donutData} title="Ingresos por Campaña" />
+                <DonutChart
+                  data={donutData}
+                  title={intl.formatMessage({
+                    id: `AssistedShopping.campaign_donut_chart_title`,
+                  })}
+                />
               </div>
             </div>
           </div>
