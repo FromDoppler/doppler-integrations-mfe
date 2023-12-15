@@ -14,7 +14,7 @@ export const AssistedShoppingSection = () => {
 
   const tableData = [
     {
-      name: "campañas",
+      name: "Automation",
       amount: 10,
       sales: 42,
       revenue: 1400000,
@@ -51,7 +51,7 @@ export const AssistedShoppingSection = () => {
       ],
     },
     {
-      name: "Automations",
+      name: "Clásica",
       amount: 10,
       sales: 42,
       revenue: 1400000,
@@ -71,24 +71,10 @@ export const AssistedShoppingSection = () => {
           income: 340000,
           conversion: 2,
         },
-        {
-          name: "campaña navidad 2024",
-          type: "clasica",
-          sales: 5,
-          income: 170000,
-          conversion: 5,
-        },
-        {
-          name: "Campaña Verano 2024",
-          type: "carrito abandonado",
-          sales: 10,
-          income: 340000,
-          conversion: 2,
-        },
       ],
     },
     {
-      name: "Automations",
+      name: "Social",
       amount: 10,
       sales: 42,
       revenue: 1400000,
@@ -108,24 +94,10 @@ export const AssistedShoppingSection = () => {
           income: 340000,
           conversion: 2,
         },
-        {
-          name: "campaña navidad 2024",
-          type: "clasica",
-          sales: 5,
-          income: 170000,
-          conversion: 5,
-        },
-        {
-          name: "Campaña Verano 2024",
-          type: "carrito abandonado",
-          sales: 10,
-          income: 340000,
-          conversion: 2,
-        },
       ],
     },
     {
-      name: "Automations",
+      name: "Test A/B",
       amount: 10,
       sales: 42,
       revenue: 1400000,
@@ -284,7 +256,11 @@ export const AssistedShoppingSection = () => {
             </div>
             <div className="col-sm-12 col-lg-8 m-b-24">
               <div className="dp-box-shadow">
-                <h6 class="title-reports-box">Ingresos por campañas</h6>
+                <h6 class="title-reports-box">
+                  {intl.formatMessage({
+                    id: `AssistedShopping.table.title`,
+                  })}
+                </h6>
                 <Table tableData={tableData} />
               </div>
             </div>
