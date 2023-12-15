@@ -19,8 +19,8 @@ export const messages_en = {
       social: "Social",
       testab: "Test A/B",
     },
-    description:
-      "In this section you can review your assisted sales. Revenue is posted when a subscriber makes a purchase within seven days of opening the email.",
+    description: `In this section you can review your assisted sales. Revenue is posted when a subscriber makes a
+    purchase within seven days of opening the email.`,
     dropdowns: {
       ecommerce_title: "Ecommerce",
       period_option1: "Last 7 days",
@@ -44,7 +44,6 @@ export const messages_en = {
       total_sales: "Total sales",
     },
     table: {
-      title: "Revenue by campaign",
       header1: "Campaign",
       header2: "Campaigns amount",
       header3: "Total sales",
@@ -55,6 +54,7 @@ export const messages_en = {
       sub_header3: "Sales",
       sub_header4: "Revenue",
       sub_header5: "Convertion",
+      title: "Revenue by campaign",
     },
     title: "Assisted Shopping Dashboard",
   },

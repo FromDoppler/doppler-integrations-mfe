@@ -19,8 +19,8 @@ export const messages_es = {
       social: "Social",
       testab: "Test A/B",
     },
-    description:
-      "En esta sección podrás consultar tus ventas asistidas. Los ingresos se contabilizan cuando un suscriptor realiza una compra dentro de los siete días siguientes a la apertura del correo.",
+    description: `En esta sección podrás consultar tus ventas asistidas. Los ingresos se contabilizan
+    cuando un suscriptor realiza una compra dentro de los siete días siguientes a la apertura del correo.`,
     dropdowns: {
       ecommerce_title: "Tienda",
       period_option1: "Últimos 7 días",
@@ -44,7 +44,6 @@ export const messages_es = {
       total_sales: "Ventas asistidas",
     },
     table: {
-      title: "Ingresos por campañas",
       header1: "Campaña",
       header2: "Cant. de campañas",
       header3: "Total ventas",
@@ -55,6 +54,7 @@ export const messages_es = {
       sub_header3: "Ventas",
       sub_header4: "Ingresos",
       sub_header5: "Conversión",
+      title: "Ingresos por campañas",
     },
     title: "Reporte de métricas Ventas Asistidas",
   },
