@@ -27,7 +27,7 @@ export const DonutChart = ({ data, title }) => {
       const namesMapping = Object.keys(data[0]).reduce(
         (a, v) => ({
           ...a,
-          [v]: intl.formatMessage({ id: `AssistedShopping.${v}` }),
+          [v]: intl.formatMessage({ id: `AssistedShopping.common.${v}` }),
         }),
         {},
       );
@@ -56,7 +56,7 @@ export const DonutChart = ({ data, title }) => {
   if (state != null) {
     return (
       <>
-        <h6 className="title-reports-box">Ingresos por campañas</h6>
+        <h6 className="title-reports-box">{state.chartConfig.donut.title}</h6>
         <C3Chart
           config={state.chartConfig}
           dataOptions={chartDataOptions}

@@ -72,7 +72,11 @@ export const AreaChart = () => {
 
   return (
     <>
-      <h6 className="title-reports-box">Envios VS Ventas Asistidas</h6>
+      <h6 className="title-reports-box">
+        {intl.formatMessage({
+          id: `AssistedShopping.area_chart_title`,
+        })}
+      </h6>
       <C3Chart
         config={chartConfig}
         dataOptions={chartDataOptions}

@@ -1,4 +1,4 @@
-export const Dropdown = () => {
+export const Dropdown = ({ title, options }) => {
   return (
     <fieldset className="filter">
       <label
@@ -7,7 +7,7 @@ export const Dropdown = () => {
         aria-disabled="false"
         data-required="false"
       >
-        Select list
+        {title}
         <div className="dp-select">
           <span className="dropdown-arrow"></span>
           <select
@@ -15,12 +15,12 @@ export const Dropdown = () => {
             name="list-selection"
             aria-invalid="false"
           >
-            <option value="">
-              Lorem Ipsum has been the industry's standard dummy
-            </option>
-            <option value="">item list</option>
-            <option value="">item list</option>
-            <option value="">item list</option>
+            {options.length > 0 &&
+              options.map((option, index) => (
+                <option key={index} value={option.value}>
+                  {option.name}
+                </option>
+              ))}
           </select>
         </div>
       </label>

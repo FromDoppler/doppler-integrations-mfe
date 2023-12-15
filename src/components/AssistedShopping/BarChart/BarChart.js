@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { C3Chart } from "../../shared/C3Chart/C3Chart";
+import { useIntl } from "react-intl";
 
 const chartDataOptions = {
   json: {},
@@ -14,6 +15,7 @@ const data = [
 ];
 
 export const BarChart = () => {
+  const intl = useIntl();
   const [state, setState] = useState({
     chartData: {
       json: data,
@@ -43,7 +45,7 @@ export const BarChart = () => {
         show: true,
         tick: {
           format: (y) => {
-            return "$" + y;
+            return `$ ${y}`;
           },
         },
       },
@@ -72,7 +74,11 @@ export const BarChart = () => {
 
   return (
     <>
-      <h6 className="title-reports-box">Ingresos por tipo de automation</h6>
+      <h6 className="title-reports-box">
+        {intl.formatMessage({
+          id: `AssistedShopping.bar_chart_title`,
+        })}
+      </h6>
       <C3Chart
         config={chartConfig}
         dataOptions={chartDataOptions}

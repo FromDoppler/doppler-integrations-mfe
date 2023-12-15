@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useIntl } from "react-intl";
 
 export const Table = (data) => {
   const [expandedTables, setExpandedTables] = useState([]);
   const [dataTable, setDataTable] = useState([]);
+  const intl = useIntl();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,19 +36,39 @@ export const Table = (data) => {
             <thead>
               <tr>
                 <th aria-label="Campaña" scope="col">
-                  <span>CAMPAÑA</span>
+                  <span>
+                    {intl.formatMessage({
+                      id: `AssistedShopping.table.header1`,
+                    })}
+                  </span>
                 </th>
                 <th aria-label="Asunto" scope="col">
-                  <span>CANT. DE CAMPAÑAS</span>
+                  <span>
+                    {intl.formatMessage({
+                      id: `AssistedShopping.table.header2`,
+                    })}
+                  </span>
                 </th>
                 <th aria-label="Comportamiento" scope="col">
-                  <span>TOTAL VENTAS</span>
+                  <span>
+                    {intl.formatMessage({
+                      id: `AssistedShopping.table.header3`,
+                    })}
+                  </span>
                 </th>
                 <th aria-label="Comportamiento" scope="col">
-                  <span>TOTAL INGRESOS</span>
+                  <span>
+                    {intl.formatMessage({
+                      id: `AssistedShopping.table.header4`,
+                    })}
+                  </span>
                 </th>
                 <th aria-label="Comportamiento" scope="col">
-                  <span>% CONVERSION</span>
+                  <span>
+                    {intl.formatMessage({
+                      id: `AssistedShopping.table.header5`,
+                    })}
+                  </span>
                 </th>
               </tr>
             </thead>
@@ -82,10 +104,10 @@ export const Table = (data) => {
                       <span>{summaryByCampaign.sales}</span>
                     </td>
                     <td>
-                      <span>{summaryByCampaign.revenue}</span>
+                      <span>{`$ ${summaryByCampaign.revenue}`}</span>
                     </td>
                     <td>
-                      <span>{summaryByCampaign.conversion}</span>
+                      <span>{`${summaryByCampaign.conversion} %`}</span>
                     </td>
                   </tr>
                   {summaryByCampaign.campaigns.length > 0 ? (
@@ -103,19 +125,39 @@ export const Table = (data) => {
                           <thead>
                             <tr>
                               <th aria-label="Nombre de campaña" scope="col">
-                                <span>Nombre de campaña</span>
+                                <span>
+                                  {intl.formatMessage({
+                                    id: `AssistedShopping.table.sub_header1`,
+                                  })}
+                                </span>
                               </th>
                               <th aria-label="Tipo de campaña" scope="col">
-                                <span>Tipo</span>
+                                <span>
+                                  {intl.formatMessage({
+                                    id: `AssistedShopping.table.sub_header2`,
+                                  })}
+                                </span>
                               </th>
                               <th aria-label="Ventas" scope="col">
-                                <span>Ventas</span>
+                                <span>
+                                  {intl.formatMessage({
+                                    id: `AssistedShopping.table.sub_header3`,
+                                  })}
+                                </span>
                               </th>
                               <th aria-label="Ingresos" scope="col">
-                                <span>Ingresos</span>
+                                <span>
+                                  {intl.formatMessage({
+                                    id: `AssistedShopping.table.sub_header4`,
+                                  })}
+                                </span>
                               </th>
                               <th aria-label="Conversión" scope="col">
-                                <span>Conversión</span>
+                                <span>
+                                  {intl.formatMessage({
+                                    id: `AssistedShopping.table.sub_header5`,
+                                  })}
+                                </span>
                               </th>
                             </tr>
                           </thead>
@@ -133,10 +175,10 @@ export const Table = (data) => {
                                     <span>{campaign.sales}</span>
                                   </td>
                                   <td>
-                                    <span>{campaign.income}</span>
+                                    <span>{`$ ${campaign.income}`}</span>
                                   </td>
                                   <td>
-                                    <span>{campaign.conversion}</span>
+                                    <span>{`${campaign.conversion} %`}</span>
                                   </td>
                                 </tr>
                               ),
