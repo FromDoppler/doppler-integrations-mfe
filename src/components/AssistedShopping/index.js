@@ -125,6 +125,7 @@ export const AssistedShoppingSection = () => {
             </div>
             <div className="col-sm-12 col-lg-8 m-b-24">
               <div className="dp-box-shadow">
+                <h6 class="title-reports-box">Ingresos por campañas</h6>
                 <Table tableData={tableData} />
               </div>
             </div>
