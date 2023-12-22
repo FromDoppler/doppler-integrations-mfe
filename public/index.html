@@ -28,6 +28,7 @@
     <title>React App</title>
     <script>
       window["doppler-integrations-mfe-configuration"] = {
+        useDummies: true,
         // Useful to test a more realistic routing:
         // basename: "hello",
       };
@@ -64,7 +65,7 @@
 
     window["doppler-session-mfe-configuration"] = {
       dopplerLegacyBaseUrl: "https://appint.fromdoppler.net",
-      useDummies: false,
+      useDummies: true,
     };
     new AssetServices().load(
       "https://cdn.fromdoppler.com/doppler-session-mfe/asset-manifest-INT.json",
