@@ -11,6 +11,8 @@ import { DummyHtmlEditorApiClient } from "./implementations/dummies/html-editor-
 import { HtmlEditorApiClientImpl } from "./implementations/HtmlEditorApiClientImpl";
 import { DummyDopplerRestApiClient } from "./implementations/dummies/doppler-rest-api-client";
 import { DopplerRestApiClientImpl } from "./implementations/DopplerRestApiClientImpl";
+import { IntegrationsApiClientImpl } from "./implementations/integrations-api/IntegrationsApiClientImpl";
+import { DummyIntegrationsApiClient } from "./implementations/dummies/integrations-api-client";
 
 export const configureApp = (
   customConfiguration: Partial<AppConfiguration>,
@@ -48,11 +50,22 @@ export const configureApp = (
       // Casting because the same instance of SessionMfeAppSessionStateClient
       // will be use for appSessionStateMonitor and appSessionStateAccessor
       appSessionStateMonitor as SessionMfeAppSessionStateClient,
+    integrationsApiClientFactory: ({
+      axiosStatic,
+      appSessionStateAccessor,
+      appConfiguration,
+    }) =>
+      new IntegrationsApiClientImpl({
+        axiosStatic,
+        appSessionStateAccessor,
+        appConfiguration,
+      }),
   };
 
   const dummyFactories: Partial<ServicesFactories> = {
     htmlEditorApiClientFactory: () => new DummyHtmlEditorApiClient(),
     dopplerRestApiClientFactory: () => new DummyDopplerRestApiClient(),
+    integrationsApiClientFactory: () => new DummyIntegrationsApiClient(),
   };
 
   const factories = appConfiguration.useDummies

@@ -18,4 +18,5 @@ export const defaultAppConfiguration: AppConfiguration = {
     lists: "https://app2.fromdoppler.com/Lists/SubscribersList",
     controlPanel: "https://app2.fromdoppler.com/ControlPanel/ControlPanel",
   },
+  dopplerApisBaseUrl: "https://apis.fromdoppler.com",
 };

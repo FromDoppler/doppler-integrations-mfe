@@ -7,6 +7,7 @@ import {
 import { AppConfigurationRenderer } from "../app-configuration-renderer";
 import { HtmlEditorApiClient } from "../html-editor-api-client";
 import { DopplerRestApiClient } from "../doppler-rest-api-client";
+import { IntegrationsApiClient } from "../integrations-api-client";
 
 export type AppServices = {
   window: Window;
@@ -17,4 +18,5 @@ export type AppServices = {
   dopplerRestApiClient: DopplerRestApiClient;
   appSessionStateAccessor: AppSessionStateAccessor;
   appSessionStateMonitor: AppSessionStateMonitor;
+  integrationsApiClient: IntegrationsApiClient;
 };
