@@ -12,6 +12,7 @@ import { HtmlEditorApiClientImpl } from "./implementations/HtmlEditorApiClientIm
 import { DummyDopplerRestApiClient } from "./implementations/dummies/doppler-rest-api-client";
 import { DopplerRestApiClientImpl } from "./implementations/DopplerRestApiClientImpl";
 import { IntegrationsApiClientImpl } from "./implementations/integrations-api/IntegrationsApiClientImpl";
+import { DummyIntegrationsApiClient } from "./implementations/dummies/integrations-api-client";
 
 export const configureApp = (
   customConfiguration: Partial<AppConfiguration>,
@@ -64,6 +65,7 @@ export const configureApp = (
   const dummyFactories: Partial<ServicesFactories> = {
     htmlEditorApiClientFactory: () => new DummyHtmlEditorApiClient(),
     dopplerRestApiClientFactory: () => new DummyDopplerRestApiClient(),
+    integrationsApiClientFactory: () => new DummyIntegrationsApiClient(),
   };
 
   const factories = appConfiguration.useDummies
