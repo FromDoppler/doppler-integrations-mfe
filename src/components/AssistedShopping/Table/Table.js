@@ -120,7 +120,7 @@ export const Table = (data) => {
                       key={`expandableTableKey-${summaryIndex}`}
                     >
                       <td className="dp-latest-results"></td>
-                      <td className="dp-list-results" colspan="4">
+                      <td className="dp-list-results" colSpan="4">
                         <table className="dp-table-results">
                           <thead>
                             <tr>
