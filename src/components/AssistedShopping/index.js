@@ -8,6 +8,7 @@ import { BarChart } from "./BarChart/BarChart";
 import { Kpi } from "../shared/kpi/Kpi";
 import { FooterSection } from "../shared/Footer/footer";
 import { useIntl } from "react-intl";
+import { LoadingScreen } from "..shared/Loading/application";
 
 export const AssistedShoppingSection = () => {
   const intl = useIntl();

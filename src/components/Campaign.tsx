@@ -7,7 +7,7 @@ import {
 import { EditorBottomBar } from "./EditorBottomBar";
 import { useIntl } from "react-intl";
 import { useAppServices } from "./application";
-import { LoadingScreen } from "./application/LoadingScreen";
+import { LoadingScreen } from "./shared/Loading/LoadingScreen";
 import { useRef } from "react";
 
 export const errorMessageTestId = "error-message";
