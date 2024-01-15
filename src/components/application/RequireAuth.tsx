@@ -2,8 +2,8 @@ import {
   useAppServices,
   useAppSessionUserData,
   NavigateToExternalUrl,
-  LoadingScreen,
 } from ".";
+import { LoadingScreen } from "../shared/Loading/LoadingScreen";
 
 export const RequireAuth = ({ children }: { children: JSX.Element }) => {
   const {

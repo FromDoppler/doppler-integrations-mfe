@@ -10,5 +10,17 @@
       "name": "Tiendanube",
       "assistedShoppingEnabled": true
     }
+  },
+  {
+    "idUser": "123",
+    "accountName": "doppler@fromdoppler.com",
+    "connectionErrors": 0,
+    "utcLastCompletedSync": "2023-01-01",
+    "utcLastAssistedShoppingSync": "2023-01-01",
+    "thirdPartyApp": {
+      "idThirdPartyApp": 8,
+      "name": "Magento",
+      "assistedShoppingEnabled": true
+    }
   }
 ]

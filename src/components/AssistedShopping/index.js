@@ -8,9 +8,30 @@ import { BarChart } from "./BarChart/BarChart";
 import { Kpi } from "../shared/kpi/Kpi";
 import { FooterSection } from "../shared/Footer/footer";
 import { useIntl } from "react-intl";
+import { LoadingScreen } from "../shared/Loading/LoadingScreen";
+import {
+  useGetThirdPartyConnections,
+  useGetAssistedSales,
+} from "../../queries/integrations-api-queries";
 
 export const AssistedShoppingSection = () => {
   const intl = useIntl();
+
+  const thirdPartyConnections = useGetThirdPartyConnections();
+  const connections = [];
+  if (!thirdPartyConnections.isLoading) {
+    thirdPartyConnections.data.forEach((connection) => {
+      connections.push({
+        name: connection.thirdPartyApp.name,
+        value: connection.thirdPartyApp.idThirdPartyApp,
+      });
+    });
+  }
+
+  const assistedSales = useGetAssistedSales();
+  if (!assistedSales.isLoading) {
+    assistedSales.data.forEach((section) => {});
+  }
 
   const tableData = [
     {
@@ -168,7 +189,9 @@ export const AssistedShoppingSection = () => {
     },
   ];
 
-  return (
+  return thirdPartyConnections.isLoading ? (
+    <LoadingScreen />
+  ) : (
     <>
       <Helmet>
         <title>Ecommerce</title>
@@ -186,12 +209,7 @@ export const AssistedShoppingSection = () => {
               title={intl.formatMessage({
                 id: `AssistedShopping.dropdowns.ecommerce_title`,
               })}
-              options={[
-                { name: "Mercadoshops", value: 1 },
-                { name: "Tiendanube", value: 3 },
-                { name: "Adobe Commerce", value: 8 },
-                { name: "vtex", value: 5 },
-              ]}
+              options={connections}
             />
           </div>
           <div className="col-sm-12 col-md-4 col-lg-4 m-b-12">
@@ -256,7 +274,7 @@ export const AssistedShoppingSection = () => {
             </div>
             <div className="col-sm-12 col-lg-8 m-b-24">
               <div className="dp-box-shadow">
-                <h6 class="title-reports-box">
+                <h6 className="title-reports-box">
                   {intl.formatMessage({
                     id: `AssistedShopping.table.title`,
                   })}
