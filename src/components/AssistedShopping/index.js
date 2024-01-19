@@ -1,6 +1,3 @@
-import { Helmet } from "react-helmet";
-import { HeaderSection } from "../shared/HeaderSection/HeaderSection";
-import { Dropdown } from "../shared/Dropdown/Dropdown";
 import { AreaChart } from "./AreaChart/AreaChart";
 import { Table } from "./Table/Table";
 import { DonutChart } from "./DonutChart/DonutChart";
@@ -13,6 +10,7 @@ import {
   useGetThirdPartyConnections,
   useGetAssistedSales,
 } from "../../queries/integrations-api-queries";
+import { DashboardHeader } from "./DashboardHeader";
 
 export const AssistedShoppingSection = () => {
   const intl = useIntl();
@@ -29,8 +27,9 @@ export const AssistedShoppingSection = () => {
   }
 
   const assistedSales = useGetAssistedSales();
-  if (!assistedSales.isLoading) {
-    assistedSales.data.forEach((section) => {});
+
+  if (thirdPartyConnections.isLoading) {
+    return <LoadingScreen />;
   }
 
   const tableData = [
@@ -155,6 +154,81 @@ export const AssistedShoppingSection = () => {
       ],
     },
   ];
+  if (assistedSales.isLoading) {
+    return (
+      <>
+        <DashboardHeader connections={connections} />
+        <LoadingScreen />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <DashboardHeader connections={connections} />
+        <section className="dp-container">
+          <Kpi data={getKPIData(assistedSales.data)} />
+        </section>
+        <section className="dp-wrapp-assisted-sales">
+          <div className="dp-container">
+            <div className="dp-rowflex">
+              <div className="col-sm-12 m-b-24 m-t-24">
+                <div className="dp-box-shadow">
+                  <AreaChart data={getAreaData(assistedSales.data)} />
+                </div>
+              </div>
+              <div className="col-sm-12 col-lg-8 m-b-24">
+                <div className="dp-box-shadow">
+                  <BarChart
+                    data={getAutomationBarData(
+                      assistedSales.data.filter((order) =>
+                        order.campaign.campaignType.includes("automation"),
+                      ),
+                    )}
+                  />
+                </div>
+              </div>
+              <div className="col-sm-12 col-lg-4 m-b-24">
+                <div className="dp-box-shadow">
+                  <DonutChart
+                    data={getAutomationDonutData(
+                      assistedSales.data.filter((order) =>
+                        order.campaign.campaignType.includes("automation"),
+                      ),
+                    )}
+                    title={intl.formatMessage({
+                      id: `AssistedShopping.automation_donut_chart_title`,
+                    })}
+                  />
+                </div>
+              </div>
+              <div className="col-sm-12 col-lg-8 m-b-24">
+                <div className="dp-box-shadow">
+                  <h6 className="title-reports-box">
+                    {intl.formatMessage({
+                      id: `AssistedShopping.table.title`,
+                    })}
+                  </h6>
+                  <Table tableData={getTableData(assistedSales.data)} />
+                </div>
+              </div>
+              <div className="col-sm-12 col-lg-4 m-b-24">
+                <div className="dp-box-shadow">
+                  <DonutChart
+                    data={getCampaignsDonutData(assistedSales.data)}
+                    title={intl.formatMessage({
+                      id: `AssistedShopping.campaign_donut_chart_title`,
+                    })}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <FooterSection />
+      </>
+    );
+  }
+};
 
   const donutData = [{ clasica: 37, testab: 10, social: 33, automation: 20 }];
   const donutData2 = [
@@ -189,113 +263,5 @@ export const AssistedShoppingSection = () => {
     },
   ];
 
-  return thirdPartyConnections.isLoading ? (
-    <LoadingScreen />
-  ) : (
-    <>
-      <Helmet>
-        <title>Ecommerce</title>
-      </Helmet>
-      <HeaderSection>
-        <div className="col-sm-12 col-md-12 col-lg-12">
-          <h2>{intl.formatMessage({ id: `AssistedShopping.title` })}</h2>
-          <p>{intl.formatMessage({ id: `AssistedShopping.description` })}</p>
-        </div>
-      </HeaderSection>
-      <section className="dp-container">
-        <form action="#" className="awa-form dp-rowflex">
-          <div className="col-sm-12 col-md-4 col-lg-4 m-b-12">
-            <Dropdown
-              title={intl.formatMessage({
-                id: `AssistedShopping.dropdowns.ecommerce_title`,
-              })}
-              options={connections}
-            />
-          </div>
-          <div className="col-sm-12 col-md-4 col-lg-4 m-b-12">
-            <Dropdown
-              title={intl.formatMessage({
-                id: `AssistedShopping.dropdowns.period_title`,
-              })}
-              options={[
-                {
-                  name: intl.formatMessage({
-                    id: `AssistedShopping.dropdowns.period_option1`,
-                  }),
-                  value: 1,
-                },
-                {
-                  name: intl.formatMessage({
-                    id: `AssistedShopping.dropdowns.period_option2`,
-                  }),
-                  value: 2,
-                },
-                {
-                  name: intl.formatMessage({
-                    id: `AssistedShopping.dropdowns.period_option3`,
-                  }),
-                  value: 3,
-                },
-                {
-                  name: intl.formatMessage({
-                    id: `AssistedShopping.dropdowns.period_option4`,
-                  }),
-                  value: 4,
-                },
-              ]}
-            />
-          </div>
-          <div className="col-sm-12 col-md-4 col-lg-4 m-b-12"></div>
-        </form>
-        <Kpi data={kpiData} />
-      </section>
-      <section className="dp-wrapp-assisted-sales">
-        <div className="dp-container">
-          <div className="dp-rowflex">
-            <div className="col-sm-12 m-b-24 m-t-24">
-              <div className="dp-box-shadow">
-                <AreaChart />
-              </div>
-            </div>
-            <div className="col-sm-12 col-lg-8 m-b-24">
-              <div className="dp-box-shadow">
-                <BarChart />
-              </div>
-            </div>
-            <div className="col-sm-12 col-lg-4 m-b-24">
-              <div className="dp-box-shadow">
-                <DonutChart
-                  data={donutData2}
-                  title={intl.formatMessage({
-                    id: `AssistedShopping.automation_donut_chart_title`,
-                  })}
-                />
-              </div>
-            </div>
-            <div className="col-sm-12 col-lg-8 m-b-24">
-              <div className="dp-box-shadow">
-                <h6 className="title-reports-box">
-                  {intl.formatMessage({
-                    id: `AssistedShopping.table.title`,
-                  })}
-                </h6>
-                <Table tableData={tableData} />
-              </div>
-            </div>
-            <div className="col-sm-12 col-lg-4 m-b-24">
-              <div className="dp-box-shadow">
-                <DonutChart
-                  data={donutData}
-                  title={intl.formatMessage({
-                    id: `AssistedShopping.campaign_donut_chart_title`,
-                  })}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <FooterSection />
-    </>
   );
 };
