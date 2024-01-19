@@ -323,5 +323,38 @@ const getAreaData = (assistedSales) => {
 
   return [...new Map([...salesByOrderDate, ...salesBySentDate]).values()];
 };
+
+const getAutomationBarData = (assistedSales) => {
+  const automationEventTypes = [
+    ...new Set(assistedSales.map((sale) => sale.campaign.automationEventType)),
+  ];
+
+  let automationData = [];
+  automationEventTypes.forEach((eventType) => {
+    automationData.push({
+      name: eventType,
+      revenue: assistedSales
+        .filter((sale) => sale.campaign.automationEventType.includes(eventType))
+        .reduce((a, v) => a + v.orderTotal, 0),
+    });
+  });
+
+  automationData.sort((a, b) => b.value - a.value);
+
+  if (automationData.length > 4) {
+    const minorityAmount = automationData.reduce((a, v, index) => {
+      return index >= 4 ? a + +v.revenue : a;
+    }, 0);
+
+    automationData = automationData.filter((_eventType, index) => index < 4);
+
+    automationData.push({
+      name: "others",
+      revenue: minorityAmount,
+    });
+  }
+
+  return automationData;
+};
   );
 };
