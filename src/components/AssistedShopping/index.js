@@ -270,5 +270,58 @@ const getKPIData = (assistedSales) => {
   ];
 };
 
+const getAreaData = (assistedSales) => {
+  const salesByOrderDate = new Map(
+    assistedSales.map((order) => [
+      new Date(order.orderDate).getUTCMonth(),
+      {
+        date:
+          new Date(order.orderDate).getUTCFullYear() +
+          "-" +
+          (new Date(order.orderDate).getUTCMonth() + 1) +
+          "-01",
+        deliveries: assistedSales
+          .filter(
+            (sale) =>
+              new Date(sale.campaign.UTCSentDate).getUTCMonth() ===
+              new Date(order.orderDate).getUTCMonth(),
+          )
+          .reduce((a, v) => (a += v.campaign.amountSentSubscribers), 0),
+        sales: assistedSales.filter(
+          (sale) =>
+            new Date(sale.orderDate).getUTCMonth() ===
+            new Date(order.orderDate).getUTCMonth(),
+        ).length,
+      },
+    ]),
+  );
+
+  const salesBySentDate = new Map(
+    assistedSales.map((order) => [
+      new Date(order.campaign.UTCSentDate).getUTCMonth(),
+      {
+        date:
+          new Date(order.campaign.UTCSentDate).getUTCFullYear() +
+          "-" +
+          (new Date(order.campaign.UTCSentDate).getUTCMonth() + 1) +
+          "-01",
+        deliveries: assistedSales
+          .filter(
+            (sale) =>
+              new Date(sale.campaign.UTCSentDate).getUTCMonth() ===
+              new Date(order.campaign.UTCSentDate).getUTCMonth(),
+          )
+          .reduce((a, v) => (a += v.campaign.amountSentSubscribers), 0),
+        sales: assistedSales.filter(
+          (sale) =>
+            new Date(sale.campaign.UTCSentDate).getUTCMonth() ===
+            new Date(order.campaign.UTCSentDate).getUTCMonth(),
+        ).length,
+      },
+    ]),
+  );
+
+  return [...new Map([...salesByOrderDate, ...salesBySentDate]).values()];
+};
   );
 };
