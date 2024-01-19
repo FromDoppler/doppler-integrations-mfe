@@ -230,7 +230,6 @@ export const AssistedShoppingSection = () => {
   }
 };
 
-  const donutData = [{ clasica: 37, testab: 10, social: 33, automation: 20 }];
 const getKPIData = (assistedSales) => {
   const totalProfit = assistedSales.reduce(
     (total, order) => (total += order.orderTotal),
@@ -388,5 +387,19 @@ const getAutomationDonutData = (assistedSales) => {
     {},
   );
 };
+
+const getCampaignsDonutData = (assistedSales) => {
+  const campaignTypes = [
+    ...new Set(assistedSales.map((sale) => sale.campaign.campaignType)),
+  ];
+
+  return campaignTypes.reduce(
+    (a, v) => ({
+      ...a,
+      [v]: assistedSales.filter((order) =>
+        order.campaign.campaignType.includes(v),
+      ).length,
+    }),
+    {},
   );
 };
