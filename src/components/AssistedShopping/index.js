@@ -240,17 +240,23 @@ export const AssistedShoppingSection = () => {
       siteBehavior: 20,
     },
   ];
-  const kpiData = [
+const getKPIData = (assistedSales) => {
+  const totalProfit = assistedSales.reduce(
+    (total, order) => (total += order.orderTotal),
+    0,
+  );
+  const totalSales = assistedSales.length;
+  return [
     {
-      value: "950",
+      value: totalSales,
       title: "total_sales",
     },
     {
-      value: "$18.200.00",
+      value: `$ ${totalProfit.toFixed(2)}`,
       title: "total_profit",
     },
     {
-      value: "$40.00",
+      value: `$ ${(totalProfit / totalSales).toFixed(2)}`,
       title: "avg_profit",
     },
     {
@@ -262,6 +268,7 @@ export const AssistedShoppingSection = () => {
       title: "investment_return",
     },
   ];
+};
 
   );
 };
