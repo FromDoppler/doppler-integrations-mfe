@@ -101,6 +101,7 @@ export class IntegrationsApiClientImpl implements IntegrationsApiClient {
             campaignType,
             automationEventType,
             amountSentSubscribers,
+            UTCSentDate,
           },
           subscriber: { idSubscriber, email },
         }: any) => ({
@@ -117,6 +118,7 @@ export class IntegrationsApiClientImpl implements IntegrationsApiClient {
             campaignType,
             automationEventType,
             amountSentSubscribers,
+            UTCSentDate,
           },
           subscriber: { idSubscriber, email },
         }),
