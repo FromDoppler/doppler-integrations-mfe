@@ -32,128 +32,6 @@ export const AssistedShoppingSection = () => {
     return <LoadingScreen />;
   }
 
-  const tableData = [
-    {
-      name: "Automation",
-      amount: 10,
-      sales: 42,
-      revenue: 1400000,
-      conversion: 2,
-      campaigns: [
-        {
-          name: "campaña navidad 2024",
-          type: "clasica",
-          sales: 5,
-          income: 170000,
-          conversion: 5,
-        },
-        {
-          name: "Campaña Verano 2024",
-          type: "carrito abandonado",
-          sales: 10,
-          income: 340000,
-          conversion: 2,
-        },
-        {
-          name: "campaña navidad 2024",
-          type: "clasica",
-          sales: 5,
-          income: 170000,
-          conversion: 5,
-        },
-        {
-          name: "Campaña Verano 2024",
-          type: "carrito abandonado",
-          sales: 10,
-          income: 340000,
-          conversion: 2,
-        },
-      ],
-    },
-    {
-      name: "Clásica",
-      amount: 10,
-      sales: 42,
-      revenue: 1400000,
-      conversion: 2,
-      campaigns: [
-        {
-          name: "campaña navidad 2024",
-          type: "clasica",
-          sales: 5,
-          income: 170000,
-          conversion: 5,
-        },
-        {
-          name: "Campaña Verano 2024",
-          type: "carrito abandonado",
-          sales: 10,
-          income: 340000,
-          conversion: 2,
-        },
-      ],
-    },
-    {
-      name: "Social",
-      amount: 10,
-      sales: 42,
-      revenue: 1400000,
-      conversion: 2,
-      campaigns: [
-        {
-          name: "campaña navidad 2024",
-          type: "clasica",
-          sales: 5,
-          income: 170000,
-          conversion: 5,
-        },
-        {
-          name: "Campaña Verano 2024",
-          type: "carrito abandonado",
-          sales: 10,
-          income: 340000,
-          conversion: 2,
-        },
-      ],
-    },
-    {
-      name: "Test A/B",
-      amount: 10,
-      sales: 42,
-      revenue: 1400000,
-      conversion: 2,
-      campaigns: [
-        {
-          name: "campaña navidad 2024",
-          type: "clasica",
-          sales: 5,
-          income: 170000,
-          conversion: 5,
-        },
-        {
-          name: "Campaña Verano 2024",
-          type: "carrito abandonado",
-          sales: 10,
-          income: 340000,
-          conversion: 2,
-        },
-        {
-          name: "campaña navidad 2024",
-          type: "clasica",
-          sales: 5,
-          income: 170000,
-          conversion: 5,
-        },
-        {
-          name: "Campaña Verano 2024",
-          type: "carrito abandonado",
-          sales: 10,
-          income: 340000,
-          conversion: 2,
-        },
-      ],
-    },
-  ];
   if (assistedSales.isLoading) {
     return (
       <>
@@ -386,6 +264,70 @@ const getAutomationDonutData = (assistedSales) => {
     }),
     {},
   );
+};
+
+const getTableData = (assistedSales) => {
+  const campaignTypes = [
+    ...new Set(assistedSales.map((sale) => sale.campaign.campaignType)),
+  ];
+
+  const result = [];
+  campaignTypes.forEach((type) => {
+    const filteredSales = assistedSales.filter((sale) =>
+      sale.campaign.campaignType.includes(type),
+    );
+
+    const uniqueCampaigns = [
+      ...new Map(
+        filteredSales.map((sale) => [
+          sale.campaign.idCampaign,
+          {
+            name: sale.campaign.name,
+            type:
+              sale.campaign.campaignType === "automation"
+                ? sale.campaign.automationEventType
+                : sale.campaign.campaignType,
+            sale: filteredSales.filter(
+              (order) => order.campaign.idCampaign === sale.campaign.idCampaign,
+            ).length,
+            income: filteredSales
+              .filter(
+                (order) =>
+                  order.campaign.idCampaign === sale.campaign.idCampaign,
+              )
+              .reduce((a, v) => a + v.orderTotal, 0),
+            conversion: (
+              filteredSales.filter(
+                (order) =>
+                  order.campaign.idCampaign === sale.campaign.idCampaign,
+              ).length / sale.campaign.amountSentSubscribers
+            ).toFixed(2),
+            amountSentSubscribers: sale.campaign.amountSentSubscribers,
+          },
+        ]),
+      ).values(),
+    ];
+
+    result.push({
+      name: type,
+      amount: uniqueCampaigns.length,
+      sales: filteredSales.length,
+      revenue: filteredSales.reduce(
+        (total, order) => (total += order.orderTotal),
+        0,
+      ),
+      conversion: (
+        filteredSales.length /
+        uniqueCampaigns.reduce(
+          (total, campaign) => (total += campaign.amountSentSubscribers),
+          0,
+        )
+      ).toFixed(2),
+      campaigns: uniqueCampaigns,
+    });
+  });
+
+  return result;
 };
 
 const getCampaignsDonutData = (assistedSales) => {
