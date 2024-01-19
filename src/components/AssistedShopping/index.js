@@ -231,15 +231,6 @@ export const AssistedShoppingSection = () => {
 };
 
   const donutData = [{ clasica: 37, testab: 10, social: 33, automation: 20 }];
-  const donutData2 = [
-    {
-      abandonedCart: 35,
-      campaignBehavior: 10,
-      productRetarget: 15,
-      pendingPayment: 20,
-      siteBehavior: 20,
-    },
-  ];
 const getKPIData = (assistedSales) => {
   const totalProfit = assistedSales.reduce(
     (total, order) => (total += order.orderTotal),
@@ -355,6 +346,47 @@ const getAutomationBarData = (assistedSales) => {
   }
 
   return automationData;
+};
+
+const getAutomationDonutData = (assistedSales) => {
+  let automationEventTypes = [
+    ...new Map(
+      assistedSales.map((order) => [
+        order.campaign["automationEventType"],
+        {
+          key: order.campaign.automationEventType,
+          value: assistedSales.filter((sale) =>
+            sale.campaign.automationEventType.includes(
+              order.campaign.automationEventType,
+            ),
+          ).length,
+        },
+      ]),
+    ).values(),
+  ].sort((a, b) => b.value - a.value);
+
+  if (automationEventTypes.length > 4) {
+    const minorityAmount = automationEventTypes.reduce((a, v, index) => {
+      return index >= 4 ? a + +v.value : a;
+    }, 0);
+
+    automationEventTypes = automationEventTypes.filter(
+      (_eventType, index) => index < 4,
+    );
+
+    automationEventTypes.push({
+      key: "others",
+      value: minorityAmount,
+    });
+  }
+
+  return automationEventTypes.reduce(
+    (a, v) => ({
+      ...a,
+      [v.key.toLowerCase()]: v.value,
+    }),
+    {},
+  );
 };
   );
 };
