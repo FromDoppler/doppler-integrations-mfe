@@ -5,14 +5,162 @@
     "idThirdPartyApp": 3,
     "orderTotal": 10.25,
     "currency": "ARS",
-    "orderDate": "2023-01-01",
-    "openDate": "2023-01-01",
+    "orderDate": "2024-01-01",
+    "openDate": "2024-01-01",
     "campaign": {
       "idCampaign": 123,
       "name": "Tiendanube",
       "campaignType": "automation",
-      "automationEventType": "list suscription",
-      "amountSentSubscribers": 100
+      "automationEventType": "LIST",
+      "amountSentSubscribers": 100,
+      "UTCSentDate": "2024-01-01"
+    },
+    "subscriber": {
+      "idSubscriber": 123,
+      "email": "doppler@fromdoppler.com"
+    }
+  },
+  {
+    "idOrder": 124,
+    "idUser": "123",
+    "idThirdPartyApp": 3,
+    "orderTotal": 100,
+    "currency": "ARS",
+    "orderDate": "2024-01-01",
+    "openDate": "2024-01-01",
+    "campaign": {
+      "idCampaign": 123,
+      "name": "Tiendanube",
+      "campaignType": "automation",
+      "automationEventType": "LIST",
+      "amountSentSubscribers": 100,
+      "UTCSentDate": "2024-01-01"
+    },
+    "subscriber": {
+      "idSubscriber": 123,
+      "email": "doppler@fromdoppler.com"
+    }
+  },
+  {
+    "idOrder": 125,
+    "idUser": "123",
+    "idThirdPartyApp": 3,
+    "orderTotal": 100,
+    "currency": "ARS",
+    "orderDate": "2023-10-01",
+    "openDate": "2023-10-01",
+    "campaign": {
+      "idCampaign": 123,
+      "name": "Tiendanube",
+      "campaignType": "automation",
+      "automationEventType": "SCHEDULEDTASK",
+      "amountSentSubscribers": 100,
+      "UTCSentDate": "2023-10-01"
+    },
+    "subscriber": {
+      "idSubscriber": 123,
+      "email": "doppler@fromdoppler.com"
+    }
+  },
+  {
+    "idOrder": 126,
+    "idUser": "123",
+    "idThirdPartyApp": 3,
+    "orderTotal": 100,
+    "currency": "ARS",
+    "orderDate": "2024-01-01",
+    "openDate": "2024-01-01",
+    "campaign": {
+      "idCampaign": 124,
+      "name": "Tiendanube 2",
+      "campaignType": "clasica",
+      "automationEventType": "",
+      "amountSentSubscribers": 100,
+      "UTCSentDate": "2024-01-01"
+    },
+    "subscriber": {
+      "idSubscriber": 123,
+      "email": "doppler@fromdoppler.com"
+    }
+  },
+  {
+    "idOrder": 127,
+    "idUser": "123",
+    "idThirdPartyApp": 3,
+    "orderTotal": 100,
+    "currency": "ARS",
+    "orderDate": "2023-11-01",
+    "openDate": "2023-11-01",
+    "campaign": {
+      "idCampaign": 123,
+      "name": "Tiendanube",
+      "campaignType": "automation",
+      "automationEventType": "LIST",
+      "amountSentSubscribers": 100,
+      "UTCSentDate": "2023-11-01"
+    },
+    "subscriber": {
+      "idSubscriber": 123,
+      "email": "doppler@fromdoppler.com"
+    }
+  },
+  {
+    "idOrder": 128,
+    "idUser": "123",
+    "idThirdPartyApp": 3,
+    "orderTotal": 100,
+    "currency": "ARS",
+    "orderDate": "2024-01-01",
+    "openDate": "2024-01-01",
+    "campaign": {
+      "idCampaign": 123,
+      "name": "Tiendanube",
+      "campaignType": "automation",
+      "automationEventType": "LIST",
+      "amountSentSubscribers": 100,
+      "UTCSentDate": "2024-01-01"
+    },
+    "subscriber": {
+      "idSubscriber": 123,
+      "email": "doppler@fromdoppler.com"
+    }
+  },
+  {
+    "idOrder": 129,
+    "idUser": "123",
+    "idThirdPartyApp": 3,
+    "orderTotal": 100,
+    "currency": "ARS",
+    "orderDate": "2024-01-01",
+    "openDate": "2024-01-01",
+    "campaign": {
+      "idCampaign": 125,
+      "name": "Tiendanube",
+      "campaignType": "automation",
+      "automationEventType": "LIST",
+      "amountSentSubscribers": 100,
+      "UTCSentDate": "2023-10-01"
+    },
+    "subscriber": {
+      "idSubscriber": 123,
+      "email": "doppler@fromdoppler.com"
+    }
+  },
+  {
+    "idOrder": 130,
+    "idUser": "123",
+    "idThirdPartyApp": 3,
+    "orderTotal": 100,
+    "currency": "ARS",
+    "orderDate": "2023-09-01",
+    "openDate": "2023-09-01",
+    "campaign": {
+      "idCampaign": 126,
+      "name": "Tiendanube",
+      "campaignType": "clasica",
+      "automationEventType": "",
+      "amountSentSubscribers": 100,
+      "UTCSentDate": "2023-06-01"
     },
     "subscriber": {
       "idSubscriber": 123,

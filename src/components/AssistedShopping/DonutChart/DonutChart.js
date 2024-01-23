@@ -24,19 +24,19 @@ export const DonutChart = ({ data, title }) => {
 
   useEffect(() => {
     const fetchData = () => {
-      const namesMapping = Object.keys(data[0]).reduce(
+      const namesMapping = Object.keys(data).reduce(
         (a, v) => ({
           ...a,
-          [v]: intl.formatMessage({ id: `AssistedShopping.common.${v}` }),
+          [v]: intl.formatMessage({ id: `AssistedShopping.donut.${v}` }),
         }),
         {},
       );
 
       setState({
         chartData: {
-          json: data,
+          json: [data],
           keys: {
-            value: Object.keys(data[0]),
+            value: Object.keys(data),
           },
           type: "donut",
           names: namesMapping,

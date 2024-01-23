@@ -6,26 +6,9 @@ const chartDataOptions = {
   json: {},
 };
 
-const data = [
-  { name: "carrito abandonado", revenue: 200 },
-  { name: "poducto visitado", revenue: 100 },
-  { name: "comportamiento en sitio", revenue: 300 },
-  { name: "comportamiento en campaña", revenue: 400 },
-  { name: "pago pendiente", revenue: 200 },
-];
-
-export const BarChart = () => {
+export const BarChart = ({ data }) => {
   const intl = useIntl();
-  const [state, setState] = useState({
-    chartData: {
-      json: data,
-      keys: {
-        x: "name",
-        value: ["revenue"],
-      },
-      type: "bar",
-    },
-  });
+  const [state, setState] = useState(null);
 
   const [chartConfig] = useState({
     legend: {
@@ -70,20 +53,24 @@ export const BarChart = () => {
     };
 
     fetchData();
-  }, []);
+  }, [data]);
 
-  return (
-    <>
-      <h6 className="title-reports-box">
-        {intl.formatMessage({
-          id: `AssistedShopping.bar_chart_title`,
-        })}
-      </h6>
-      <C3Chart
-        config={chartConfig}
-        dataOptions={chartDataOptions}
-        data={state.chartData}
-      />
-    </>
-  );
+  if (state != null) {
+    return (
+      <>
+        <h6 className="title-reports-box">
+          {intl.formatMessage({
+            id: `AssistedShopping.bar_chart_title`,
+          })}
+        </h6>
+        <C3Chart
+          config={chartConfig}
+          dataOptions={chartDataOptions}
+          data={state.chartData}
+        />
+      </>
+    );
+  } else {
+    return <></>;
+  }
 };

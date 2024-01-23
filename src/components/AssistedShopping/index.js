@@ -1,6 +1,3 @@
-import { Helmet } from "react-helmet";
-import { HeaderSection } from "../shared/HeaderSection/HeaderSection";
-import { Dropdown } from "../shared/Dropdown/Dropdown";
 import { AreaChart } from "./AreaChart/AreaChart";
 import { Table } from "./Table/Table";
 import { DonutChart } from "./DonutChart/DonutChart";
@@ -13,6 +10,7 @@ import {
   useGetThirdPartyConnections,
   useGetAssistedSales,
 } from "../../queries/integrations-api-queries";
+import { DashboardHeader } from "./DashboardHeader";
 
 export const AssistedShoppingSection = () => {
   const intl = useIntl();
@@ -29,154 +27,104 @@ export const AssistedShoppingSection = () => {
   }
 
   const assistedSales = useGetAssistedSales();
-  if (!assistedSales.isLoading) {
-    assistedSales.data.forEach((section) => {});
+
+  if (thirdPartyConnections.isLoading) {
+    return <LoadingScreen />;
   }
 
-  const tableData = [
-    {
-      name: "Automation",
-      amount: 10,
-      sales: 42,
-      revenue: 1400000,
-      conversion: 2,
-      campaigns: [
-        {
-          name: "campaña navidad 2024",
-          type: "clasica",
-          sales: 5,
-          income: 170000,
-          conversion: 5,
-        },
-        {
-          name: "Campaña Verano 2024",
-          type: "carrito abandonado",
-          sales: 10,
-          income: 340000,
-          conversion: 2,
-        },
-        {
-          name: "campaña navidad 2024",
-          type: "clasica",
-          sales: 5,
-          income: 170000,
-          conversion: 5,
-        },
-        {
-          name: "Campaña Verano 2024",
-          type: "carrito abandonado",
-          sales: 10,
-          income: 340000,
-          conversion: 2,
-        },
-      ],
-    },
-    {
-      name: "Clásica",
-      amount: 10,
-      sales: 42,
-      revenue: 1400000,
-      conversion: 2,
-      campaigns: [
-        {
-          name: "campaña navidad 2024",
-          type: "clasica",
-          sales: 5,
-          income: 170000,
-          conversion: 5,
-        },
-        {
-          name: "Campaña Verano 2024",
-          type: "carrito abandonado",
-          sales: 10,
-          income: 340000,
-          conversion: 2,
-        },
-      ],
-    },
-    {
-      name: "Social",
-      amount: 10,
-      sales: 42,
-      revenue: 1400000,
-      conversion: 2,
-      campaigns: [
-        {
-          name: "campaña navidad 2024",
-          type: "clasica",
-          sales: 5,
-          income: 170000,
-          conversion: 5,
-        },
-        {
-          name: "Campaña Verano 2024",
-          type: "carrito abandonado",
-          sales: 10,
-          income: 340000,
-          conversion: 2,
-        },
-      ],
-    },
-    {
-      name: "Test A/B",
-      amount: 10,
-      sales: 42,
-      revenue: 1400000,
-      conversion: 2,
-      campaigns: [
-        {
-          name: "campaña navidad 2024",
-          type: "clasica",
-          sales: 5,
-          income: 170000,
-          conversion: 5,
-        },
-        {
-          name: "Campaña Verano 2024",
-          type: "carrito abandonado",
-          sales: 10,
-          income: 340000,
-          conversion: 2,
-        },
-        {
-          name: "campaña navidad 2024",
-          type: "clasica",
-          sales: 5,
-          income: 170000,
-          conversion: 5,
-        },
-        {
-          name: "Campaña Verano 2024",
-          type: "carrito abandonado",
-          sales: 10,
-          income: 340000,
-          conversion: 2,
-        },
-      ],
-    },
-  ];
+  if (assistedSales.isLoading) {
+    return (
+      <>
+        <DashboardHeader connections={connections} />
+        <LoadingScreen />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <DashboardHeader connections={connections} />
+        <section className="dp-container">
+          <Kpi data={getKPIData(assistedSales.data)} />
+        </section>
+        <section className="dp-wrapp-assisted-sales">
+          <div className="dp-container">
+            <div className="dp-rowflex">
+              <div className="col-sm-12 m-b-24 m-t-24">
+                <div className="dp-box-shadow">
+                  <AreaChart data={getAreaData(assistedSales.data)} />
+                </div>
+              </div>
+              <div className="col-sm-12 col-lg-8 m-b-24">
+                <div className="dp-box-shadow">
+                  <BarChart
+                    data={getAutomationBarData(
+                      assistedSales.data.filter((order) =>
+                        order.campaign.campaignType.includes("automation"),
+                      ),
+                    )}
+                  />
+                </div>
+              </div>
+              <div className="col-sm-12 col-lg-4 m-b-24">
+                <div className="dp-box-shadow">
+                  <DonutChart
+                    data={getAutomationDonutData(
+                      assistedSales.data.filter((order) =>
+                        order.campaign.campaignType.includes("automation"),
+                      ),
+                    )}
+                    title={intl.formatMessage({
+                      id: `AssistedShopping.automation_donut_chart_title`,
+                    })}
+                  />
+                </div>
+              </div>
+              <div className="col-sm-12 col-lg-8 m-b-24">
+                <div className="dp-box-shadow">
+                  <h6 className="title-reports-box">
+                    {intl.formatMessage({
+                      id: `AssistedShopping.table.title`,
+                    })}
+                  </h6>
+                  <Table tableData={getTableData(assistedSales.data)} />
+                </div>
+              </div>
+              <div className="col-sm-12 col-lg-4 m-b-24">
+                <div className="dp-box-shadow">
+                  <DonutChart
+                    data={getCampaignsDonutData(assistedSales.data)}
+                    title={intl.formatMessage({
+                      id: `AssistedShopping.campaign_donut_chart_title`,
+                    })}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <FooterSection />
+      </>
+    );
+  }
+};
 
-  const donutData = [{ clasica: 37, testab: 10, social: 33, automation: 20 }];
-  const donutData2 = [
+const getKPIData = (assistedSales) => {
+  const totalProfit = assistedSales.reduce(
+    (total, order) => (total += order.orderTotal),
+    0,
+  );
+  const totalSales = assistedSales.length;
+  return [
     {
-      abandonedCart: 35,
-      campaignBehavior: 10,
-      productRetarget: 15,
-      pendingPayment: 20,
-      siteBehavior: 20,
-    },
-  ];
-  const kpiData = [
-    {
-      value: "950",
+      value: totalSales,
       title: "total_sales",
     },
     {
-      value: "$18.200.00",
+      value: `$ ${totalProfit.toFixed(2)}`,
       title: "total_profit",
     },
     {
-      value: "$40.00",
+      value: `$ ${(totalProfit / totalSales).toFixed(2)}`,
       title: "avg_profit",
     },
     {
@@ -188,114 +136,212 @@ export const AssistedShoppingSection = () => {
       title: "investment_return",
     },
   ];
+};
 
-  return thirdPartyConnections.isLoading ? (
-    <LoadingScreen />
-  ) : (
-    <>
-      <Helmet>
-        <title>Ecommerce</title>
-      </Helmet>
-      <HeaderSection>
-        <div className="col-sm-12 col-md-12 col-lg-12">
-          <h2>{intl.formatMessage({ id: `AssistedShopping.title` })}</h2>
-          <p>{intl.formatMessage({ id: `AssistedShopping.description` })}</p>
-        </div>
-      </HeaderSection>
-      <section className="dp-container">
-        <form action="#" className="awa-form dp-rowflex">
-          <div className="col-sm-12 col-md-4 col-lg-4 m-b-12">
-            <Dropdown
-              title={intl.formatMessage({
-                id: `AssistedShopping.dropdowns.ecommerce_title`,
-              })}
-              options={connections}
-            />
-          </div>
-          <div className="col-sm-12 col-md-4 col-lg-4 m-b-12">
-            <Dropdown
-              title={intl.formatMessage({
-                id: `AssistedShopping.dropdowns.period_title`,
-              })}
-              options={[
-                {
-                  name: intl.formatMessage({
-                    id: `AssistedShopping.dropdowns.period_option1`,
-                  }),
-                  value: 1,
-                },
-                {
-                  name: intl.formatMessage({
-                    id: `AssistedShopping.dropdowns.period_option2`,
-                  }),
-                  value: 2,
-                },
-                {
-                  name: intl.formatMessage({
-                    id: `AssistedShopping.dropdowns.period_option3`,
-                  }),
-                  value: 3,
-                },
-                {
-                  name: intl.formatMessage({
-                    id: `AssistedShopping.dropdowns.period_option4`,
-                  }),
-                  value: 4,
-                },
-              ]}
-            />
-          </div>
-          <div className="col-sm-12 col-md-4 col-lg-4 m-b-12"></div>
-        </form>
-        <Kpi data={kpiData} />
-      </section>
-      <section className="dp-wrapp-assisted-sales">
-        <div className="dp-container">
-          <div className="dp-rowflex">
-            <div className="col-sm-12 m-b-24 m-t-24">
-              <div className="dp-box-shadow">
-                <AreaChart />
-              </div>
-            </div>
-            <div className="col-sm-12 col-lg-8 m-b-24">
-              <div className="dp-box-shadow">
-                <BarChart />
-              </div>
-            </div>
-            <div className="col-sm-12 col-lg-4 m-b-24">
-              <div className="dp-box-shadow">
-                <DonutChart
-                  data={donutData2}
-                  title={intl.formatMessage({
-                    id: `AssistedShopping.automation_donut_chart_title`,
-                  })}
-                />
-              </div>
-            </div>
-            <div className="col-sm-12 col-lg-8 m-b-24">
-              <div className="dp-box-shadow">
-                <h6 className="title-reports-box">
-                  {intl.formatMessage({
-                    id: `AssistedShopping.table.title`,
-                  })}
-                </h6>
-                <Table tableData={tableData} />
-              </div>
-            </div>
-            <div className="col-sm-12 col-lg-4 m-b-24">
-              <div className="dp-box-shadow">
-                <DonutChart
-                  data={donutData}
-                  title={intl.formatMessage({
-                    id: `AssistedShopping.campaign_donut_chart_title`,
-                  })}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <FooterSection />
-    </>
+const getAreaData = (assistedSales) => {
+  const salesByOrderDate = new Map(
+    assistedSales.map((order) => [
+      new Date(order.orderDate).getUTCMonth(),
+      {
+        date:
+          new Date(order.orderDate).getUTCFullYear() +
+          "-" +
+          (new Date(order.orderDate).getUTCMonth() + 1) +
+          "-01",
+        deliveries: assistedSales
+          .filter(
+            (sale) =>
+              new Date(sale.campaign.UTCSentDate).getUTCMonth() ===
+              new Date(order.orderDate).getUTCMonth(),
+          )
+          .reduce((a, v) => (a += v.campaign.amountSentSubscribers), 0),
+        sales: assistedSales.filter(
+          (sale) =>
+            new Date(sale.orderDate).getUTCMonth() ===
+            new Date(order.orderDate).getUTCMonth(),
+        ).length,
+      },
+    ]),
+  );
+
+  const salesBySentDate = new Map(
+    assistedSales.map((order) => [
+      new Date(order.campaign.UTCSentDate).getUTCMonth(),
+      {
+        date:
+          new Date(order.campaign.UTCSentDate).getUTCFullYear() +
+          "-" +
+          (new Date(order.campaign.UTCSentDate).getUTCMonth() + 1) +
+          "-01",
+        deliveries: assistedSales
+          .filter(
+            (sale) =>
+              new Date(sale.campaign.UTCSentDate).getUTCMonth() ===
+              new Date(order.campaign.UTCSentDate).getUTCMonth(),
+          )
+          .reduce((a, v) => (a += v.campaign.amountSentSubscribers), 0),
+        sales: assistedSales.filter(
+          (sale) =>
+            new Date(sale.campaign.UTCSentDate).getUTCMonth() ===
+            new Date(order.campaign.UTCSentDate).getUTCMonth(),
+        ).length,
+      },
+    ]),
+  );
+
+  return [...new Map([...salesByOrderDate, ...salesBySentDate]).values()];
+};
+
+const getAutomationBarData = (assistedSales) => {
+  const automationEventTypes = [
+    ...new Set(assistedSales.map((sale) => sale.campaign.automationEventType)),
+  ];
+
+  let automationData = [];
+  automationEventTypes.forEach((eventType) => {
+    automationData.push({
+      name: eventType,
+      revenue: assistedSales
+        .filter((sale) => sale.campaign.automationEventType.includes(eventType))
+        .reduce((a, v) => a + v.orderTotal, 0),
+    });
+  });
+
+  automationData.sort((a, b) => b.value - a.value);
+
+  if (automationData.length > 4) {
+    const minorityAmount = automationData.reduce((a, v, index) => {
+      return index >= 4 ? a + +v.revenue : a;
+    }, 0);
+
+    automationData = automationData.filter((_eventType, index) => index < 4);
+
+    automationData.push({
+      name: "others",
+      revenue: minorityAmount,
+    });
+  }
+
+  return automationData;
+};
+
+const getAutomationDonutData = (assistedSales) => {
+  let automationEventTypes = [
+    ...new Map(
+      assistedSales.map((order) => [
+        order.campaign["automationEventType"],
+        {
+          key: order.campaign.automationEventType,
+          value: assistedSales.filter((sale) =>
+            sale.campaign.automationEventType.includes(
+              order.campaign.automationEventType,
+            ),
+          ).length,
+        },
+      ]),
+    ).values(),
+  ].sort((a, b) => b.value - a.value);
+
+  if (automationEventTypes.length > 4) {
+    const minorityAmount = automationEventTypes.reduce((a, v, index) => {
+      return index >= 4 ? a + +v.value : a;
+    }, 0);
+
+    automationEventTypes = automationEventTypes.filter(
+      (_eventType, index) => index < 4,
+    );
+
+    automationEventTypes.push({
+      key: "others",
+      value: minorityAmount,
+    });
+  }
+
+  return automationEventTypes.reduce(
+    (a, v) => ({
+      ...a,
+      [v.key.toLowerCase()]: v.value,
+    }),
+    {},
+  );
+};
+
+const getTableData = (assistedSales) => {
+  const campaignTypes = [
+    ...new Set(assistedSales.map((sale) => sale.campaign.campaignType)),
+  ];
+
+  const result = [];
+  campaignTypes.forEach((type) => {
+    const filteredSales = assistedSales.filter((sale) =>
+      sale.campaign.campaignType.includes(type),
+    );
+
+    const uniqueCampaigns = [
+      ...new Map(
+        filteredSales.map((sale) => [
+          sale.campaign.idCampaign,
+          {
+            name: sale.campaign.name,
+            type:
+              sale.campaign.campaignType === "automation"
+                ? sale.campaign.automationEventType
+                : sale.campaign.campaignType,
+            sale: filteredSales.filter(
+              (order) => order.campaign.idCampaign === sale.campaign.idCampaign,
+            ).length,
+            income: filteredSales
+              .filter(
+                (order) =>
+                  order.campaign.idCampaign === sale.campaign.idCampaign,
+              )
+              .reduce((a, v) => a + v.orderTotal, 0),
+            conversion: (
+              filteredSales.filter(
+                (order) =>
+                  order.campaign.idCampaign === sale.campaign.idCampaign,
+              ).length / sale.campaign.amountSentSubscribers
+            ).toFixed(2),
+            amountSentSubscribers: sale.campaign.amountSentSubscribers,
+          },
+        ]),
+      ).values(),
+    ];
+
+    result.push({
+      name: type,
+      amount: uniqueCampaigns.length,
+      sales: filteredSales.length,
+      revenue: filteredSales.reduce(
+        (total, order) => (total += order.orderTotal),
+        0,
+      ),
+      conversion: (
+        filteredSales.length /
+        uniqueCampaigns.reduce(
+          (total, campaign) => (total += campaign.amountSentSubscribers),
+          0,
+        )
+      ).toFixed(2),
+      campaigns: uniqueCampaigns,
+    });
+  });
+
+  return result;
+};
+
+const getCampaignsDonutData = (assistedSales) => {
+  const campaignTypes = [
+    ...new Set(assistedSales.map((sale) => sale.campaign.campaignType)),
+  ];
+
+  return campaignTypes.reduce(
+    (a, v) => ({
+      ...a,
+      [v]: assistedSales.filter((order) =>
+        order.campaign.campaignType.includes(v),
+      ).length,
+    }),
+    {},
   );
 };
