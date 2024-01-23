@@ -14,15 +14,8 @@ export const C3ChartStyled = styled.div`
     display: inline-block;
   }
 
-  .tick {
-    fill: ${colors.sightGrey};
-    font:
-      400 11px "Proxima-Nova",
-      sans-serif;
-  }
-
-  .domain {
-    stroke: ${colors.softGrey};
+  .c3-legend-item-hidden {
+    opacity: 0.15;
   }
 
   path,
@@ -37,28 +30,7 @@ export const C3ChartStyled = styled.div`
     transition: all 0.5s ease-in-out;
   }
 
-  .c3-event-rect {
-    stroke-width: 7px;
-  }
-
-  .c3-xgrid,
-  .c3-ygrid {
-    stroke-dasharray: 3 3;
-  }
-
-  .c3-xgrid-focus {
-    stroke: ${colors.purple3};
-    transition: all 1s ease-in-out;
-    opacity: 1;
-  }
-
-  .c3-circle {
-    fill: ${colors.purple3};
-    opacity: 1;
-  }
-
   .c3-areas {
-    fill: ${colors.darkPurple};
     opacity: 0.3;
   }
 
@@ -76,13 +48,6 @@ export const C3ChartStyled = styled.div`
     position: relative;
   }
 
-  .c3-tooltip {
-    border-collapse: collapse;
-    border-spacing: 0;
-    empty-cells: show;
-    opacity: 0.9;
-  }
-
   .c3-tooltip th,
   .c3-tooltip .tooltip-title {
     font-size: 11px;
@@ -91,28 +56,5 @@ export const C3ChartStyled = styled.div`
     color: ${colors.lightGrey};
     font-weight: normal;
     line-height: 13px;
-  }
-
-  .c3-tooltip th::first-letter,
-  .c3-tooltip .tooltip-title::first-letter {
-    text-transform: capitalize;
-  }
-
-  .c3-tooltip .name {
-    display: none;
-  }
-
-  .c3-tooltip td,
-  .c3-tooltip .tooltip-value {
-    font-size: 13px;
-    padding: 3px 6px;
-    color: ${colors.darkGrey};
-    font-weight: bold;
-    width: auto;
-    line-height: 16px;
-  }
-
-  .c3-target-hide-graph {
-    display: none;
   }
 `;
