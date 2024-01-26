@@ -5,9 +5,15 @@ import {
 } from "../abstractions/integrations-api-client";
 import { useAppServices } from "../components/application";
 
+type apiFilter = {
+  fromDate: Date;
+  toDate: Date;
+};
+
 type getIntegrationsApiQueryKey = {
   scope: string;
   dopplerAccountName: string | null;
+  filter: apiFilter | null;
 }[];
 
 export const useGetThirdPartyConnections = () => {
@@ -23,6 +29,7 @@ export const useGetThirdPartyConnections = () => {
     {
       scope: "third-party-connections",
       dopplerAccountName,
+      filter: null,
     },
   ];
 
@@ -51,7 +58,7 @@ export const useGetThirdPartyConnections = () => {
   return query;
 };
 
-export const useGetAssistedSales = () => {
+export const useGetAssistedSales = (filter: apiFilter) => {
   const { integrationsApiClient, appSessionStateAccessor } = useAppServices();
 
   const currentSessionState = appSessionStateAccessor.getSessionAuthData();
@@ -64,6 +71,7 @@ export const useGetAssistedSales = () => {
     {
       scope: "assisted-sales",
       dopplerAccountName,
+      filter,
     },
   ];
 
@@ -78,6 +86,14 @@ export const useGetAssistedSales = () => {
     }
 
     const result = await integrationsApiClient.getAssistedSales();
+    if (filter) {
+      return result.value.filter(
+        (sale) =>
+          new Date(sale.orderDate).getTime() > filter.fromDate.getTime() &&
+          new Date(sale.orderDate).getTime() < filter.toDate.getTime(),
+      );
+    }
+
     return result.value;
   };
 
