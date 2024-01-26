@@ -2,9 +2,45 @@ import { Helmet } from "react-helmet";
 import { HeaderSection } from "../shared/HeaderSection/HeaderSection";
 import { Dropdown } from "../shared/Dropdown/Dropdown";
 import { useIntl } from "react-intl";
+import {
+  addDays,
+  getFirstDayOfLastMonth,
+  getFirstDayMonth,
+} from "../../utils/index";
 
-export const DashboardHeader = ({ connections }) => {
+export const DashboardHeader = ({ connections, setDateFilter }) => {
   const intl = useIntl();
+
+  const changeDateFilter = (code) => {
+    switch (code) {
+      case "1":
+        setDateFilter({
+          fromDate: addDays(new Date(), -7),
+          toDate: new Date(),
+        });
+        break;
+      case "2":
+        setDateFilter({
+          fromDate: addDays(new Date(), -30),
+          toDate: new Date(),
+        });
+        break;
+      case "3":
+        setDateFilter({
+          fromDate: getFirstDayOfLastMonth(new Date()),
+          toDate: getFirstDayMonth(new Date()),
+        });
+        break;
+      case "4":
+        setDateFilter({
+          fromDate: addDays(new Date(), -90),
+          toDate: new Date(),
+        });
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
     <>
@@ -25,6 +61,7 @@ export const DashboardHeader = ({ connections }) => {
                 id: `AssistedShopping.dropdowns.ecommerce_title`,
               })}
               options={connections}
+              onChangeFunction={() => {}}
             />
           </div>
           <div className="col-sm-12 col-md-4 col-lg-4 m-b-12">
@@ -58,6 +95,7 @@ export const DashboardHeader = ({ connections }) => {
                   value: 4,
                 },
               ]}
+              onChangeFunction={changeDateFilter}
             />
           </div>
           <div className="col-sm-12 col-md-4 col-lg-4 m-b-12"></div>
