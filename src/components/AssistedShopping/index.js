@@ -11,9 +11,15 @@ import {
   useGetAssistedSales,
 } from "../../queries/integrations-api-queries";
 import { DashboardHeader } from "./DashboardHeader";
+import { useState } from "react";
+import { addDays } from "../../utils/index";
 
 export const AssistedShoppingSection = () => {
   const intl = useIntl();
+  const [dateFilter, setDateFilter] = useState({
+    fromDate: addDays(new Date(), -7),
+    toDate: new Date(),
+  });
 
   const thirdPartyConnections = useGetThirdPartyConnections();
   const connections = [];
@@ -26,7 +32,7 @@ export const AssistedShoppingSection = () => {
     });
   }
 
-  const assistedSales = useGetAssistedSales();
+  const assistedSales = useGetAssistedSales(dateFilter);
 
   if (thirdPartyConnections.isLoading) {
     return <LoadingScreen />;
@@ -35,14 +41,20 @@ export const AssistedShoppingSection = () => {
   if (assistedSales.isLoading) {
     return (
       <>
-        <DashboardHeader connections={connections} />
+        <DashboardHeader
+          connections={connections}
+          setDateFilter={setDateFilter}
+        />
         <LoadingScreen />
       </>
     );
   } else {
     return (
       <>
-        <DashboardHeader connections={connections} />
+        <DashboardHeader
+          connections={connections}
+          setDateFilter={setDateFilter}
+        />
         <section className="dp-container">
           <Kpi data={getKPIData(assistedSales.data)} />
         </section>
