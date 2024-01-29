@@ -26,7 +26,11 @@ export const AssistedShoppingSection = () => {
     });
   }
 
-  const { query: assistedSales, setDateFilter } = useGetAssistedSales();
+  const {
+    query: assistedSales,
+    setDateFilter,
+    setIdThirdPartyApp,
+  } = useGetAssistedSales();
 
   if (thirdPartyConnections.isLoading) {
     return <LoadingScreen />;
@@ -38,6 +42,7 @@ export const AssistedShoppingSection = () => {
         <DashboardHeader
           connections={connections}
           setDateFilter={setDateFilter}
+          setIdThirdPartyApp={setIdThirdPartyApp}
         />
         <LoadingScreen />
       </>
@@ -48,6 +53,7 @@ export const AssistedShoppingSection = () => {
         <DashboardHeader
           connections={connections}
           setDateFilter={setDateFilter}
+          setIdThirdPartyApp={setIdThirdPartyApp}
         />
         <section className="dp-container">
           <Kpi data={getKPIData(assistedSales.data)} />
