@@ -172,7 +172,7 @@ export const Table = (data) => {
                                     <span>{campaign.type}</span>
                                   </td>
                                   <td>
-                                    <span>{campaign.sales}</span>
+                                    <span>{campaign.sale}</span>
                                   </td>
                                   <td>
                                     <span>{`$ ${campaign.income}`}</span>

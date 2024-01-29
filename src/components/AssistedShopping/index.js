@@ -26,7 +26,7 @@ export const AssistedShoppingSection = () => {
     });
   }
 
-  const assistedSales = useGetAssistedSales();
+  const { query: assistedSales, setDateFilter } = useGetAssistedSales();
 
   if (thirdPartyConnections.isLoading) {
     return <LoadingScreen />;
@@ -35,14 +35,20 @@ export const AssistedShoppingSection = () => {
   if (assistedSales.isLoading) {
     return (
       <>
-        <DashboardHeader connections={connections} />
+        <DashboardHeader
+          connections={connections}
+          setDateFilter={setDateFilter}
+        />
         <LoadingScreen />
       </>
     );
   } else {
     return (
       <>
-        <DashboardHeader connections={connections} />
+        <DashboardHeader
+          connections={connections}
+          setDateFilter={setDateFilter}
+        />
         <section className="dp-container">
           <Kpi data={getKPIData(assistedSales.data)} />
         </section>
@@ -124,7 +130,7 @@ const getKPIData = (assistedSales) => {
       title: "total_profit",
     },
     {
-      value: `$ ${(totalProfit / totalSales).toFixed(2)}`,
+      value: `$ ${(totalSales > 0 ? totalProfit / totalSales : 0).toFixed(2)}`,
       title: "avg_profit",
     },
     {

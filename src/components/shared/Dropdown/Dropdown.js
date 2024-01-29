@@ -1,4 +1,4 @@
-export const Dropdown = ({ title, options }) => {
+export const Dropdown = ({ title, options, onChangeFunction }) => {
   return (
     <fieldset className="filter">
       <label
@@ -14,6 +14,7 @@ export const Dropdown = ({ title, options }) => {
             id="list-selection"
             name="list-selection"
             aria-invalid="false"
+            onChange={(event) => onChangeFunction(event.target.value)}
           >
             {options.length > 0 &&
               options.map((option, index) => (

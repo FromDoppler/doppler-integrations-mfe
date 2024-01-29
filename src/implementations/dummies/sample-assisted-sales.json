@@ -47,10 +47,10 @@
     "idThirdPartyApp": 3,
     "orderTotal": 100,
     "currency": "ARS",
-    "orderDate": "2023-10-01",
-    "openDate": "2023-10-01",
+    "orderDate": "2023-11-01",
+    "openDate": "2023-11-01",
     "campaign": {
-      "idCampaign": 123,
+      "idCampaign": 128,
       "name": "Tiendanube",
       "campaignType": "automation",
       "automationEventType": "SCHEDULEDTASK",
@@ -158,6 +158,27 @@
       "idCampaign": 126,
       "name": "Tiendanube",
       "campaignType": "clasica",
+      "automationEventType": "",
+      "amountSentSubscribers": 100,
+      "UTCSentDate": "2023-06-01"
+    },
+    "subscriber": {
+      "idSubscriber": 123,
+      "email": "doppler@fromdoppler.com"
+    }
+  },
+  {
+    "idOrder": 131,
+    "idUser": "123",
+    "idThirdPartyApp": 3,
+    "orderTotal": 100,
+    "currency": "ARS",
+    "orderDate": "2024-01-22",
+    "openDate": "2023-09-01",
+    "campaign": {
+      "idCampaign": 127,
+      "name": "Tiendanube",
+      "campaignType": "social",
       "automationEventType": "",
       "amountSentSubscribers": 100,
       "UTCSentDate": "2023-06-01"
