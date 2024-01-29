@@ -11,15 +11,9 @@ import {
   useGetAssistedSales,
 } from "../../queries/integrations-api-queries";
 import { DashboardHeader } from "./DashboardHeader";
-import { useState } from "react";
-import { addDays } from "../../utils/index";
 
 export const AssistedShoppingSection = () => {
   const intl = useIntl();
-  const [dateFilter, setDateFilter] = useState({
-    fromDate: addDays(new Date(), -7),
-    toDate: new Date(),
-  });
 
   const thirdPartyConnections = useGetThirdPartyConnections();
   const connections = [];
@@ -32,7 +26,7 @@ export const AssistedShoppingSection = () => {
     });
   }
 
-  const assistedSales = useGetAssistedSales(dateFilter);
+  const { query: assistedSales, setDateFilter } = useGetAssistedSales();
 
   if (thirdPartyConnections.isLoading) {
     return <LoadingScreen />;
@@ -136,7 +130,7 @@ const getKPIData = (assistedSales) => {
       title: "total_profit",
     },
     {
-      value: `$ ${(totalProfit / totalSales).toFixed(2)}`,
+      value: `$ ${(totalSales > 0 ? totalProfit / totalSales : 0).toFixed(2)}`,
       title: "avg_profit",
     },
     {

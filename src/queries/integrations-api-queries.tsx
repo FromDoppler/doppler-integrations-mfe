@@ -4,16 +4,12 @@ import {
   ThirdPartyConnection,
 } from "../abstractions/integrations-api-client";
 import { useAppServices } from "../components/application";
-
-type apiFilter = {
-  fromDate: Date;
-  toDate: Date;
-};
+import { useCallback, useState } from "react";
+import { addDays } from "../utils/index";
 
 type getIntegrationsApiQueryKey = {
   scope: string;
   dopplerAccountName: string | null;
-  filter: apiFilter | null;
 }[];
 
 export const useGetThirdPartyConnections = () => {
@@ -29,7 +25,6 @@ export const useGetThirdPartyConnections = () => {
     {
       scope: "third-party-connections",
       dopplerAccountName,
-      filter: null,
     },
   ];
 
@@ -58,8 +53,12 @@ export const useGetThirdPartyConnections = () => {
   return query;
 };
 
-export const useGetAssistedSales = (filter: apiFilter) => {
+export const useGetAssistedSales = () => {
   const { integrationsApiClient, appSessionStateAccessor } = useAppServices();
+  const [dateFilter, setDateFilter] = useState<{
+    fromDate: Date;
+    toDate: Date;
+  }>({ fromDate: addDays(new Date(), -7), toDate: new Date() });
 
   const currentSessionState = appSessionStateAccessor.getSessionAuthData();
   const dopplerAccountName =
@@ -67,11 +66,24 @@ export const useGetAssistedSales = (filter: apiFilter) => {
       ? currentSessionState.dopplerAccountName
       : null;
 
+  const filteredSales = useCallback(
+    (sales: AssistedSales[]) => {
+      if (!dateFilter) {
+        return sales;
+      }
+      return sales.filter(
+        (sale) =>
+          new Date(sale.orderDate).getTime() > dateFilter.fromDate.getTime() &&
+          new Date(sale.orderDate).getTime() < dateFilter.toDate.getTime(),
+      );
+    },
+    [dateFilter],
+  );
+
   const queryKey: getIntegrationsApiQueryKey = [
     {
       scope: "assisted-sales",
       dopplerAccountName,
-      filter,
     },
   ];
 
@@ -86,14 +98,6 @@ export const useGetAssistedSales = (filter: apiFilter) => {
     }
 
     const result = await integrationsApiClient.getAssistedSales();
-    if (filter) {
-      return result.value.filter(
-        (sale) =>
-          new Date(sale.orderDate).getTime() > filter.fromDate.getTime() &&
-          new Date(sale.orderDate).getTime() < filter.toDate.getTime(),
-      );
-    }
-
     return result.value;
   };
 
@@ -103,7 +107,8 @@ export const useGetAssistedSales = (filter: apiFilter) => {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
+    select: filteredSales,
   });
 
-  return query;
+  return { query, setDateFilter };
 };
