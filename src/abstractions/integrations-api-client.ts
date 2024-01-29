@@ -18,7 +18,7 @@ export type ThirdPartyConnection = {
 export type AssistedSales = {
   idOrder: number;
   idUser: number;
-  idThirdpartyApp: number;
+  idThirdPartyApp: number;
   orderTotal: number;
   currency: string;
   orderDate: Date;
