@@ -10,6 +10,7 @@ import { addDays } from "../utils/index";
 type getIntegrationsApiQueryKey = {
   scope: string;
   dopplerAccountName: string | null;
+  thirdPartyAppId: number | null;
 }[];
 
 export const useGetThirdPartyConnections = () => {
@@ -25,6 +26,7 @@ export const useGetThirdPartyConnections = () => {
     {
       scope: "third-party-connections",
       dopplerAccountName,
+      thirdPartyAppId: null,
     },
   ];
 
@@ -58,7 +60,15 @@ export const useGetAssistedSales = () => {
   const [dateFilter, setDateFilter] = useState<{
     fromDate: Date;
     toDate: Date;
-  }>({ fromDate: addDays(new Date(), -7), toDate: new Date() });
+  }>({
+    fromDate: addDays(new Date(), -7),
+    toDate: new Date(),
+  });
+  const [idThirdPartyApp, setIdThirdPartyApp] = useState<string | null>(null);
+
+  const connections = useGetThirdPartyConnections();
+  const firstThirdPartyId =
+    connections?.data?.at(0)?.thirdPartyApp.idThirdPartyApp;
 
   const currentSessionState = appSessionStateAccessor.getSessionAuthData();
   const dopplerAccountName =
@@ -68,22 +78,31 @@ export const useGetAssistedSales = () => {
 
   const filteredSales = useCallback(
     (sales: AssistedSales[]) => {
-      if (!dateFilter) {
-        return sales;
-      }
-      return sales.filter(
+      let result = [];
+      result = sales.filter(
         (sale) =>
           new Date(sale.orderDate).getTime() > dateFilter.fromDate.getTime() &&
           new Date(sale.orderDate).getTime() < dateFilter.toDate.getTime(),
       );
+
+      if (idThirdPartyApp) {
+        return result.filter(
+          (sale) => sale.idThirdPartyApp.toString() === idThirdPartyApp,
+        );
+      } else {
+        return result.filter(
+          (sale) => sale.idThirdPartyApp === firstThirdPartyId,
+        );
+      }
     },
-    [dateFilter],
+    [dateFilter, idThirdPartyApp, firstThirdPartyId],
   );
 
   const queryKey: getIntegrationsApiQueryKey = [
     {
       scope: "assisted-sales",
       dopplerAccountName,
+      thirdPartyAppId: firstThirdPartyId ?? null,
     },
   ];
 
@@ -108,7 +127,8 @@ export const useGetAssistedSales = () => {
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
     select: filteredSales,
+    enabled: !!firstThirdPartyId,
   });
 
-  return { query, setDateFilter };
+  return { query, setDateFilter, setIdThirdPartyApp };
 };
