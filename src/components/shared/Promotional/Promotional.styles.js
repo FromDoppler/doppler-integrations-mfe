@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const PromotionalImg = (props) => <img {...props} alt={props.alt} />;
 
