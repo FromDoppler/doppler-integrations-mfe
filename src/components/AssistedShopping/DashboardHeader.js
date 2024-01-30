@@ -8,7 +8,11 @@ import {
   getFirstDayMonth,
 } from "../../utils/index";
 
-export const DashboardHeader = ({ connections, setDateFilter }) => {
+export const DashboardHeader = ({
+  connections,
+  setDateFilter,
+  setIdThirdPartyApp,
+}) => {
   const intl = useIntl();
 
   const changeDateFilter = (code) => {
@@ -61,7 +65,7 @@ export const DashboardHeader = ({ connections, setDateFilter }) => {
                 id: `AssistedShopping.dropdowns.ecommerce_title`,
               })}
               options={connections}
-              onChangeFunction={() => {}}
+              onChangeFunction={setIdThirdPartyApp}
             />
           </div>
           <div className="col-sm-12 col-md-4 col-lg-4 m-b-12">
