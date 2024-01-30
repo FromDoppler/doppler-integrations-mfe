@@ -11,6 +11,9 @@ import {
   useGetAssistedSales,
 } from "../../queries/integrations-api-queries";
 import { DashboardHeader } from "./DashboardHeader";
+import { Promotional } from "../shared/Promotional/Promotional";
+import logo from "./logo.png";
+import preview from "./preview.gif";
 
 export const AssistedShoppingSection = () => {
   const intl = useIntl();
@@ -34,6 +37,25 @@ export const AssistedShoppingSection = () => {
 
   if (thirdPartyConnections.isLoading) {
     return <LoadingScreen />;
+  }
+
+  if (thirdPartyConnections.data.length === 0) {
+    return (
+      <Promotional
+        title={intl.formatMessage({ id: `AssistedShopping.promotional.title` })}
+        description={intl.formatMessage({
+          id: `AssistedShopping.promotional.description`,
+        })}
+        actionText={intl.formatMessage({
+          id: `AssistedShopping.promotional.action_text`,
+        })}
+        actionUrl={intl.formatMessage({
+          id: `AssistedShopping.promotional.action_url`,
+        })}
+        logoUrl={logo}
+        previewUrl={preview}
+      />
+    );
   }
 
   if (assistedSales.isLoading) {

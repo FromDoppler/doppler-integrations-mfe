@@ -1,6 +1,7 @@
 const year = new Date().getFullYear();
 const urlSite = `https://www.fromdoppler.com`;
 const urlPrivacy = `${urlSite}/legal/privacidad`;
+const urlIntegrations = `/integrations`;
 
 export const messages_es = {
   AssistedShopping: {
@@ -49,6 +50,15 @@ export const messages_es = {
       investment_return: "Retorno de inversión",
       total_profit: "Total de ganancia",
       total_sales: "Ventas asistidas",
+    },
+    promotional: {
+      action_text: "Vincula tu Tienda",
+      action_url: `${urlIntegrations}`,
+      description: `Duis pretium dui quis ipsum mattis, sed elementum libero interdum. Donec vitae consectetur justo,
+      quis pretium nulla. Vestibulum volutpat purus a dictum sagittis. Nullam sed libero nibh. Maecenas sit amet purus
+      hendrerit, fermentum orci interdum, blandit odio. Aliquam vehicula ornare semper.`,
+      title:
+        "Conoce los resultados de tus acciones, consectetur  adipiscing elit",
     },
     table: {
       header1: "Campaña",
