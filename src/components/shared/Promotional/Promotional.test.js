@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom/extend-expect";
-import DopplerIntlProvider from "../../../i18n/DopplerIntlProvider";
+import "@testing-library/jest-dom";
+import { TestDopplerIntlProvider } from "../../i18n/TestDopplerIntlProvider";
 import { Promotional } from "./Promotional";
 
 describe("Promotional component", () => {
@@ -28,9 +28,9 @@ describe("Promotional component", () => {
 
     // Act
     render(
-      <DopplerIntlProvider>
+      <TestDopplerIntlProvider>
         <Promotional {...texts} {...urls} {...optionals} />
-      </DopplerIntlProvider>,
+      </TestDopplerIntlProvider>,
     );
 
     // Assert
@@ -56,9 +56,9 @@ describe("Promotional component", () => {
 
     // Act
     render(
-      <DopplerIntlProvider>
+      <TestDopplerIntlProvider>
         <Promotional {...texts} {...urls} {...rest} />
-      </DopplerIntlProvider>,
+      </TestDopplerIntlProvider>,
     );
 
     // Assert
@@ -83,9 +83,9 @@ describe("Promotional component", () => {
 
     // Act
     render(
-      <DopplerIntlProvider>
+      <TestDopplerIntlProvider>
         <Promotional {...texts} {...urls} {...rest} />
-      </DopplerIntlProvider>,
+      </TestDopplerIntlProvider>,
     );
 
     // Assert
@@ -115,9 +115,9 @@ describe("Promotional component", () => {
 
     // Act
     render(
-      <DopplerIntlProvider>
+      <TestDopplerIntlProvider>
         <Promotional {...texts} {...urls} {...rest} />
-      </DopplerIntlProvider>,
+      </TestDopplerIntlProvider>,
     );
 
     // Assert
