@@ -34,7 +34,7 @@ export const DonutChart = ({ data, title }) => {
 
       setState({
         chartData: {
-          json: [data],
+          json: Object.keys(data).length === 0 ? [] : [data],
           keys: {
             value: Object.keys(data),
           },
@@ -56,6 +56,24 @@ export const DonutChart = ({ data, title }) => {
   if (state != null) {
     return (
       <>
+        {state.chartData.json.length === 0 ? (
+          <>
+            {
+              (state.chartData = {
+                json: [{ data: 1 }],
+                keys: {
+                  value: ["data"],
+                },
+                type: "donut",
+                names: {
+                  data: intl.formatMessage({ id: `AssistedShopping.no_data` }),
+                },
+              })
+            }
+          </>
+        ) : (
+          <></>
+        )}
         <h6 className="title-reports-box">{state.chartConfig.donut.title}</h6>
         <C3Chart
           config={state.chartConfig}

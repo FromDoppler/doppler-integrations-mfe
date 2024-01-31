@@ -51,6 +51,7 @@ export const messages_es = {
       total_profit: "Total de ganancia",
       total_sales: "Ventas asistidas",
     },
+    no_data: "No hay datos",
     no_data_text: "Aun no hay datos para mostrar",
     promotional: {
       action_text: "Vincula tu Tienda",
