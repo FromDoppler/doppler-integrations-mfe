@@ -19,12 +19,6 @@ export const C3Chart = ({ config, dataOptions, data }) => {
     if (data) {
       chart.current.load(data);
     }
-
-    return () => {
-      if (chart.current) {
-        chart.current.unload();
-      }
-    };
   }, [data]);
 
   return <C3ChartStyled ref={chartEl} />;
