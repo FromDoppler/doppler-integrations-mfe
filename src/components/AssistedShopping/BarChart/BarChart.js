@@ -58,6 +58,17 @@ export const BarChart = ({ data }) => {
   if (state != null) {
     return (
       <>
+        {state.chartData.json.length === 0 ? (
+          <p>
+            {intl
+              .formatMessage({
+                id: `AssistedShopping.no_data_text`,
+              })
+              .toUpperCase()}
+          </p>
+        ) : (
+          <></>
+        )}
         <h6 className="title-reports-box">
           {intl.formatMessage({
             id: `AssistedShopping.bar_chart_title`,
