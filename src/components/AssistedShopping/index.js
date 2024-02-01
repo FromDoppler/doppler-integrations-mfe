@@ -14,6 +14,7 @@ import { DashboardHeader } from "./DashboardHeader";
 import { Promotional } from "../shared/Promotional/Promotional";
 import logo from "./logo.png";
 import preview from "./preview.gif";
+import { OverlayStyle } from "../shared/styles/overlay.styles";
 
 export const AssistedShoppingSection = () => {
   const intl = useIntl();
@@ -115,6 +116,19 @@ export const AssistedShoppingSection = () => {
               </div>
               <div className="col-sm-12 col-lg-8 m-b-24">
                 <div className="dp-box-shadow">
+                  {getTableData(assistedSales.data).length === 0 ? (
+                    <OverlayStyle>
+                      <p>
+                        {intl
+                          .formatMessage({
+                            id: `AssistedShopping.no_data_text`,
+                          })
+                          .toUpperCase()}
+                      </p>
+                    </OverlayStyle>
+                  ) : (
+                    <></>
+                  )}
                   <h6 className="title-reports-box">
                     {intl.formatMessage({
                       id: `AssistedShopping.table.title`,

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 import { C3Chart } from "../../shared/C3Chart/C3Chart";
+import { OverlayStyle } from "../../shared/styles/overlay.styles";
 
 const chartDataOptions = {
   json: {},
@@ -57,13 +58,15 @@ export const AreaChart = ({ data }) => {
     return (
       <>
         {state.chartData.json.length === 0 ? (
-          <p>
-            {intl
-              .formatMessage({
-                id: `AssistedShopping.no_data_text`,
-              })
-              .toUpperCase()}
-          </p>
+          <OverlayStyle>
+            <p>
+              {intl
+                .formatMessage({
+                  id: `AssistedShopping.no_data_text`,
+                })
+                .toUpperCase()}
+            </p>
+          </OverlayStyle>
         ) : (
           <></>
         )}
