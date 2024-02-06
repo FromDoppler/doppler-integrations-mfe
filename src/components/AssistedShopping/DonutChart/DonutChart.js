@@ -56,29 +56,46 @@ export const DonutChart = ({ data, title }) => {
   if (state != null) {
     return (
       <>
-        {state.chartData.json.length === 0 ? (
-          <>
-            {
-              (state.chartData = {
-                json: [{ data: 1 }],
-                keys: {
-                  value: ["data"],
-                },
-                type: "donut",
-                names: {
-                  data: intl.formatMessage({ id: `AssistedShopping.no_data` }),
-                },
-              })
-            }
-          </>
-        ) : (
-          <></>
-        )}
         <h6 className="title-reports-box">{state.chartConfig.donut.title}</h6>
         <C3Chart
-          config={state.chartConfig}
+          config={
+            state.chartData.json.length === 0
+              ? {
+                  ...state.chartConfig,
+                  donut: {
+                    title: title,
+                    label: {
+                      format: () => {
+                        return "%0";
+                      },
+                    },
+                  },
+                  tooltip: {
+                    show: false,
+                  },
+                  color: {
+                    pattern: ["#E1D5EA"],
+                  },
+                }
+              : state.chartConfig
+          }
           dataOptions={chartDataOptions}
-          data={state.chartData}
+          data={
+            state.chartData.json.length === 0
+              ? {
+                  json: [{ data: 1 }],
+                  keys: {
+                    value: ["data"],
+                  },
+                  type: "donut",
+                  names: {
+                    data: intl.formatMessage({
+                      id: `AssistedShopping.no_data`,
+                    }),
+                  },
+                }
+              : state.chartData
+          }
         />
       </>
     );

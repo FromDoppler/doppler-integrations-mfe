@@ -3,13 +3,19 @@ import { C3Chart } from "../../shared/C3Chart/C3Chart";
 import { useIntl } from "react-intl";
 import { OverlayStyle } from "../../shared/styles/overlay.styles";
 
-const chartDataOptions = {
-  json: {},
-};
-
 export const BarChart = ({ data }) => {
   const intl = useIntl();
   const [state, setState] = useState(null);
+
+  const chartDataOptions = {
+    json: [],
+    type: "bar",
+    empty: {
+      label: {
+        text: "",
+      },
+    },
+  };
 
   const [chartConfig] = useState({
     legend: {
@@ -80,7 +86,7 @@ export const BarChart = ({ data }) => {
         <C3Chart
           config={chartConfig}
           dataOptions={chartDataOptions}
-          data={state.chartData}
+          data={state.chartData.json.length === 0 ? {} : state.chartData}
         />
       </>
     );

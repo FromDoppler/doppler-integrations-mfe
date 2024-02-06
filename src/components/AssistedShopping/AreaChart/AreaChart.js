@@ -3,13 +3,19 @@ import { useIntl } from "react-intl";
 import { C3Chart } from "../../shared/C3Chart/C3Chart";
 import { OverlayStyle } from "../../shared/styles/overlay.styles";
 
-const chartDataOptions = {
-  json: {},
-};
-
 export const AreaChart = ({ data }) => {
   const [state, setState] = useState(null);
   const intl = useIntl();
+
+  const chartDataOptions = {
+    json: [],
+    type: "area-spline",
+    empty: {
+      label: {
+        text: "",
+      },
+    },
+  };
 
   const [chartConfig] = useState({
     legend: {
@@ -78,7 +84,7 @@ export const AreaChart = ({ data }) => {
         <C3Chart
           config={chartConfig}
           dataOptions={chartDataOptions}
-          data={state.chartData}
+          data={state.chartData.json.length === 0 ? {} : state.chartData}
         />
       </>
     );
