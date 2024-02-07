@@ -51,6 +51,8 @@ export const messages_en = {
       total_profit: "Total profit",
       total_sales: "Total sales",
     },
+    no_data: "No data",
+    no_data_text: "There is no data to show yet",
     promotional: {
       action_text: "Link your Store",
       action_url: `${urlIntegrations}`,

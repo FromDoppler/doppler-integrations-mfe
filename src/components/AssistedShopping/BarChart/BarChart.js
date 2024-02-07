@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 import { C3Chart } from "../../shared/C3Chart/C3Chart";
 import { useIntl } from "react-intl";
-
-const chartDataOptions = {
-  json: {},
-};
+import { OverlayStyle } from "../../shared/styles/overlay.styles";
 
 export const BarChart = ({ data }) => {
   const intl = useIntl();
   const [state, setState] = useState(null);
+
+  const chartDataOptions = {
+    json: [],
+    type: "bar",
+    empty: {
+      label: {
+        text: "",
+      },
+    },
+  };
 
   const [chartConfig] = useState({
     legend: {
@@ -58,6 +65,19 @@ export const BarChart = ({ data }) => {
   if (state != null) {
     return (
       <>
+        {state.chartData.json.length === 0 ? (
+          <OverlayStyle>
+            <p>
+              {intl
+                .formatMessage({
+                  id: `AssistedShopping.no_data_text`,
+                })
+                .toUpperCase()}
+            </p>
+          </OverlayStyle>
+        ) : (
+          <></>
+        )}
         <h6 className="title-reports-box">
           {intl.formatMessage({
             id: `AssistedShopping.bar_chart_title`,
@@ -66,7 +86,7 @@ export const BarChart = ({ data }) => {
         <C3Chart
           config={chartConfig}
           dataOptions={chartDataOptions}
-          data={state.chartData}
+          data={state.chartData.json.length === 0 ? {} : state.chartData}
         />
       </>
     );
