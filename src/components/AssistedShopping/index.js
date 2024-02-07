@@ -291,11 +291,13 @@ const getAutomationDonutData = (assistedSales) => {
         order.campaign["automationEventType"],
         {
           key: order.campaign.automationEventType,
-          value: assistedSales.filter((sale) =>
-            sale.campaign.automationEventType.includes(
-              order.campaign.automationEventType,
-            ),
-          ).length,
+          value: assistedSales
+            .filter((sale) =>
+              sale.campaign.automationEventType.includes(
+                order.campaign.automationEventType,
+              ),
+            )
+            .reduce((a, v) => a + v.orderTotal, 0),
         },
       ]),
     ).values(),
