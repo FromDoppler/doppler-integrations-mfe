@@ -15,9 +15,14 @@ import { Promotional } from "../shared/Promotional/Promotional";
 import logo from "./logo.png";
 import preview from "./preview.gif";
 import { OverlayStyle } from "../shared/styles/overlay.styles";
+import { useAppServices } from "../application";
 
 export const AssistedShoppingSection = () => {
   const intl = useIntl();
+
+  const {
+    appConfiguration: { dopplerLegacyBaseUrl },
+  } = useAppServices();
 
   const thirdPartyConnections = useGetThirdPartyConnections();
   const connections = [];
@@ -38,6 +43,12 @@ export const AssistedShoppingSection = () => {
 
   if (thirdPartyConnections.isLoading) {
     return <LoadingScreen />;
+  }
+
+  if (thirdPartyConnections.isError || assistedSales.isError) {
+    window.location.replace(
+      dopplerLegacyBaseUrl.concat("/", "Error/ShowErrorView"),
+    );
   }
 
   if (thirdPartyConnections.data.length === 0) {
