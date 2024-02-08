@@ -16,6 +16,7 @@ import logo from "./logo.png";
 import preview from "./preview.gif";
 import { OverlayStyle } from "../shared/styles/overlay.styles";
 import { useAppServices } from "../application";
+import { getStartOfDate } from "../../utils";
 
 export const AssistedShoppingSection = () => {
   const intl = useIntl();
@@ -198,57 +199,37 @@ const getKPIData = (assistedSales) => {
 };
 
 const getAreaData = (assistedSales) => {
-  const salesByOrderDate = new Map(
-    assistedSales.map((order) => [
-      new Date(order.orderDate).getUTCMonth(),
-      {
-        date:
-          new Date(order.orderDate).getUTCFullYear() +
-          "-" +
-          (new Date(order.orderDate).getUTCMonth() + 1) +
-          "-01",
-        deliveries: assistedSales
-          .filter(
+  return [
+    ...new Map(
+      assistedSales.map((order) => [
+        new Date(order.orderDate).getUTCFullYear() +
+          new Date(order.orderDate).getUTCMonth() +
+          new Date(order.orderDate).getUTCDate(),
+        {
+          date:
+            new Date(order.orderDate).getUTCFullYear() +
+            "-" +
+            (new Date(order.orderDate).getUTCMonth() + 1) +
+            "-" +
+            new Date(order.orderDate).getUTCDate(),
+          deliveries: assistedSales
+            .filter(
+              (sale) =>
+                getStartOfDate(
+                  new Date(sale.campaign.UTCSentDate),
+                ).getTime() ===
+                getStartOfDate(new Date(order.orderDate)).getTime(),
+            )
+            .reduce((a, v) => (a += v.campaign.amountSentSubscribers), 0),
+          sales: assistedSales.filter(
             (sale) =>
-              new Date(sale.campaign.UTCSentDate).getUTCMonth() ===
-              new Date(order.orderDate).getUTCMonth(),
-          )
-          .reduce((a, v) => (a += v.campaign.amountSentSubscribers), 0),
-        sales: assistedSales.filter(
-          (sale) =>
-            new Date(sale.orderDate).getUTCMonth() ===
-            new Date(order.orderDate).getUTCMonth(),
-        ).length,
-      },
-    ]),
-  );
-
-  const salesBySentDate = new Map(
-    assistedSales.map((order) => [
-      new Date(order.campaign.UTCSentDate).getUTCMonth(),
-      {
-        date:
-          new Date(order.campaign.UTCSentDate).getUTCFullYear() +
-          "-" +
-          (new Date(order.campaign.UTCSentDate).getUTCMonth() + 1) +
-          "-01",
-        deliveries: assistedSales
-          .filter(
-            (sale) =>
-              new Date(sale.campaign.UTCSentDate).getUTCMonth() ===
-              new Date(order.campaign.UTCSentDate).getUTCMonth(),
-          )
-          .reduce((a, v) => (a += v.campaign.amountSentSubscribers), 0),
-        sales: assistedSales.filter(
-          (sale) =>
-            new Date(sale.campaign.UTCSentDate).getUTCMonth() ===
-            new Date(order.campaign.UTCSentDate).getUTCMonth(),
-        ).length,
-      },
-    ]),
-  );
-
-  return [...new Map([...salesByOrderDate, ...salesBySentDate]).values()];
+              getStartOfDate(new Date(sale.orderDate)).getTime() ===
+              getStartOfDate(new Date(order.orderDate)).getTime(),
+          ).length,
+        },
+      ]),
+    ).values(),
+  ];
 };
 
 const getAutomationBarData = (assistedSales) => {
