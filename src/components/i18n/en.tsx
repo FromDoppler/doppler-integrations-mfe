@@ -5,7 +5,11 @@ const urlIntegrations = `/integrations`;
 
 export const messages_en = {
   AssistedShopping: {
-    area_chart_title: "Deliveries VS Assisted Sales",
+    area_chart: {
+      deliveries: "Deliveries",
+      sales: "Sales",
+      title: "Deliveries VS Assisted Sales",
+    },
     automation_donut_chart_title: "Sales by automation type",
     bar_chart_title: "Revenue by automation type",
     campaign_donut_chart_title: "Revenue by campaign",
@@ -15,7 +19,7 @@ export const messages_en = {
       abandonedcart: "Abandoned cart",
       automation: "Automation",
       campaignbehavior: "Campaign activity",
-      clasica: "Classic",
+      classic: "Classic",
       list: "Welcome Email",
       orderconfirmation: "Successful Payment",
       others: "Others",
