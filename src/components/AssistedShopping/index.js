@@ -96,7 +96,7 @@ export const AssistedShoppingSection = () => {
             <div className="dp-rowflex">
               <div className="col-sm-12 m-b-24 m-t-24">
                 <div className="dp-box-shadow">
-                  <AreaChart data={getAreaData(assistedSales.data)} />
+                  <AreaChart data={getAreaData(assistedSales.data, intl)} />
                 </div>
               </div>
               <div className="col-sm-12 col-lg-8 m-b-24">
@@ -196,7 +196,7 @@ const getKPIData = (assistedSales) => {
   ];
 };
 
-const getAreaData = (assistedSales) => {
+const getAreaData = (assistedSales, intl) => {
   return [
     ...new Map(
       assistedSales.map((order) => [
@@ -210,7 +210,9 @@ const getAreaData = (assistedSales) => {
             (new Date(order.orderDate).getUTCMonth() + 1) +
             "-" +
             new Date(order.orderDate).getUTCDate(),
-          deliveries: assistedSales
+          [intl.formatMessage({
+            id: `AssistedShopping.area_chart.deliveries`,
+          })]: assistedSales
             .filter(
               (sale) =>
                 getStartOfDate(
@@ -219,11 +221,12 @@ const getAreaData = (assistedSales) => {
                 getStartOfDate(new Date(order.orderDate)).getTime(),
             )
             .reduce((a, v) => (a += v.campaign.amountSentSubscribers), 0),
-          sales: assistedSales.filter(
-            (sale) =>
-              getStartOfDate(new Date(sale.orderDate)).getTime() ===
-              getStartOfDate(new Date(order.orderDate)).getTime(),
-          ).length,
+          [intl.formatMessage({ id: `AssistedShopping.area_chart.sales` })]:
+            assistedSales.filter(
+              (sale) =>
+                getStartOfDate(new Date(sale.orderDate)).getTime() ===
+                getStartOfDate(new Date(order.orderDate)).getTime(),
+            ).length,
         },
       ]),
     ).values(),
