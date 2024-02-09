@@ -34,9 +34,8 @@ export const AreaChart = ({ data }) => {
           culling: false,
           format: (x) => {
             return intl.formatDate(x, {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
+              month: "short",
+              day: "2-digit",
             });
           },
         },
