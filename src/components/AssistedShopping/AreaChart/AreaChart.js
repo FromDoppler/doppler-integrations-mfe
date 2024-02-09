@@ -33,7 +33,11 @@ export const AreaChart = ({ data }) => {
         tick: {
           culling: false,
           format: (x) => {
-            return intl.formatDate(x, { month: "long", year: "numeric" });
+            return intl.formatDate(x, {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            });
           },
         },
       },

@@ -81,8 +81,8 @@ export const useGetAssistedSales = () => {
       let result = [];
       result = sales.filter(
         (sale) =>
-          new Date(sale.orderDate).getTime() > dateFilter.fromDate.getTime() &&
-          new Date(sale.orderDate).getTime() < dateFilter.toDate.getTime(),
+          new Date(sale.orderDate).getTime() >= dateFilter.fromDate.getTime() &&
+          new Date(sale.orderDate).getTime() <= dateFilter.toDate.getTime(),
       );
 
       if (idThirdPartyApp) {

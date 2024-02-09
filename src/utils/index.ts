@@ -8,16 +8,22 @@ export const addDays = (date: Date, days: number) => {
 };
 
 export const getFirstDayOfLastMonth = (date: Date) => {
-  date.setDate(0);
-  date.setDate(1);
-  date.setHours(0, 0, 0, 0);
+  date.setUTCDate(0);
+  date.setUTCDate(1);
+  date.setUTCHours(0, 0, 0, 0);
 
   return date;
 };
 
 export const getFirstDayMonth = (date: Date) => {
-  date.setDate(1);
-  date.setHours(0, 0, 0, 0);
+  date.setUTCDate(1);
+  date.setUTCHours(0, 0, 0, 0);
 
   return date;
 };
+
+export function getStartOfDate(date: Date) {
+  return typeof date.getMonth === "function"
+    ? new Date(date.getFullYear(), date.getMonth(), date.getDate())
+    : undefined;
+}
