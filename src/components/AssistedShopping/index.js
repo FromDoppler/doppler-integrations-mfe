@@ -338,7 +338,8 @@ const getTableData = (assistedSales) => {
                 (order) =>
                   order.campaign.idCampaign === sale.campaign.idCampaign,
               )
-              .reduce((a, v) => a + v.orderTotal, 0),
+              .reduce((a, v) => a + v.orderTotal, 0)
+              .toFixed(2),
             conversion: (
               filteredSales.filter(
                 (order) =>
@@ -355,10 +356,9 @@ const getTableData = (assistedSales) => {
       name: type,
       amount: uniqueCampaigns.length,
       sales: filteredSales.length,
-      revenue: filteredSales.reduce(
-        (total, order) => (total += order.orderTotal),
-        0,
-      ),
+      revenue: filteredSales
+        .reduce((total, order) => (total += order.orderTotal), 0)
+        .toFixed(2),
       conversion: (
         filteredSales.length /
         uniqueCampaigns.reduce(
