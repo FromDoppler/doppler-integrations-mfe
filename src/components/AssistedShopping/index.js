@@ -27,15 +27,6 @@ export const AssistedShoppingSection = () => {
 
   const thirdPartyConnections = useGetThirdPartyConnections();
   const connections = [];
-  if (!thirdPartyConnections.isLoading) {
-    thirdPartyConnections.data.forEach((connection) => {
-      connections.push({
-        name: connection.thirdPartyApp.name,
-        value: connection.thirdPartyApp.idThirdPartyApp,
-      });
-    });
-  }
-
   const {
     query: assistedSales,
     setDateFilter,
@@ -53,6 +44,13 @@ export const AssistedShoppingSection = () => {
   }
 
   if (thirdPartyConnections.data.length === 0) {
+    thirdPartyConnections.data.forEach((connection) => {
+      connections.push({
+        name: connection.thirdPartyApp.name,
+        value: connection.thirdPartyApp.idThirdPartyApp,
+      });
+    });
+
     return (
       <Promotional
         title={intl.formatMessage({ id: `AssistedShopping.promotional.title` })}
