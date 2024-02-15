@@ -104,10 +104,10 @@ export const Table = (data) => {
                       <span>{summaryByCampaign.sales}</span>
                     </td>
                     <td>
-                      <span>{`$ ${summaryByCampaign.revenue}`}</span>
+                      <span>{summaryByCampaign.revenue}</span>
                     </td>
                     <td>
-                      <span>{`${summaryByCampaign.conversion} %`}</span>
+                      <span>{summaryByCampaign.conversion}</span>
                     </td>
                   </tr>
                   {summaryByCampaign.campaigns.length > 0 ? (
@@ -175,10 +175,10 @@ export const Table = (data) => {
                                     <span>{campaign.sale}</span>
                                   </td>
                                   <td>
-                                    <span>{`$ ${campaign.income}`}</span>
+                                    <span>{campaign.income}</span>
                                   </td>
                                   <td>
-                                    <span>{`${campaign.conversion} %`}</span>
+                                    <span>{campaign.conversion}</span>
                                   </td>
                                 </tr>
                               ),

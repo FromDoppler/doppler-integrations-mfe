@@ -66,7 +66,7 @@ export const DonutChart = ({ data, title }) => {
                     title: title,
                     label: {
                       format: () => {
-                        return "%0";
+                        return "0%";
                       },
                     },
                   },

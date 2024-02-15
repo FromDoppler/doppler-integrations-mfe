@@ -16,7 +16,7 @@ import logo from "./logo.png";
 import preview from "./preview.gif";
 import { OverlayStyle } from "../shared/styles/overlay.styles";
 import { useAppServices } from "../application";
-import { getStartOfDate } from "../../utils";
+import { getFormatedNumber, getStartOfDate } from "../../utils";
 
 export const AssistedShoppingSection = () => {
   const intl = useIntl();
@@ -178,19 +178,27 @@ const getKPIData = (assistedSales) => {
       title: "total_sales",
     },
     {
-      value: `$ ${totalProfit.toFixed(2)}`,
+      value: getFormatedNumber(
+        totalProfit,
+        "currency",
+        assistedSales[0]?.currency ?? null,
+      ),
       title: "total_profit",
     },
     {
-      value: `$ ${(totalSales > 0 ? totalProfit / totalSales : 0).toFixed(2)}`,
+      value: getFormatedNumber(
+        totalSales > 0 ? totalProfit / totalSales : 0,
+        "currency",
+        assistedSales[0]?.currency ?? null,
+      ),
       title: "avg_profit",
     },
     {
-      value: "2.0 %",
+      value: getFormatedNumber(0.02, "percent"),
       title: "convertion_rate",
     },
     {
-      value: "32 %",
+      value: getFormatedNumber(0.32, "percent"),
       title: "investment_return",
     },
   ];
@@ -333,19 +341,23 @@ const getTableData = (assistedSales) => {
             sale: filteredSales.filter(
               (order) => order.campaign.idCampaign === sale.campaign.idCampaign,
             ).length,
-            income: filteredSales
-              .filter(
-                (order) =>
-                  order.campaign.idCampaign === sale.campaign.idCampaign,
-              )
-              .reduce((a, v) => a + v.orderTotal, 0)
-              .toFixed(2),
-            conversion: (
+            income: getFormatedNumber(
+              filteredSales
+                .filter(
+                  (order) =>
+                    order.campaign.idCampaign === sale.campaign.idCampaign,
+                )
+                .reduce((a, v) => a + v.orderTotal, 0),
+              "currency",
+              assistedSales[0]?.currency ?? null,
+            ),
+            conversion: getFormatedNumber(
               filteredSales.filter(
                 (order) =>
                   order.campaign.idCampaign === sale.campaign.idCampaign,
-              ).length / sale.campaign.amountSentSubscribers
-            ).toFixed(2),
+              ).length / sale.campaign.amountSentSubscribers,
+              "percent",
+            ),
             amountSentSubscribers: sale.campaign.amountSentSubscribers,
           },
         ]),
@@ -356,16 +368,19 @@ const getTableData = (assistedSales) => {
       name: type,
       amount: uniqueCampaigns.length,
       sales: filteredSales.length,
-      revenue: filteredSales
-        .reduce((total, order) => (total += order.orderTotal), 0)
-        .toFixed(2),
-      conversion: (
+      revenue: getFormatedNumber(
+        filteredSales.reduce((total, order) => (total += order.orderTotal), 0),
+        "currency",
+        assistedSales[0]?.currency ?? null,
+      ),
+      conversion: getFormatedNumber(
         filteredSales.length /
-        uniqueCampaigns.reduce(
-          (total, campaign) => (total += campaign.amountSentSubscribers),
-          0,
-        )
-      ).toFixed(2),
+          uniqueCampaigns.reduce(
+            (total, campaign) => (total += campaign.amountSentSubscribers),
+            0,
+          ),
+        "percent",
+      ),
       campaigns: uniqueCampaigns,
     });
   });
