@@ -177,19 +177,19 @@ const getKPIData = (assistedSales) => {
       title: "total_sales",
     },
     {
-      value: getFormatedNumber(
-        totalProfit,
-        "currency",
-        assistedSales[0]?.currency ?? null,
-      ),
+      value: assistedSales[0]?.currency
+        ? getFormatedNumber(totalProfit, "currency", assistedSales[0].currency)
+        : 0,
       title: "total_profit",
     },
     {
-      value: getFormatedNumber(
-        totalSales > 0 ? totalProfit / totalSales : 0,
-        "currency",
-        assistedSales[0]?.currency ?? null,
-      ),
+      value: assistedSales[0]?.currency
+        ? getFormatedNumber(
+            totalSales > 0 ? totalProfit / totalSales : 0,
+            "currency",
+            assistedSales[0].currency,
+          )
+        : 0,
       title: "avg_profit",
     },
     {
