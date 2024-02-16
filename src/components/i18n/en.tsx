@@ -13,9 +13,7 @@ export const messages_en = {
     automation_donut_chart_title: "Sales by automation type",
     bar_chart_title: "Revenue by automation type",
     campaign_donut_chart_title: "Revenue by campaign",
-    description: `In this section you can review your assisted sales. Revenue is posted when a subscriber makes a
-    purchase within seven days of opening the email.`,
-    donut: {
+    campaign_types: {
       abandonedcart: "Abandoned cart",
       automation: "Automation",
       campaignbehavior: "Campaign activity",
@@ -33,6 +31,8 @@ export const messages_en = {
       testab: "Test A/B",
       visitedproducts: "Product retargeting",
     },
+    description: `In this section you can review your assisted sales. Revenue is posted when a subscriber makes a
+    purchase within seven days of opening the email.`,
     dropdowns: {
       ecommerce_title: "Ecommerce",
       period_option1: "Last 7 days",

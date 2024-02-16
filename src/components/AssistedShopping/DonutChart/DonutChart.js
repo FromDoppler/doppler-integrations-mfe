@@ -27,7 +27,9 @@ export const DonutChart = ({ data, title }) => {
       const namesMapping = Object.keys(data).reduce(
         (a, v) => ({
           ...a,
-          [v]: intl.formatMessage({ id: `AssistedShopping.donut.${v}` }),
+          [v]: intl.formatMessage({
+            id: `AssistedShopping.campaign_types.${v}`,
+          }),
         }),
         {},
       );

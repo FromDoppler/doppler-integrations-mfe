@@ -94,7 +94,9 @@ export const Table = (data) => {
                         >
                           <i className="ms-icon icon-arrow-next"></i>
                         </button>
-                        {summaryByCampaign.name}
+                        {intl.formatMessage({
+                          id: `AssistedShopping.campaign_types.${summaryByCampaign.name}`,
+                        })}
                       </span>
                     </td>
                     <td>
@@ -169,7 +171,11 @@ export const Table = (data) => {
                                     <span>{campaign.name}</span>
                                   </td>
                                   <td>
-                                    <span>{campaign.type}</span>
+                                    <span>
+                                      {intl.formatMessage({
+                                        id: `AssistedShopping.campaign_types.${campaign.type}`,
+                                      })}
+                                    </span>
                                   </td>
                                   <td>
                                     <span>{campaign.sale}</span>
