@@ -31,14 +31,29 @@ export const AreaChart = ({ data }) => {
       x: {
         type: "timeseries",
         tick: {
-          culling: false,
+          culling: true,
           format: (x) => {
             return intl.formatDate(x, {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
+              month: "short",
+              day: "2-digit",
             });
           },
+        },
+      },
+      y: {
+        show: true,
+        label: {
+          text: intl.formatMessage({
+            id: `AssistedShopping.area_chart.deliveries`,
+          }),
+          position: "outer-middle",
+        },
+      },
+      y2: {
+        show: true,
+        label: {
+          text: intl.formatMessage({ id: `AssistedShopping.area_chart.sales` }),
+          position: "outer-middle",
         },
       },
     },
@@ -54,15 +69,30 @@ export const AreaChart = ({ data }) => {
           json: data,
           keys: {
             x: "date",
-            value: ["deliveries", "sales"],
+            value: [
+              intl.formatMessage({
+                id: `AssistedShopping.area_chart.deliveries`,
+              }),
+              intl.formatMessage({
+                id: `AssistedShopping.area_chart.sales`,
+              }),
+            ],
           },
           type: "area-spline",
+          axes: {
+            [intl.formatMessage({
+              id: `AssistedShopping.area_chart.sales`,
+            })]: "y",
+            [intl.formatMessage({
+              id: `AssistedShopping.area_chart.sales`,
+            })]: "y2",
+          },
         },
       });
     };
 
     fetchData();
-  }, [data]);
+  }, [data, intl]);
 
   if (state != null) {
     return (
@@ -82,7 +112,7 @@ export const AreaChart = ({ data }) => {
         )}
         <h6 className="title-reports-box">
           {intl.formatMessage({
-            id: `AssistedShopping.area_chart_title`,
+            id: `AssistedShopping.area_chart.title`,
           })}
         </h6>
         <C3Chart

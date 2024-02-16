@@ -5,17 +5,19 @@ const urlIntegrations = `/integrations`;
 
 export const messages_es = {
   AssistedShopping: {
-    area_chart_title: "Envios VS Ventas Asistidas",
+    area_chart: {
+      deliveries: "Envios",
+      sales: "Ventas",
+      title: "Envios VS Ventas Asistidas",
+    },
     automation_donut_chart_title: "Ventas por tipo de automation",
     bar_chart_title: "Ingresos por tipo de automation",
     campaign_donut_chart_title: "Ingresos por Campaña",
-    description: `En esta sección podrás consultar tus ventas asistidas. Los ingresos se contabilizan
-    cuando un suscriptor realiza una compra dentro de los siete días siguientes a la apertura del correo.`,
-    donut: {
+    campaign_types: {
       abandonedcart: "Carrito abandonado",
       automation: "Automation",
       campaignbehavior: "Comp. en campaña",
-      clasica: "Clasica",
+      classic: "Clasica",
       list: "Suscripción a Listas",
       orderconfirmation: "pago Confirmado",
       others: "Otros",
@@ -29,6 +31,8 @@ export const messages_es = {
       testab: "Test A/B",
       visitedproducts: "Producto visitado",
     },
+    description: `En esta sección podrás consultar tus ventas asistidas. Los ingresos se contabilizan
+    cuando un suscriptor realiza una compra dentro de los siete días siguientes a la apertura del correo.`,
     dropdowns: {
       ecommerce_title: "Tienda",
       period_option1: "Últimos 7 días",

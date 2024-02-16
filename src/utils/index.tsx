@@ -1,3 +1,6 @@
+import { DopplerIntlProvider } from "../components/i18n/DopplerIntlProvider";
+import { FormattedNumber } from "react-intl";
+
 export const timeout = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -27,3 +30,19 @@ export function getStartOfDate(date: Date) {
     ? new Date(date.getFullYear(), date.getMonth(), date.getDate())
     : undefined;
 }
+
+export const getFormatedNumber = (
+  value: number,
+  format: "currency" | "percent" | "unit" | "decimal" | undefined,
+  currency: string | undefined,
+) => {
+  return currency ? (
+    <DopplerIntlProvider>
+      <FormattedNumber value={value} style={format} currency={currency} />
+    </DopplerIntlProvider>
+  ) : (
+    <DopplerIntlProvider>
+      <FormattedNumber value={value} style={format} />
+    </DopplerIntlProvider>
+  );
+};

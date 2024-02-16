@@ -94,7 +94,9 @@ export const Table = (data) => {
                         >
                           <i className="ms-icon icon-arrow-next"></i>
                         </button>
-                        {summaryByCampaign.name}
+                        {intl.formatMessage({
+                          id: `AssistedShopping.campaign_types.${summaryByCampaign.name}`,
+                        })}
                       </span>
                     </td>
                     <td>
@@ -104,10 +106,10 @@ export const Table = (data) => {
                       <span>{summaryByCampaign.sales}</span>
                     </td>
                     <td>
-                      <span>{`$ ${summaryByCampaign.revenue}`}</span>
+                      <span>{summaryByCampaign.revenue}</span>
                     </td>
                     <td>
-                      <span>{`${summaryByCampaign.conversion} %`}</span>
+                      <span>{summaryByCampaign.conversion}</span>
                     </td>
                   </tr>
                   {summaryByCampaign.campaigns.length > 0 ? (
@@ -169,16 +171,20 @@ export const Table = (data) => {
                                     <span>{campaign.name}</span>
                                   </td>
                                   <td>
-                                    <span>{campaign.type}</span>
+                                    <span>
+                                      {intl.formatMessage({
+                                        id: `AssistedShopping.campaign_types.${campaign.type}`,
+                                      })}
+                                    </span>
                                   </td>
                                   <td>
                                     <span>{campaign.sale}</span>
                                   </td>
                                   <td>
-                                    <span>{`$ ${campaign.income}`}</span>
+                                    <span>{campaign.income}</span>
                                   </td>
                                   <td>
-                                    <span>{`${campaign.conversion} %`}</span>
+                                    <span>{campaign.conversion}</span>
                                   </td>
                                 </tr>
                               ),
