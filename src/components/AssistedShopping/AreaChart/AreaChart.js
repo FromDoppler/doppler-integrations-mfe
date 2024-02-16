@@ -31,7 +31,7 @@ export const AreaChart = ({ data }) => {
       x: {
         type: "timeseries",
         tick: {
-          culling: false,
+          culling: true,
           format: (x) => {
             return intl.formatDate(x, {
               month: "short",
