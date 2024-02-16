@@ -44,13 +44,6 @@ export const AssistedShoppingSection = () => {
   }
 
   if (thirdPartyConnections.data.length === 0) {
-    thirdPartyConnections.data.forEach((connection) => {
-      connections.push({
-        name: connection.thirdPartyApp.name,
-        value: connection.thirdPartyApp.idThirdPartyApp,
-      });
-    });
-
     return (
       <Promotional
         title={intl.formatMessage({ id: `AssistedShopping.promotional.title` })}
@@ -81,6 +74,12 @@ export const AssistedShoppingSection = () => {
       </>
     );
   } else {
+    thirdPartyConnections.data.forEach((connection) => {
+      connections.push({
+        name: connection.thirdPartyApp.name,
+        value: connection.thirdPartyApp.idThirdPartyApp,
+      });
+    });
     return (
       <>
         <DashboardHeader
