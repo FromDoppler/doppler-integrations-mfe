@@ -179,6 +179,10 @@ const getKPIData = (assistedSales) => {
     0,
   );
   const totalSales = assistedSales.length;
+  const totalOpens = assistedSales.reduce(
+    (total, order) => (total += order.campaign.DistinctOpenedMailCount),
+    0,
+  );
   return [
     {
       value: totalSales,
@@ -201,12 +205,11 @@ const getKPIData = (assistedSales) => {
       title: "avg_profit",
     },
     {
-      value: getFormatedNumber(0.02, "percent"),
+      value: getFormatedNumber(
+        totalOpens > 0 ? totalSales / totalOpens : 0,
+        "percent",
+      ),
       title: "convertion_rate",
-    },
-    {
-      value: getFormatedNumber(0.32, "percent"),
-      title: "investment_return",
     },
   ];
 };
@@ -359,10 +362,12 @@ const getTableData = (assistedSales) => {
               assistedSales[0]?.currency ?? null,
             ),
             conversion: getFormatedNumber(
-              filteredSales.filter(
-                (order) =>
-                  order.campaign.idCampaign === sale.campaign.idCampaign,
-              ).length / sale.campaign.amountSentSubscribers,
+              sale.campaign.DistinctOpenedMailCount > 0
+                ? filteredSales.filter(
+                    (order) =>
+                      order.campaign.idCampaign === sale.campaign.idCampaign,
+                  ).length / sale.campaign.DistinctOpenedMailCount
+                : 0,
               "percent",
             ),
             amountSentSubscribers: sale.campaign.amountSentSubscribers,
@@ -381,11 +386,17 @@ const getTableData = (assistedSales) => {
         assistedSales[0]?.currency ?? null,
       ),
       conversion: getFormatedNumber(
-        filteredSales.length /
-          uniqueCampaigns.reduce(
-            (total, campaign) => (total += campaign.amountSentSubscribers),
-            0,
-          ),
+        uniqueCampaigns.reduce(
+          (total, campaign) => (total += campaign.DistinctOpenedMailCount),
+          0,
+        ) > 0
+          ? filteredSales.length /
+              uniqueCampaigns.reduce(
+                (total, campaign) =>
+                  (total += campaign.DistinctOpenedMailCount),
+                0,
+              )
+          : 0,
         "percent",
       ),
       campaigns: uniqueCampaigns,
