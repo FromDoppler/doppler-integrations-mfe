@@ -35,5 +35,9 @@ export type AssistedSales = {
 
 export interface IntegrationsApiClient {
   getConnections: () => Promise<Result<ThirdPartyConnection[]>>;
-  getAssistedSales: () => Promise<Result<AssistedSales[]>>;
+  getAssistedSales: (
+    idThirdPartyApp: string,
+    dateFrom: Date,
+    dateTo: Date,
+  ) => Promise<Result<AssistedSales[]>>;
 }

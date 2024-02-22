@@ -17,9 +17,11 @@ import preview from "./preview.gif";
 import { OverlayStyle } from "../shared/styles/overlay.styles";
 import { useAppServices } from "../application";
 import { getFormatedNumber, getStartOfDate } from "../../utils";
+import { useState } from "react";
 
 export const AssistedShoppingSection = () => {
   const intl = useIntl();
+  const [onFirstRender, setonFirstRender] = useState(true);
 
   const {
     appConfiguration: { dopplerLegacyBaseUrl },
@@ -62,6 +64,18 @@ export const AssistedShoppingSection = () => {
     );
   }
 
+  thirdPartyConnections.data.forEach((connection) => {
+    connections.push({
+      name: connection.thirdPartyApp.name,
+      value: connection.thirdPartyApp.idThirdPartyApp,
+    });
+  });
+
+  if (onFirstRender) {
+    setIdThirdPartyApp(connections.at(0).value.toString());
+    setonFirstRender(false);
+  }
+
   if (assistedSales.isLoading) {
     return (
       <>
@@ -74,12 +88,6 @@ export const AssistedShoppingSection = () => {
       </>
     );
   } else {
-    thirdPartyConnections.data.forEach((connection) => {
-      connections.push({
-        name: connection.thirdPartyApp.name,
-        value: connection.thirdPartyApp.idThirdPartyApp,
-      });
-    });
     return (
       <>
         <DashboardHeader
