@@ -62,6 +62,12 @@ export const AssistedShoppingSection = () => {
     );
   }
 
+  thirdPartyConnections.data.forEach((connection) => {
+    connections.push({
+      name: connection.thirdPartyApp.name,
+      value: connection.thirdPartyApp.idThirdPartyApp,
+    });
+  });
   if (assistedSales.isLoading) {
     return (
       <>
@@ -74,12 +80,6 @@ export const AssistedShoppingSection = () => {
       </>
     );
   } else {
-    thirdPartyConnections.data.forEach((connection) => {
-      connections.push({
-        name: connection.thirdPartyApp.name,
-        value: connection.thirdPartyApp.idThirdPartyApp,
-      });
-    });
     return (
       <>
         <DashboardHeader
