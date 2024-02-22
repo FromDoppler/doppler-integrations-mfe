@@ -59,7 +59,7 @@ export class IntegrationsApiClientImpl implements IntegrationsApiClient {
   }
 
   async getConnections(): Promise<Result<ThirdPartyConnection[]>> {
-    const response = await this.GET<any>(`/user/connections/`);
+    const response = await this.GET<any>(`user/connections`);
     return {
       success: true,
       value: response.data.map(
@@ -91,7 +91,7 @@ export class IntegrationsApiClientImpl implements IntegrationsApiClient {
     dateFrom: Date,
     dateTo: Date,
   ): Promise<Result<AssistedSales[]>> {
-    const response = await this.GET<any>(`/user/assisted-shopping/`, [
+    const response = await this.GET<any>(`user/assisted-shopping`, [
       idThirdPartyApp,
       dateFrom.toUTCString(),
       dateTo.toUTCString(),

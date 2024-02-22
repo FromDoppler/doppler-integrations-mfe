@@ -74,7 +74,7 @@ describe(IntegrationsApiClientImpl.name, () => {
       expect(request).toHaveBeenCalledWith({
         headers: { Authorization: `Bearer ${jwtToken}` },
         method: "GET",
-        url: `/integrations/connections/${dopplerAccountName}`,
+        url: `/integrations/user/connections`,
       });
 
       expect(result).toEqual({
@@ -204,6 +204,7 @@ describe(IntegrationsApiClientImpl.name, () => {
             campaignType: "automation",
             automationEventType: "list suscription",
             amountSentSubscribers: 10,
+            UTCSentDate: "2022-12-19 15:12:45.353",
           },
           subscriber: {
             idSubscriber: 123,
@@ -236,8 +237,9 @@ describe(IntegrationsApiClientImpl.name, () => {
         appConfiguration,
       });
 
+      const date = new Date();
       // Act
-      const result = await sut.getAssistedSales();
+      const result = await sut.getAssistedSales("1", date, date);
 
       // Assert
       expect(create).toHaveBeenCalledWith({
@@ -246,7 +248,7 @@ describe(IntegrationsApiClientImpl.name, () => {
       expect(request).toHaveBeenCalledWith({
         headers: { Authorization: `Bearer ${jwtToken}` },
         method: "GET",
-        url: `/integrations/assisted-shopping/${dopplerAccountName}`,
+        url: `/integrations/user/assisted-shopping/1/${date.toUTCString()}/${date.toUTCString()}`,
       });
 
       expect(result).toEqual({
@@ -289,7 +291,7 @@ describe(IntegrationsApiClientImpl.name, () => {
       // Assert
       await expect(async () => {
         // Act
-        await sut.getAssistedSales();
+        await sut.getAssistedSales("1", new Date(), new Date());
       }).rejects.toThrow(error);
     });
 
@@ -331,7 +333,7 @@ describe(IntegrationsApiClientImpl.name, () => {
         // Assert
         await expect(async () => {
           // Act
-          await sut.getAssistedSales();
+          await sut.getAssistedSales("1", new Date(), new Date());
         }).rejects.toThrow(new Error("Authenticated session required"));
 
         // Assert
