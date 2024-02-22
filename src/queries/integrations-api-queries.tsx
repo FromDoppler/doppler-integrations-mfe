@@ -4,13 +4,17 @@ import {
   ThirdPartyConnection,
 } from "../abstractions/integrations-api-client";
 import { useAppServices } from "../components/application";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { addDays } from "../utils/index";
 
 type getIntegrationsApiQueryKey = {
   scope: string;
   dopplerAccountName: string | null;
-  thirdPartyAppId: number | null;
+  thirdPartyAppId: string | null;
+  dateFilter: {
+    fromDate: Date;
+    toDate: Date;
+  } | null;
 }[];
 
 export const useGetThirdPartyConnections = () => {
@@ -27,6 +31,7 @@ export const useGetThirdPartyConnections = () => {
       scope: "third-party-connections",
       dopplerAccountName,
       thirdPartyAppId: null,
+      dateFilter: null,
     },
   ];
 
@@ -66,43 +71,18 @@ export const useGetAssistedSales = () => {
   });
   const [idThirdPartyApp, setIdThirdPartyApp] = useState<string | null>(null);
 
-  const connections = useGetThirdPartyConnections();
-  const firstThirdPartyId =
-    connections?.data?.at(0)?.thirdPartyApp.idThirdPartyApp;
-
   const currentSessionState = appSessionStateAccessor.getSessionAuthData();
   const dopplerAccountName =
     currentSessionState.status === "authenticated"
       ? currentSessionState.dopplerAccountName
       : null;
 
-  const filteredSales = useCallback(
-    (sales: AssistedSales[]) => {
-      let result = [];
-      result = sales.filter(
-        (sale) =>
-          new Date(sale.orderDate).getTime() >= dateFilter.fromDate.getTime() &&
-          new Date(sale.orderDate).getTime() <= dateFilter.toDate.getTime(),
-      );
-
-      if (idThirdPartyApp) {
-        return result.filter(
-          (sale) => sale.idThirdPartyApp.toString() === idThirdPartyApp,
-        );
-      } else {
-        return result.filter(
-          (sale) => sale.idThirdPartyApp === firstThirdPartyId,
-        );
-      }
-    },
-    [dateFilter, idThirdPartyApp, firstThirdPartyId],
-  );
-
   const queryKey: getIntegrationsApiQueryKey = [
     {
       scope: "assisted-sales",
       dopplerAccountName,
-      thirdPartyAppId: firstThirdPartyId ?? null,
+      thirdPartyAppId: idThirdPartyApp,
+      dateFilter: dateFilter,
     },
   ];
 
@@ -112,11 +92,15 @@ export const useGetAssistedSales = () => {
   > = async (context) => {
     const [{ dopplerAccountName }] = context.queryKey;
 
-    if (!dopplerAccountName) {
+    if (!dopplerAccountName || idThirdPartyApp == null) {
       return [];
     }
 
-    const result = await integrationsApiClient.getAssistedSales();
+    const result = await integrationsApiClient.getAssistedSales(
+      idThirdPartyApp,
+      dateFilter.fromDate,
+      dateFilter.toDate,
+    );
     return result.value;
   };
 
@@ -126,8 +110,7 @@ export const useGetAssistedSales = () => {
     refetchOnMount: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
-    select: filteredSales,
-    enabled: !!firstThirdPartyId,
+    enabled: !!idThirdPartyApp,
   });
 
   return { query, setDateFilter, setIdThirdPartyApp };
