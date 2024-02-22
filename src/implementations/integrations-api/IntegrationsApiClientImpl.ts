@@ -93,8 +93,8 @@ export class IntegrationsApiClientImpl implements IntegrationsApiClient {
   ): Promise<Result<AssistedSales[]>> {
     const response = await this.GET<any>(`user/assisted-shopping`, [
       idThirdPartyApp,
-      dateFrom.toUTCString(),
-      dateTo.toUTCString(),
+      dateFrom.toISOString(),
+      dateTo.toISOString(),
     ]);
     return {
       success: true,
