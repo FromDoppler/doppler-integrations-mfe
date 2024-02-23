@@ -236,7 +236,7 @@ const getAreaData = (assistedSales, intl) => {
             .filter(
               (sale) =>
                 getStartOfDate(
-                  new Date(sale.campaign.UTCSentDate),
+                  new Date(sale.campaign.utcSentDate),
                 ).getTime() ===
                 getStartOfDate(new Date(order.orderDate)).getTime(),
             )

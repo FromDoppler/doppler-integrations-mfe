@@ -113,10 +113,9 @@ export class IntegrationsApiClientImpl implements IntegrationsApiClient {
             campaignType,
             automationEventType,
             amountSentSubscribers,
-            UTCSentDate,
+            utcSentDate,
             DistinctOpenedMailCount,
           },
-          subscriber: { idSubscriber, email },
         }: any) => ({
           idOrder,
           idUser,
@@ -131,10 +130,9 @@ export class IntegrationsApiClientImpl implements IntegrationsApiClient {
             campaignType,
             automationEventType,
             amountSentSubscribers,
-            UTCSentDate,
+            utcSentDate,
             DistinctOpenedMailCount,
           },
-          subscriber: { idSubscriber, email },
         }),
       ),
     };

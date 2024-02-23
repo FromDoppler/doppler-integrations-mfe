@@ -30,7 +30,7 @@ export type AssistedSales = {
     automationEventType: string | undefined;
     amountSentSubscribers: number;
     DistinctOpenedMailCount: number;
-    UTCSentDate: Date;
+    utcSentDate: Date;
   };
   subscriber: { idSubscriber: number; email: string };
 };
