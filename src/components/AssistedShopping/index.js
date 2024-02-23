@@ -323,7 +323,7 @@ const getAutomationDonutData = (assistedSales) => {
   return automationEventTypes.reduce(
     (a, v) => ({
       ...a,
-      [v.key.toLowerCase()]: v.value,
+      [v.key]: v.value,
     }),
     {},
   );
