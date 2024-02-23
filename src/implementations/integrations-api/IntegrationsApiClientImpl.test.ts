@@ -204,11 +204,8 @@ describe(IntegrationsApiClientImpl.name, () => {
             campaignType: "automation",
             automationEventType: "list suscription",
             amountSentSubscribers: 10,
-            UTCSentDate: "2022-12-19 15:12:45.353",
-          },
-          subscriber: {
-            idSubscriber: 123,
-            email: "doppler@fromdoppler.com",
+            utcSentDate: "2022-12-19 15:12:45.353",
+            DistinctOpenedMailCount: 2,
           },
         },
       ];

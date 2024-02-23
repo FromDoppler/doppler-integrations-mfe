@@ -45,7 +45,16 @@ export const AssistedShoppingSection = () => {
     );
   }
 
-  if (thirdPartyConnections.data.length === 0) {
+  thirdPartyConnections.data.forEach((connection) => {
+    if (connection.thirdPartyApp.assistedShoppingEnabled) {
+      connections.push({
+        name: connection.thirdPartyApp.name,
+        value: connection.thirdPartyApp.idThirdPartyApp,
+      });
+    }
+  });
+
+  if (connections.length === 0) {
     return (
       <Promotional
         title={intl.formatMessage({ id: `AssistedShopping.promotional.title` })}
@@ -63,13 +72,6 @@ export const AssistedShoppingSection = () => {
       />
     );
   }
-
-  thirdPartyConnections.data.forEach((connection) => {
-    connections.push({
-      name: connection.thirdPartyApp.name,
-      value: connection.thirdPartyApp.idThirdPartyApp,
-    });
-  });
 
   if (onFirstRender) {
     setIdThirdPartyApp(connections.at(0).value.toString());
@@ -234,7 +236,7 @@ const getAreaData = (assistedSales, intl) => {
             .filter(
               (sale) =>
                 getStartOfDate(
-                  new Date(sale.campaign.UTCSentDate),
+                  new Date(sale.campaign.utcSentDate),
                 ).getTime() ===
                 getStartOfDate(new Date(order.orderDate)).getTime(),
             )
