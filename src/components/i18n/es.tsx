@@ -35,10 +35,10 @@ export const messages_es = {
     cuando un suscriptor realiza una compra dentro de los siete días siguientes a la apertura del correo.`,
     dropdowns: {
       ecommerce_title: "Tienda",
-      period_option1: "Últimos 7 días",
-      period_option2: "Últimos 30 días",
-      period_option3: "Mes pasado",
-      period_option4: "Últimos 3 meses",
+      period_option1: "Últimos 30 días",
+      period_option2: "Mes pasado",
+      period_option3: "Últimos 3 meses",
+      period_option4: "Últimos 6 meses",
       period_title: "Período",
     },
     kpi: {

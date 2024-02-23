@@ -35,10 +35,10 @@ export const messages_en = {
     purchase within seven days of opening the email.`,
     dropdowns: {
       ecommerce_title: "Ecommerce",
-      period_option1: "Last 7 days",
-      period_option2: "Last 30 days",
-      period_option3: "Last month",
-      period_option4: "Last 3 months",
+      period_option1: "Last 30 days",
+      period_option2: "Last month",
+      period_option3: "Last 3 months",
+      period_option4: "Last 6 months",
       period_title: "Period",
     },
     kpi: {
