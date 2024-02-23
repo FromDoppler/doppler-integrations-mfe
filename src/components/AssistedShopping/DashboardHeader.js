@@ -19,25 +19,25 @@ export const DashboardHeader = ({
     switch (code) {
       case "1":
         setDateFilter({
-          fromDate: addDays(new Date(), -7),
+          fromDate: addDays(new Date(), -30),
           toDate: new Date(),
         });
         break;
       case "2":
         setDateFilter({
-          fromDate: addDays(new Date(), -30),
-          toDate: new Date(),
-        });
-        break;
-      case "3":
-        setDateFilter({
           fromDate: getFirstDayOfLastMonth(new Date()),
           toDate: getFirstDayMonth(new Date()),
         });
         break;
-      case "4":
+      case "3":
         setDateFilter({
           fromDate: addDays(new Date(), -90),
+          toDate: new Date(),
+        });
+        break;
+      case "4":
+        setDateFilter({
+          fromDate: addDays(new Date(), -180),
           toDate: new Date(),
         });
         break;

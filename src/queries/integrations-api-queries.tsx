@@ -66,7 +66,7 @@ export const useGetAssistedSales = () => {
     fromDate: Date;
     toDate: Date;
   }>({
-    fromDate: addDays(new Date(), -7),
+    fromDate: addDays(new Date(), -30),
     toDate: new Date(),
   });
   const [idThirdPartyApp, setIdThirdPartyApp] = useState<string | null>(null);
