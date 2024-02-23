@@ -62,27 +62,29 @@ export class IntegrationsApiClientImpl implements IntegrationsApiClient {
     const response = await this.GET<any>(`user/connections`);
     return {
       success: true,
-      value: response.data.map(
-        ({
-          idUser,
-          accountName,
-          connectionErrors,
-          utcLastCompletedSync,
-          utcLastAssistedShoppingSync,
-          thirdPartyApp: { idThirdPartyApp, name, assistedShoppingEnabled },
-        }: any) => ({
-          idUser,
-          accountName,
-          connectionErrors,
-          utcLastCompletedSync,
-          utcLastAssistedShoppingSync,
-          thirdPartyApp: {
-            idThirdPartyApp,
-            name,
-            assistedShoppingEnabled,
-          },
-        }),
-      ),
+      value: response.data
+        ? response.data.map(
+            ({
+              idUser,
+              accountName,
+              connectionErrors,
+              utcLastCompletedSync,
+              utcLastAssistedShoppingSync,
+              thirdPartyApp: { idThirdPartyApp, name, assistedShoppingEnabled },
+            }: any) => ({
+              idUser,
+              accountName,
+              connectionErrors,
+              utcLastCompletedSync,
+              utcLastAssistedShoppingSync,
+              thirdPartyApp: {
+                idThirdPartyApp,
+                name,
+                assistedShoppingEnabled,
+              },
+            }),
+          )
+        : [],
     };
   }
 
