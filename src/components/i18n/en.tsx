@@ -15,12 +15,10 @@ export const messages_en = {
     campaign_donut_chart_title: "Revenue by campaign",
     campaign_types: {
       ABANDONEDCART: "Abandoned cart",
-      automation: "Automation",
       CAMPAIGNBEHAVIOR: "Campaign activity",
       CLASSIC: "Classic",
       LIST: "Welcome Email",
       ORDERCONFIRMATION: "Successful Payment",
-      others: "Others",
       PENDINGORDER: "Pending payment",
       PUSHNOTIFICATION: "Push Notifications",
       RSS: "RSS to Email",
@@ -30,6 +28,8 @@ export const messages_en = {
       SOCIAL: "Social",
       TEST_AB: "Test A/B",
       VISITEDPRODUCTS: "Product retargeting",
+      automation: "Automation",
+      others: "Others",
     },
     description: `In this section you can review your assisted sales. Revenue is posted when a subscriber makes a
     purchase within seven days of opening the email.`,

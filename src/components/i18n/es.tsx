@@ -15,12 +15,10 @@ export const messages_es = {
     campaign_donut_chart_title: "Ingresos por Campaña",
     campaign_types: {
       ABANDONEDCART: "Carrito abandonado",
-      automation: "Automation",
       CAMPAIGNBEHAVIOR: "Comp. en campaña",
       CLASSIC: "Clasica",
       LIST: "Suscripción a Listas",
       ORDERCONFIRMATION: "pago Confirmado",
-      others: "Otros",
       PENDINGORDER: "Pago pendiente",
       PUSHNOTIFICATION: "Notificaciones Push",
       RSS: "Envío de RSS",
@@ -30,6 +28,8 @@ export const messages_es = {
       SOCIAL: "Social",
       TEST_AB: "Test A/B",
       VISITEDPRODUCTS: "Producto visitado",
+      automation: "Automation",
+      others: "Otros",
     },
     description: `En esta sección podrás consultar tus ventas asistidas. Los ingresos se contabilizan
     cuando un suscriptor realiza una compra dentro de los siete días siguientes a la apertura del correo.`,
