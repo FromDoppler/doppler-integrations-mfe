@@ -93,8 +93,8 @@ export class IntegrationsApiClientImpl implements IntegrationsApiClient {
   ): Promise<Result<AssistedSales[]>> {
     const response = await this.GET<any>(`user/assisted-shopping`, [
       idThirdPartyApp,
-      dateFrom.toUTCString(),
-      dateTo.toUTCString(),
+      dateFrom.toISOString(),
+      dateTo.toISOString(),
     ]);
     return {
       success: true,
@@ -114,6 +114,7 @@ export class IntegrationsApiClientImpl implements IntegrationsApiClient {
             automationEventType,
             amountSentSubscribers,
             UTCSentDate,
+            DistinctOpenedMailCount,
           },
           subscriber: { idSubscriber, email },
         }: any) => ({
@@ -131,6 +132,7 @@ export class IntegrationsApiClientImpl implements IntegrationsApiClient {
             automationEventType,
             amountSentSubscribers,
             UTCSentDate,
+            DistinctOpenedMailCount,
           },
           subscriber: { idSubscriber, email },
         }),

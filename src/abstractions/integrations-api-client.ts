@@ -29,6 +29,8 @@ export type AssistedSales = {
     campaignType: string;
     automationEventType: string | undefined;
     amountSentSubscribers: number;
+    DistinctOpenedMailCount: number;
+    UTCSentDate: Date;
   };
   subscriber: { idSubscriber: number; email: string };
 };

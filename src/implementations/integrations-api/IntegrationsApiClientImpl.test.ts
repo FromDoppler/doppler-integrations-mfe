@@ -248,7 +248,7 @@ describe(IntegrationsApiClientImpl.name, () => {
       expect(request).toHaveBeenCalledWith({
         headers: { Authorization: `Bearer ${jwtToken}` },
         method: "GET",
-        url: `/integrations/user/assisted-shopping/1/${date.toUTCString()}/${date.toUTCString()}`,
+        url: `/integrations/user/assisted-shopping/1/${date.toISOString()}/${date.toISOString()}`,
       });
 
       expect(result).toEqual({
