@@ -48,7 +48,7 @@ export class IntegrationsApiClientImpl implements IntegrationsApiClient {
     const { jwtToken } = this.getConnectionData();
     return this.axios.request<T>({
       method,
-      url: `/integrations/${url}${!!parameters ? `/${parameters.join("/")}` : ""}`,
+      url: `/doppler-integrations-msa/${url}${!!parameters ? `/${parameters.join("/")}` : ""}`,
       headers: { Authorization: `Bearer ${jwtToken}` },
       data,
     });

@@ -74,7 +74,7 @@ describe(IntegrationsApiClientImpl.name, () => {
       expect(request).toHaveBeenCalledWith({
         headers: { Authorization: `Bearer ${jwtToken}` },
         method: "GET",
-        url: `/integrations/user/connections`,
+        url: `/doppler-integrations-msa/user/connections`,
       });
 
       expect(result).toEqual({
@@ -248,7 +248,7 @@ describe(IntegrationsApiClientImpl.name, () => {
       expect(request).toHaveBeenCalledWith({
         headers: { Authorization: `Bearer ${jwtToken}` },
         method: "GET",
-        url: `/integrations/user/assisted-shopping/1/${date.toISOString()}/${date.toISOString()}`,
+        url: `/doppler-integrations-msa/user/assisted-shopping/1/${date.toISOString()}/${date.toISOString()}`,
       });
 
       expect(result).toEqual({
