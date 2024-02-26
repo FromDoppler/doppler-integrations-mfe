@@ -181,10 +181,21 @@ const getKPIData = (assistedSales) => {
     0,
   );
   const totalSales = assistedSales.length;
-  const totalOpens = assistedSales.reduce(
-    (total, order) => (total += order.campaign.DistinctOpenedMailCount),
+  const uniqueCampaigns = [
+    ...new Map(
+      assistedSales.map((sale) => [
+        sale.campaign.idCampaign,
+        {
+          opens: sale.campaign.distinctOpenedMailCount,
+        },
+      ]),
+    ).values(),
+  ];
+  const totalOpens = uniqueCampaigns.reduce(
+    (total, campaign) => (total += campaign.opens),
     0,
   );
+
   return [
     {
       value: totalSales,
@@ -364,11 +375,11 @@ const getTableData = (assistedSales) => {
               assistedSales[0]?.currency ?? null,
             ),
             conversion: getFormatedNumber(
-              sale.campaign.DistinctOpenedMailCount > 0
+              sale.campaign.distinctOpenedMailCount > 0
                 ? filteredSales.filter(
                     (order) =>
                       order.campaign.idCampaign === sale.campaign.idCampaign,
-                  ).length / sale.campaign.DistinctOpenedMailCount
+                  ).length / sale.campaign.distinctOpenedMailCount
                 : 0,
               "percent",
             ),
@@ -389,13 +400,13 @@ const getTableData = (assistedSales) => {
       ),
       conversion: getFormatedNumber(
         uniqueCampaigns.reduce(
-          (total, campaign) => (total += campaign.DistinctOpenedMailCount),
+          (total, campaign) => (total += campaign.distinctOpenedMailCount),
           0,
         ) > 0
           ? filteredSales.length /
               uniqueCampaigns.reduce(
                 (total, campaign) =>
-                  (total += campaign.DistinctOpenedMailCount),
+                  (total += campaign.distinctOpenedMailCount),
                 0,
               )
           : 0,

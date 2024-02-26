@@ -100,43 +100,45 @@ export class IntegrationsApiClientImpl implements IntegrationsApiClient {
     ]);
     return {
       success: true,
-      value: response.data.map(
-        ({
-          idOrder,
-          idUser,
-          idThirdPartyApp,
-          orderTotal,
-          currency,
-          orderDate,
-          openDate,
-          campaign: {
-            idCampaign,
-            name,
-            campaignType,
-            automationEventType,
-            amountSentSubscribers,
-            utcSentDate,
-            DistinctOpenedMailCount,
-          },
-        }: any) => ({
-          idOrder,
-          idUser,
-          idThirdPartyApp,
-          orderTotal,
-          currency,
-          orderDate,
-          openDate,
-          campaign: {
-            idCampaign,
-            name,
-            campaignType,
-            automationEventType,
-            amountSentSubscribers,
-            utcSentDate,
-            DistinctOpenedMailCount,
-          },
-        }),
-      ),
+      value: response.data
+        ? response.data.map(
+            ({
+              idOrder,
+              idUser,
+              idThirdPartyApp,
+              orderTotal,
+              currency,
+              orderDate,
+              openDate,
+              campaign: {
+                idCampaign,
+                name,
+                campaignType,
+                automationEventType,
+                amountSentSubscribers,
+                utcSentDate,
+                distinctOpenedMailCount,
+              },
+            }: any) => ({
+              idOrder,
+              idUser,
+              idThirdPartyApp,
+              orderTotal,
+              currency,
+              orderDate,
+              openDate,
+              campaign: {
+                idCampaign,
+                name,
+                campaignType,
+                automationEventType,
+                amountSentSubscribers,
+                utcSentDate,
+                distinctOpenedMailCount,
+              },
+            }),
+          )
+        : [],
     };
   }
 }
