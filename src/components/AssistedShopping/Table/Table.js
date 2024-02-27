@@ -63,13 +63,6 @@ export const Table = (data) => {
                     })}
                   </span>
                 </th>
-                <th aria-label="Comportamiento" scope="col">
-                  <span>
-                    {intl.formatMessage({
-                      id: `AssistedShopping.table.header5`,
-                    })}
-                  </span>
-                </th>
               </tr>
             </thead>
             <tbody>
@@ -107,9 +100,6 @@ export const Table = (data) => {
                     </td>
                     <td>
                       <span>{summaryByCampaign.revenue}</span>
-                    </td>
-                    <td>
-                      <span>{summaryByCampaign.conversion}</span>
                     </td>
                   </tr>
                   {summaryByCampaign.campaigns.length > 0 ? (
@@ -154,13 +144,6 @@ export const Table = (data) => {
                                   })}
                                 </span>
                               </th>
-                              <th aria-label="Conversión" scope="col">
-                                <span>
-                                  {intl.formatMessage({
-                                    id: `AssistedShopping.table.sub_header5`,
-                                  })}
-                                </span>
-                              </th>
                             </tr>
                           </thead>
                           <tbody>
@@ -182,9 +165,6 @@ export const Table = (data) => {
                                   </td>
                                   <td>
                                     <span>{campaign.income}</span>
-                                  </td>
-                                  <td>
-                                    <span>{campaign.conversion}</span>
                                   </td>
                                 </tr>
                               ),

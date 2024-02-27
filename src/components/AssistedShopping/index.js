@@ -181,20 +181,6 @@ const getKPIData = (assistedSales) => {
     0,
   );
   const totalSales = assistedSales.length;
-  const uniqueCampaigns = [
-    ...new Map(
-      assistedSales.map((sale) => [
-        sale.campaign.idCampaign,
-        {
-          opens: sale.campaign.distinctOpenedMailCount,
-        },
-      ]),
-    ).values(),
-  ];
-  const totalOpens = uniqueCampaigns.reduce(
-    (total, campaign) => (total += campaign.opens),
-    0,
-  );
 
   return [
     {
@@ -216,13 +202,6 @@ const getKPIData = (assistedSales) => {
           )
         : 0,
       title: "avg_profit",
-    },
-    {
-      value: getFormatedNumber(
-        totalOpens > 0 ? totalSales / totalOpens : 0,
-        "percent",
-      ),
-      title: "convertion_rate",
     },
   ];
 };
@@ -374,15 +353,6 @@ const getTableData = (assistedSales) => {
               "currency",
               assistedSales[0]?.currency ?? null,
             ),
-            conversion: getFormatedNumber(
-              sale.campaign.distinctOpenedMailCount > 0
-                ? filteredSales.filter(
-                    (order) =>
-                      order.campaign.idCampaign === sale.campaign.idCampaign,
-                  ).length / sale.campaign.distinctOpenedMailCount
-                : 0,
-              "percent",
-            ),
             amountSentSubscribers: sale.campaign.amountSentSubscribers,
           },
         ]),
@@ -397,20 +367,6 @@ const getTableData = (assistedSales) => {
         filteredSales.reduce((total, order) => (total += order.orderTotal), 0),
         "currency",
         assistedSales[0]?.currency ?? null,
-      ),
-      conversion: getFormatedNumber(
-        uniqueCampaigns.reduce(
-          (total, campaign) => (total += campaign.distinctOpenedMailCount),
-          0,
-        ) > 0
-          ? filteredSales.length /
-              uniqueCampaigns.reduce(
-                (total, campaign) =>
-                  (total += campaign.distinctOpenedMailCount),
-                0,
-              )
-          : 0,
-        "percent",
       ),
       campaigns: uniqueCampaigns,
     });
