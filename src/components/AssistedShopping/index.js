@@ -18,6 +18,10 @@ import { OverlayStyle } from "../shared/styles/overlay.styles";
 import { useAppServices } from "../application";
 import { getFormatedNumber, getStartOfDate } from "../../utils";
 import { useState } from "react";
+import logo_Tiendanube from "../shared/Images/Logo_Tiendanube.png";
+import logo_MShops from "../shared/Images/Logo_MShops.png";
+import logo_Vtex from "../shared/Images/Logo_Vtex.png";
+import logo_Acommerce from "../shared/Images/Logo_ACommerce.png";
 
 export const AssistedShoppingSection = () => {
   const intl = useIntl();
@@ -61,14 +65,53 @@ export const AssistedShoppingSection = () => {
         description={intl.formatMessage({
           id: `AssistedShopping.promotional.description`,
         })}
-        actionText={intl.formatMessage({
-          id: `AssistedShopping.promotional.action_text`,
-        })}
-        actionUrl={intl.formatMessage({
-          id: `AssistedShopping.promotional.action_url`,
-        })}
         logoUrl={logo}
         previewUrl={preview}
+        IntegrationsText={intl.formatMessage({
+          id: `AssistedShopping.promotional.storesTitle`,
+        })}
+        integrationLinks={[
+          {
+            name: "Tiendanube",
+            logo: logo_Tiendanube,
+            actionUrl: dopplerLegacyBaseUrl.concat(
+              "/",
+              `${intl.formatMessage({
+                id: `AssistedShopping.promotional.tnUrl`,
+              })}`,
+            ),
+          },
+          {
+            name: "Adobe Commerce",
+            logo: logo_Acommerce,
+            actionUrl: dopplerLegacyBaseUrl.concat(
+              "/",
+              `${intl.formatMessage({
+                id: `AssistedShopping.promotional.acUrl`,
+              })}`,
+            ),
+          },
+          {
+            name: "Vtex",
+            logo: logo_Vtex,
+            actionUrl: dopplerLegacyBaseUrl.concat(
+              "/",
+              `${intl.formatMessage({
+                id: `AssistedShopping.promotional.vtexUrl`,
+              })}`,
+            ),
+          },
+          {
+            name: "Mercado Shops",
+            logo: logo_MShops,
+            actionUrl: dopplerLegacyBaseUrl.concat(
+              "/",
+              `${intl.formatMessage({
+                id: `AssistedShopping.promotional.msUrl`,
+              })}`,
+            ),
+          },
+        ]}
       />
     );
   }

@@ -1,7 +1,6 @@
 const year = new Date().getFullYear();
 const urlSite = `https://www.fromdoppler.com`;
 const urlPrivacy = `${urlSite}/legal/privacidad`;
-const urlIntegrations = `/integrations`;
 
 export const messages_es = {
   AssistedShopping: {
@@ -44,7 +43,7 @@ export const messages_es = {
     },
     kpi: {
       avg_profit: "Ganancia promedio",
-      convertion_rate: "Tasa de converión",
+      convertion_rate: "Tasa de conversión",
       iconClass: {
         avg_profit: "shopping-bag",
         convertion_rate: "capital",
@@ -59,13 +58,16 @@ export const messages_es = {
     no_data: "No hay datos",
     no_data_text: "Aun no hay datos para mostrar",
     promotional: {
-      action_text: "Vincula tu Tienda",
-      action_url: `${urlIntegrations}`,
+      acUrl: "Integration/Integration/MagentoSection",
       description: `Duis pretium dui quis ipsum mattis, sed elementum libero interdum. Donec vitae consectetur justo,
       quis pretium nulla. Vestibulum volutpat purus a dictum sagittis. Nullam sed libero nibh. Maecenas sit amet purus
       hendrerit, fermentum orci interdum, blandit odio. Aliquam vehicula ornare semper.`,
+      msUrl: "Integration/Integration/MercadoShopsSection",
+      storesTitle: "Elije la tienda que deseas vincular:",
       title:
         "Conoce los resultados de tus acciones, consectetur  adipiscing elit",
+      tnUrl: "Integration/Integration/TiendaNubeSection",
+      vtexUrl: "Integration/Integration/VtexSection",
     },
     table: {
       header1: "Campaña",

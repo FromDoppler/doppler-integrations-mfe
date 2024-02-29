@@ -1,7 +1,6 @@
 const year = new Date().getFullYear();
 const urlSite = `https://www.fromdoppler.com`;
 const urlPrivacy = `${urlSite}/en/legal/privacy`;
-const urlIntegrations = `/integrations`;
 
 export const messages_en = {
   AssistedShopping: {
@@ -59,12 +58,15 @@ export const messages_en = {
     no_data: "No data",
     no_data_text: "There is no data to show yet",
     promotional: {
-      action_text: "Link your Store",
-      action_url: `${urlIntegrations}`,
+      acUrl: "Integration/Integration/MagentoSection",
       description: `Duis pretium dui quis ipsum mattis, sed elementum libero interdum. Donec vitae consectetur justo,
       quis pretium nulla. Vestibulum volutpat purus a dictum sagittis. Nullam sed libero nibh. Maecenas sit amet purus
       hendrerit, fermentum orci interdum, blandit odio. Aliquam vehicula ornare semper.`,
+      msUrl: "Integration/Integration/MercadoShopsSection",
+      storesTitle: "Choose the store you want to link:",
       title: "Know the results of your actions, consectetur  adipiscing elit",
+      tnUrl: "Integration/Integration/TiendaNubeSection",
+      vtexUrl: "Integration/Integration/VtexSection",
     },
     table: {
       header1: "Campaign",
