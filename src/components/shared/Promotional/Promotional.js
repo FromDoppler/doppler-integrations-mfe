@@ -59,11 +59,22 @@ export const Promotional = ({
                   <div className="dp-rowflex">
                     {integrationLinks.map((integration, index) => (
                       <div
-                        class="col-lg-5 dp-bg-verysoft-gray p-t-12 p-b-12 p-l-12 p-r-12 m-b-12 m-r-12"
-                        style={{ display: "flex", justifyContent: "center" }}
+                        className="col-lg-5 m-b-12 m-r-12"
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
                         key={`int-${index}`}
                       >
-                        <a href={integration.actionUrl}>
+                        <a
+                          href={integration.actionUrl}
+                          className="dp-button button-medium p-t-12 p-b-12 p-l-12 p-r-12 dp-bg-verysoft-gray"
+                          style={{
+                            height: "100%",
+                            width: "100%",
+                          }}
+                        >
                           <Image
                             src={integration.logo}
                             alt={integration.name}
