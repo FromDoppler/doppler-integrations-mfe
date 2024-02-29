@@ -115,6 +115,7 @@ export const AssistedShoppingSection = () => {
                       assistedSales.data.filter((order) =>
                         order.campaign.campaignType.includes("automation"),
                       ),
+                      intl,
                     )}
                   />
                 </div>
@@ -243,7 +244,7 @@ const getAreaData = (assistedSales, intl) => {
   ];
 };
 
-const getAutomationBarData = (assistedSales) => {
+const getAutomationBarData = (assistedSales, intl) => {
   const automationEventTypes = [
     ...new Set(assistedSales.map((sale) => sale.campaign.automationEventType)),
   ];
@@ -251,10 +252,15 @@ const getAutomationBarData = (assistedSales) => {
   let automationData = [];
   automationEventTypes.forEach((eventType) => {
     automationData.push({
-      name: eventType,
-      revenue: assistedSales
-        .filter((sale) => sale.campaign.automationEventType.includes(eventType))
-        .reduce((a, v) => a + v.orderTotal, 0),
+      name: intl.formatMessage({
+        id: `AssistedShopping.campaign_types.${eventType}`,
+      }),
+      [intl.formatMessage({ id: `AssistedShopping.bar_chart_revenue` })]:
+        assistedSales
+          .filter((sale) =>
+            sale.campaign.automationEventType.includes(eventType),
+          )
+          .reduce((a, v) => a + v.orderTotal, 0),
     });
   });
 
