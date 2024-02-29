@@ -11,6 +11,7 @@ export const messages_es = {
       title: "Envios VS Ventas Asistidas",
     },
     automation_donut_chart_title: "Ventas por tipo de automation",
+    bar_chart_revenue: "Ganancia",
     bar_chart_title: "Ingresos por tipo de automation",
     campaign_donut_chart_title: "Ingresos por Campaña",
     campaign_types: {

@@ -11,6 +11,7 @@ export const messages_en = {
       title: "Deliveries VS Assisted Sales",
     },
     automation_donut_chart_title: "Sales by automation type",
+    bar_chart_revenue: "Revenue",
     bar_chart_title: "Revenue by automation type",
     campaign_donut_chart_title: "Revenue by campaign",
     campaign_types: {

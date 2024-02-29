@@ -35,7 +35,7 @@ export const BarChart = ({ data }) => {
         show: true,
         tick: {
           format: (y) => {
-            return `$ ${y}`;
+            return `$ ${parseInt(y)}`;
           },
         },
       },
@@ -52,7 +52,9 @@ export const BarChart = ({ data }) => {
           json: data,
           keys: {
             x: "name",
-            value: ["revenue"],
+            value: [
+              intl.formatMessage({ id: `AssistedShopping.bar_chart_revenue` }),
+            ],
           },
           type: "bar",
         },
@@ -60,7 +62,7 @@ export const BarChart = ({ data }) => {
     };
 
     fetchData();
-  }, [data]);
+  }, [data, intl]);
 
   if (state != null) {
     return (
