@@ -6,7 +6,7 @@ export const Kpi = ({ data }) => {
   return (
     <div className="dp-rowflex">
       {data.map((kpi, index) => (
-        <div class="col-lg-2 m-b-12 m-r-12" key={`kpi-${index}`}>
+        <div className="col-lg-2 m-b-12 m-r-12" key={`kpi-${index}`}>
           <div className="dp-kpi-card">
             <span
               className={`dp-assisted-sales-icon dpicon iconapp-${intl.formatMessage(
