@@ -59,7 +59,14 @@ export const C3ChartStyled = styled.div`
     padding: 2px 5px;
     text-align: left;
     color: ${colors.lightGrey};
-    font-weight: normal;
+    font-weight: bold;
     line-height: 13px;
+  }
+
+  .c3-tooltip td > span {
+    display: inline-block !important;
+    width: 10px;
+    height: 10px;
+    margin-right: 6px;
   }
 `;
