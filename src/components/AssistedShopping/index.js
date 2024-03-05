@@ -12,8 +12,8 @@ import {
 } from "../../queries/integrations-api-queries";
 import { DashboardHeader } from "./DashboardHeader";
 import { Promotional } from "../shared/Promotional/Promotional";
-import logo from "./logo.png";
-import preview from "./preview.gif";
+import logo from "../shared/Images/Assisted_Shopping_icon.png";
+import preview from "../shared/Images/Assisted_Shopping_Promotional.gif";
 import { OverlayStyle } from "../shared/styles/overlay.styles";
 import { useAppServices } from "../application";
 import { getFormatedNumber, getStartOfDate } from "../../utils";
