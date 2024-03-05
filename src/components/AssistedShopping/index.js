@@ -439,3 +439,11 @@ const getCampaignsDonutData = (assistedSales) => {
     {},
   );
 };
+
+const getUniqueCampaigs = (assistedSales) => {
+  return [
+    ...new Map(
+      assistedSales.map((sale) => [sale.campaign.idCampaign, sale.campaign]),
+    ).values(),
+  ];
+};
