@@ -379,34 +379,7 @@ const getTableData = (assistedSales) => {
       sale.campaign.campaignType.includes(type),
     );
 
-    const uniqueCampaigns = [
-      ...new Map(
-        filteredSales.map((sale) => [
-          sale.campaign.idCampaign,
-          {
-            name: sale.campaign.name,
-            type:
-              sale.campaign.campaignType === "automation"
-                ? sale.campaign.automationEventType
-                : sale.campaign.campaignType,
-            sale: filteredSales.filter(
-              (order) => order.campaign.idCampaign === sale.campaign.idCampaign,
-            ).length,
-            income: getFormatedNumber(
-              filteredSales
-                .filter(
-                  (order) =>
-                    order.campaign.idCampaign === sale.campaign.idCampaign,
-                )
-                .reduce((a, v) => a + v.orderTotal, 0),
-              "currency",
-              assistedSales[0]?.currency ?? null,
-            ),
-            amountSentSubscribers: sale.campaign.amountSentSubscribers,
-          },
-        ]),
-      ).values(),
-    ];
+    const uniqueCampaigns = getUniqueCampaigs(filteredSales);
 
     result.push({
       name: type,
@@ -417,7 +390,28 @@ const getTableData = (assistedSales) => {
         "currency",
         assistedSales[0]?.currency ?? null,
       ),
-      campaigns: uniqueCampaigns,
+      campaigns: uniqueCampaigns.map((campaign) => {
+        return {
+          name: campaign.name,
+          type:
+            campaign.campaignType === "automation"
+              ? campaign.automationEventType
+              : campaign.campaignType,
+          sale: filteredSales.filter(
+            (order) => order.campaign.idCampaign === campaign.idCampaign,
+          ).length,
+          income: getFormatedNumber(
+            filteredSales
+              .filter(
+                (order) => order.campaign.idCampaign === campaign.idCampaign,
+              )
+              .reduce((a, v) => a + v.orderTotal, 0),
+            "currency",
+            assistedSales[0]?.currency ?? null,
+          ),
+          amountSentSubscribers: campaign.amountSentSubscribers,
+        };
+      }),
     });
   });
 
