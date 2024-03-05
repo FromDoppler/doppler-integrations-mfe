@@ -27,7 +27,7 @@ export const getFirstDayMonth = (date: Date) => {
 
 export function getStartOfDate(date: Date) {
   return typeof date.getMonth === "function"
-    ? new Date(date.getFullYear(), date.getMonth(), date.getDate())
+    ? new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate())
     : undefined;
 }
 
