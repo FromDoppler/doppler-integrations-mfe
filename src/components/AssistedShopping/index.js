@@ -266,15 +266,15 @@ const getAreaData = (assistedSales, intl) => {
             new Date(order.orderDate).getUTCDate(),
           [intl.formatMessage({
             id: `AssistedShopping.area_chart.deliveries`,
-          })]: assistedSales
-            .filter(
+          })]: getUniqueCampaigs(
+            assistedSales.filter(
               (sale) =>
                 getStartOfDate(
                   new Date(sale.campaign.utcSentDate),
                 ).getTime() ===
                 getStartOfDate(new Date(order.orderDate)).getTime(),
-            )
-            .reduce((a, v) => (a += v.campaign.amountSentSubscribers), 0),
+            ),
+          ).reduce((a, v) => (a += v.amountSentSubscribers), 0),
           [intl.formatMessage({ id: `AssistedShopping.area_chart.sales` })]:
             assistedSales.filter(
               (sale) =>
