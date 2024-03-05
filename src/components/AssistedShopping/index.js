@@ -266,15 +266,15 @@ const getAreaData = (assistedSales, intl) => {
             new Date(order.orderDate).getUTCDate(),
           [intl.formatMessage({
             id: `AssistedShopping.area_chart.deliveries`,
-          })]: assistedSales
-            .filter(
+          })]: getUniqueCampaigs(
+            assistedSales.filter(
               (sale) =>
                 getStartOfDate(
                   new Date(sale.campaign.utcSentDate),
                 ).getTime() ===
                 getStartOfDate(new Date(order.orderDate)).getTime(),
-            )
-            .reduce((a, v) => (a += v.campaign.amountSentSubscribers), 0),
+            ),
+          ).reduce((a, v) => (a += v.amountSentSubscribers), 0),
           [intl.formatMessage({ id: `AssistedShopping.area_chart.sales` })]:
             assistedSales.filter(
               (sale) =>
@@ -379,34 +379,7 @@ const getTableData = (assistedSales) => {
       sale.campaign.campaignType.includes(type),
     );
 
-    const uniqueCampaigns = [
-      ...new Map(
-        filteredSales.map((sale) => [
-          sale.campaign.idCampaign,
-          {
-            name: sale.campaign.name,
-            type:
-              sale.campaign.campaignType === "automation"
-                ? sale.campaign.automationEventType
-                : sale.campaign.campaignType,
-            sale: filteredSales.filter(
-              (order) => order.campaign.idCampaign === sale.campaign.idCampaign,
-            ).length,
-            income: getFormatedNumber(
-              filteredSales
-                .filter(
-                  (order) =>
-                    order.campaign.idCampaign === sale.campaign.idCampaign,
-                )
-                .reduce((a, v) => a + v.orderTotal, 0),
-              "currency",
-              assistedSales[0]?.currency ?? null,
-            ),
-            amountSentSubscribers: sale.campaign.amountSentSubscribers,
-          },
-        ]),
-      ).values(),
-    ];
+    const uniqueCampaigns = getUniqueCampaigs(filteredSales);
 
     result.push({
       name: type,
@@ -417,7 +390,28 @@ const getTableData = (assistedSales) => {
         "currency",
         assistedSales[0]?.currency ?? null,
       ),
-      campaigns: uniqueCampaigns,
+      campaigns: uniqueCampaigns.map((campaign) => {
+        return {
+          name: campaign.name,
+          type:
+            campaign.campaignType === "automation"
+              ? campaign.automationEventType
+              : campaign.campaignType,
+          sale: filteredSales.filter(
+            (order) => order.campaign.idCampaign === campaign.idCampaign,
+          ).length,
+          income: getFormatedNumber(
+            filteredSales
+              .filter(
+                (order) => order.campaign.idCampaign === campaign.idCampaign,
+              )
+              .reduce((a, v) => a + v.orderTotal, 0),
+            "currency",
+            assistedSales[0]?.currency ?? null,
+          ),
+          amountSentSubscribers: campaign.amountSentSubscribers,
+        };
+      }),
     });
   });
 
@@ -438,4 +432,12 @@ const getCampaignsDonutData = (assistedSales) => {
     }),
     {},
   );
+};
+
+const getUniqueCampaigs = (assistedSales) => {
+  return [
+    ...new Map(
+      assistedSales.map((sale) => [sale.campaign.idCampaign, sale.campaign]),
+    ).values(),
+  ];
 };

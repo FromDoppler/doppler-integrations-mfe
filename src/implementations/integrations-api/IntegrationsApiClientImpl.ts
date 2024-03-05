@@ -9,6 +9,7 @@ import {
   ThirdPartyConnection,
 } from "../../abstractions/integrations-api-client";
 import { AxiosStatic, Method } from "axios";
+import { sanitizeDateStringToIsoFormat } from "../../utils";
 
 export class IntegrationsApiClientImpl implements IntegrationsApiClient {
   private axios;
@@ -75,8 +76,11 @@ export class IntegrationsApiClientImpl implements IntegrationsApiClient {
               idUser,
               accountName,
               connectionErrors,
-              utcLastCompletedSync,
-              utcLastAssistedShoppingSync,
+              utcLastCompletedSync:
+                sanitizeDateStringToIsoFormat(utcLastCompletedSync),
+              utcLastAssistedShoppingSync: sanitizeDateStringToIsoFormat(
+                utcLastAssistedShoppingSync,
+              ),
               thirdPartyApp: {
                 idThirdPartyApp,
                 name,
@@ -125,15 +129,15 @@ export class IntegrationsApiClientImpl implements IntegrationsApiClient {
               idThirdPartyApp,
               orderTotal,
               currency,
-              orderDate,
-              openDate,
+              orderDate: sanitizeDateStringToIsoFormat(orderDate),
+              openDate: sanitizeDateStringToIsoFormat(openDate),
               campaign: {
                 idCampaign,
                 name,
                 campaignType,
                 automationEventType,
                 amountSentSubscribers,
-                utcSentDate,
+                utcSentDate: sanitizeDateStringToIsoFormat(utcSentDate),
                 distinctOpenedMailCount,
               },
             }),
