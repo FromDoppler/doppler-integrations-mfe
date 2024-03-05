@@ -1,6 +1,8 @@
 import { DopplerIntlProvider } from "../components/i18n/DopplerIntlProvider";
 import { FormattedNumber } from "react-intl";
 
+const dateRegex: RegExp = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/;
+
 export const timeout = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -45,4 +47,25 @@ export const getFormatedNumber = (
       <FormattedNumber value={value} style={format} />
     </DopplerIntlProvider>
   );
+};
+
+export const sanitizeDateStringToIsoFormat = (dateString: string) => {
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) {
+    return dateString;
+  }
+
+  if (dateRegex.test(dateString)) {
+    return (
+      `${date.getUTCFullYear()}` +
+      `-${(date.getUTCMonth() + 1).toString().padStart(2, "0")}` +
+      `-${date.getUTCDate().toString().padStart(2, "0")}` +
+      `T${date.getUTCHours().toString().padStart(2, "0")}` +
+      `:${date.getUTCMinutes().toString().padStart(2, "0")}` +
+      `:${date.getUTCSeconds().toString().padStart(2, "0")}` +
+      `Z`
+    );
+  }
+
+  return dateString;
 };
