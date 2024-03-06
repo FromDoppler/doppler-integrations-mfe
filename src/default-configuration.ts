@@ -9,14 +9,6 @@ export const defaultAppConfiguration: AppConfiguration = {
   loginPageUrl: "/login",
   loaderUrl: "https://cdn.fromdoppler.com/loader/v1/loader.js",
   dopplerLegacyBaseUrl: "https://appint.fromdoppler.net",
-  htmlEditorApiBaseUrl: "https://apisint.fromdoppler.net/html-editor",
-  dopplerRestApiBaseUrl: "https://restapi.fromdoppler.net",
   useDummies: true,
-  dopplerExternalUrls: {
-    home: "https://app.fromdoppler.com/dashboard",
-    campaigns: "https://app2.fromdoppler.com/Campaigns/Draft",
-    lists: "https://app2.fromdoppler.com/Lists/SubscribersList",
-    controlPanel: "https://app2.fromdoppler.com/ControlPanel/ControlPanel",
-  },
   dopplerApisBaseUrl: "https://apis.fromdoppler.com",
 };

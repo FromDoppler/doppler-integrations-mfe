@@ -7,10 +7,6 @@ import {
   SingletonLazyAppServicesContainer,
 } from "./implementations/SingletonLazyAppServicesContainer";
 import { defaultAppConfiguration } from "./default-configuration";
-import { DummyHtmlEditorApiClient } from "./implementations/dummies/html-editor-api-client";
-import { HtmlEditorApiClientImpl } from "./implementations/HtmlEditorApiClientImpl";
-import { DummyDopplerRestApiClient } from "./implementations/dummies/doppler-rest-api-client";
-import { DopplerRestApiClientImpl } from "./implementations/DopplerRestApiClientImpl";
 import { IntegrationsApiClientImpl } from "./implementations/integrations-api/IntegrationsApiClientImpl";
 import { DummyIntegrationsApiClient } from "./implementations/dummies/integrations-api-client";
 
@@ -28,22 +24,6 @@ export const configureApp = (
     appConfigurationFactory: () => appConfiguration,
     appConfigurationRendererFactory: (appServices: AppServices) =>
       new AppConfigurationRendererImplementation(appServices),
-    htmlEditorApiClientFactory: (appServices) =>
-      new HtmlEditorApiClientImpl({
-        axiosStatic: appServices.axiosStatic,
-        appSessionStateAccessor: appServices.appSessionStateAccessor,
-        appConfiguration: appServices.appConfiguration,
-      }),
-    dopplerRestApiClientFactory: ({
-      axiosStatic,
-      appSessionStateAccessor,
-      appConfiguration,
-    }) =>
-      new DopplerRestApiClientImpl({
-        axiosStatic,
-        appSessionStateAccessor,
-        appConfiguration,
-      }),
     appSessionStateMonitorFactory: ({ window }: AppServices) =>
       new SessionMfeAppSessionStateClient({ window }),
     appSessionStateAccessorFactory: ({ appSessionStateMonitor }: AppServices) =>
@@ -63,8 +43,6 @@ export const configureApp = (
   };
 
   const dummyFactories: Partial<ServicesFactories> = {
-    htmlEditorApiClientFactory: () => new DummyHtmlEditorApiClient(),
-    dopplerRestApiClientFactory: () => new DummyDopplerRestApiClient(),
     integrationsApiClientFactory: () => new DummyIntegrationsApiClient(),
   };
 
