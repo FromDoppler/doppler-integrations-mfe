@@ -7,12 +7,12 @@ export const messages_es = {
     area_chart: {
       deliveries: "Envios",
       sales: "Ventas",
-      title: "Envios VS Ventas Asistidas",
+      title: "ENVIOS VS VENTAS ASISTIDAS",
     },
-    automation_donut_chart_title: "Ventas por tipo de automation",
-    bar_chart_revenue: "Ganancia",
-    bar_chart_title: "Ingresos por tipo de automation",
-    campaign_donut_chart_title: "Ingresos por Campaña",
+    automation_donut_chart_title: "FACTURACIÓN POR TIPO DE AUTOMATION",
+    bar_chart_revenue: "Facturación",
+    bar_chart_title: "FACTURACIÓN POR TIPO DE AUTOMATION",
+    campaign_donut_chart_title: "FACTURACIÓN POR CAMPAÑAS",
     campaign_types: {
       ABANDONEDCART: "Carrito abandonado",
       CAMPAIGNBEHAVIOR: "Comp. en campaña",
@@ -31,10 +31,11 @@ export const messages_es = {
       automation: "Automation",
       others: "Otros",
     },
-    description: `En esta sección podrás consultar tus ventas asistidas. Los ingresos se contabilizan
-    cuando un suscriptor realiza una compra dentro de los siete días siguientes a la apertura del correo.`,
+    description: `En esta sección podrás consultar tus operaciones.
+    Los ingresos se contabilizan cuando un Contacto realiza una compra
+    dentro de los siete días siguientes a la apertura del correo.`,
     dropdowns: {
-      ecommerce_title: "Tienda",
+      ecommerce_title: "Tienda:",
       period_option1: "Últimos 30 días",
       period_option2: "Mes pasado",
       period_option3: "Últimos 3 meses",
@@ -42,7 +43,7 @@ export const messages_es = {
       period_title: "Período",
     },
     kpi: {
-      avg_profit: "Ganancia promedio",
+      avg_profit: "Ticket promedio",
       convertion_rate: "Tasa de conversión",
       iconClass: {
         avg_profit: "shopping-bag",
@@ -52,37 +53,36 @@ export const messages_es = {
         total_sales: "shopping-complete",
       },
       investment_return: "Retorno de inversión",
-      total_profit: "Total de ganancia",
-      total_sales: "Ventas asistidas",
+      total_profit: "Total de facturación",
+      total_sales: "Ventas Asistidas",
     },
     no_data: "No hay datos",
     no_data_text: "Aun no hay datos para mostrar",
     promotional: {
       acUrl: "Integration/Integration/MagentoSection",
-      description: `Duis pretium dui quis ipsum mattis, sed elementum libero interdum. Donec vitae consectetur justo,
-      quis pretium nulla. Vestibulum volutpat purus a dictum sagittis. Nullam sed libero nibh. Maecenas sit amet purus
-      hendrerit, fermentum orci interdum, blandit odio. Aliquam vehicula ornare semper.`,
+      description: `Accede a la información detallada del progreso de tu negocio con esta
+      integración. Obtén una completa visualización, seguimiento y medición de
+      la facturación de tus Campañas y Automations.`,
       msUrl: "Integration/Integration/MercadoShopsSection",
       storesTitle: "Elije la tienda que deseas vincular:",
-      title:
-        "Conoce los resultados de tus acciones, consectetur  adipiscing elit",
+      title: "Conecta Doppler con tu tienda",
       tnUrl: "Integration/Integration/TiendaNubeSection",
       vtexUrl: "Integration/Integration/VtexSection",
     },
     table: {
-      header1: "Campaña",
-      header2: "Cant. de campañas",
-      header3: "Total ventas",
-      header4: "Total ingresos",
+      header1: "CAMPAÑA",
+      header2: "CANTIDAD DE CAMP.",
+      header3: "TOTAL VENTAS",
+      header4: "TOTAL INGRESOS",
       header5: "% conversión",
       sub_header1: "Nombre de campaña",
       sub_header2: "Tipo",
       sub_header3: "Ventas",
       sub_header4: "Ingresos",
       sub_header5: "Conversión",
-      title: "Ingresos por campañas",
+      title: "FACTURACIÓN POR CAMPAÑAS",
     },
-    title: "Reporte de métricas Ventas Asistidas",
+    title: "Reporte de métricas de Ventas Asistidas",
   },
   footer: {
     copyright: `© ${year} Doppler LLC. Todos los derechos reservados.`,
