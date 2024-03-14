@@ -7,12 +7,12 @@ export const messages_en = {
     area_chart: {
       deliveries: "Deliveries",
       sales: "Sales",
-      title: "Deliveries VS Assisted Sales",
+      title: "DELIVERIES VS ASSISTED SALES",
     },
-    automation_donut_chart_title: "Sales by automation type",
-    bar_chart_revenue: "Revenue",
-    bar_chart_title: "Revenue by automation type",
-    campaign_donut_chart_title: "Revenue by campaign",
+    automation_donut_chart_title: "BILLING BY AUTOMATION TYPE",
+    bar_chart_revenue: "Billing",
+    bar_chart_title: "BILLING FOR TYPE OF AUTOMATION",
+    campaign_donut_chart_title: "BILLING BY CAMPAIGN",
     campaign_types: {
       ABANDONEDCART: "Abandoned cart",
       CAMPAIGNBEHAVIOR: "Campaign activity",
@@ -31,10 +31,11 @@ export const messages_en = {
       automation: "Automation",
       others: "Others",
     },
-    description: `In this section you can review your assisted sales. Revenue is posted when a subscriber makes a
-    purchase within seven days of opening the email.`,
+    description: `In this section you can check your assisted sales.
+    Revenue is posted when a subscriber makes a purchase within seven days
+    following opening the mail.`,
     dropdowns: {
-      ecommerce_title: "Ecommerce",
+      ecommerce_title: "Store:",
       period_option1: "Last 30 days",
       period_option2: "Last month",
       period_option3: "Last 3 months",
@@ -42,7 +43,7 @@ export const messages_en = {
       period_title: "Period",
     },
     kpi: {
-      avg_profit: "Average profit",
+      avg_profit: "Average ticket",
       convertion_rate: "Convertion rate",
       iconClass: {
         avg_profit: "shopping-bag",
@@ -52,36 +53,36 @@ export const messages_en = {
         total_sales: "shopping-complete",
       },
       investment_return: "Investment return",
-      total_profit: "Total profit",
-      total_sales: "Total sales",
+      total_profit: "Total billing",
+      total_sales: "Assisted Sales",
     },
     no_data: "No data",
     no_data_text: "There is no data to show yet",
     promotional: {
       acUrl: "Integration/Integration/MagentoSection",
-      description: `Duis pretium dui quis ipsum mattis, sed elementum libero interdum. Donec vitae consectetur justo,
-      quis pretium nulla. Vestibulum volutpat purus a dictum sagittis. Nullam sed libero nibh. Maecenas sit amet purus
-      hendrerit, fermentum orci interdum, blandit odio. Aliquam vehicula ornare semper.`,
+      description: `Access detailed information on the progress of your business with this
+      integration. Get complete visualization, monitoring and measurement of the
+      billing of your Campaigns and Automations.`,
       msUrl: "Integration/Integration/MercadoShopsSection",
       storesTitle: "Choose the store you want to link:",
-      title: "Know the results of your actions, consectetur  adipiscing elit",
+      title: "Connect Doppler with your store",
       tnUrl: "Integration/Integration/TiendaNubeSection",
       vtexUrl: "Integration/Integration/VtexSection",
     },
     table: {
       header1: "Campaign",
-      header2: "Campaigns amount",
+      header2: "Amount of camp.",
       header3: "Total sales",
-      header4: "Total revenue",
+      header4: "Total income",
       header5: "% convertion",
-      sub_header1: "Campaign Name",
+      sub_header1: "Name of Campaign",
       sub_header2: "Type",
       sub_header3: "Sales",
-      sub_header4: "Revenue",
+      sub_header4: "Incomes",
       sub_header5: "Convertion",
-      title: "Revenue by campaign",
+      title: "BILLING FOR CAMPAIGN",
     },
-    title: "Assisted Shopping Dashboard",
+    title: "Assisted Sales metrics Report",
   },
   footer: {
     copyright: `© ${year} Doppler LLC. All rights reserved.`,
