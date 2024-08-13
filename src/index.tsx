@@ -11,6 +11,12 @@ import {
 } from "./components/application";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { DopplerIntlProvider } from "./components/i18n/DopplerIntlProvider";
+import ReactGA from "react-ga";
+import {
+  Location as HistoryLocation,
+  createBrowserHistory,
+  Update,
+} from "history";
 
 const customConfiguration =
   (window as any)["doppler-integrations-mfe-configuration"] || {};
@@ -25,6 +31,26 @@ const queryClient = new QueryClient();
 const container = document.getElementById(
   appServices.appConfiguration.appElementId,
 );
+
+ReactGA.initialize("UA-532159-1");
+
+const history = createBrowserHistory();
+
+const trackNavigation = (location: HistoryLocation | globalThis.Location) => {
+  const locationPage =
+    location.hash && location.hash[0] === "#"
+      ? location.hash.slice(1)
+      : location.pathname;
+  ReactGA.set({ page: locationPage });
+  ReactGA.pageview(locationPage);
+};
+
+trackNavigation(window.location);
+
+history.listen(({ location }: Update) => {
+  // "Extract 'location' from the 'Update' object."
+  trackNavigation(location);
+});
 
 const root = createRoot(container!);
 root.render(
