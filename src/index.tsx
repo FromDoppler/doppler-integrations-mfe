@@ -48,7 +48,7 @@ const trackNavigation = (location: HistoryLocation | globalThis.Location) => {
 trackNavigation(window.location);
 
 history.listen(({ location }: Update) => {
-  // "Extract 'location' from the 'Update' object."
+  // Extract 'location' from the 'Update' object.
   trackNavigation(location);
 });
 
