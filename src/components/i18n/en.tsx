@@ -68,6 +68,7 @@ export const messages_en = {
       title: "Connect Doppler with your store",
       tnUrl: "Integration/Integration/TiendaNubeSection",
       vtexUrl: "Integration/Integration/VtexSection",
+      wcUrl: "Integration/Integration/WooCommerceSection",
     },
     table: {
       header1: "Campaign",

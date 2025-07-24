@@ -22,6 +22,7 @@ import logo_Tiendanube from "../shared/Images/Logo_Tiendanube.png";
 import logo_MShops from "../shared/Images/Logo_MShops.png";
 import logo_Vtex from "../shared/Images/Logo_Vtex.png";
 import logo_Acommerce from "../shared/Images/Logo_ACommerce.png";
+import logo_WooCommerce from "../shared/Images/Logo_WooCommerce.png";
 
 export const AssistedShoppingSection = () => {
   const intl = useIntl();
@@ -108,6 +109,16 @@ export const AssistedShoppingSection = () => {
               "/",
               `${intl.formatMessage({
                 id: `AssistedShopping.promotional.msUrl`,
+              })}`,
+            ),
+          },
+          {
+            name: "WooCommerce",
+            logo: logo_WooCommerce,
+            actionUrl: dopplerLegacyBaseUrl.concat(
+              "/",
+              `${intl.formatMessage({
+                id: `AssistedShopping.promotional.wcUrl`,
               })}`,
             ),
           },
