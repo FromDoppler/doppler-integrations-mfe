@@ -66,13 +66,13 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
 
   return (
     <>
-      {rfm.visible && (
+      {!isLoading && !isError && rfm.visible && (
         <div className="dp-app-container">
           <header className="hero-banner">
             <div className="dp-container">
-              <div class="dp-rowflex">
-                <div class="col-sm-12 col-md-12 col-lg-12">
-                  <nav class="dp-breadcrumb">
+              <div className="dp-rowflex">
+                <div className="col-sm-12 col-md-12 col-lg-12">
+                  <nav className="dp-breadcrumb">
                     <ul>
                       <li>
                         <a href="/integrations">Integraciones</a>
@@ -90,7 +90,7 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
           </header>
           <section className="dp-container">
             <div className="dp-rowflex">
-              <div class="col-lg-8 col-md-12 col-sm-12 m-b-24">
+              <div className="col-lg-8 col-md-12 col-sm-12 m-b-24">
                 <p className="m-b-6">
                   {intl.formatMessage({ id: "Rfm.subtitle" })}
                 </p>
