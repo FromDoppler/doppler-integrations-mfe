@@ -1,0 +1,271 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useIntl } from "react-intl";
+import {
+  useGetIntegrationStatus,
+  useUpdateRfmSettings,
+} from "../../queries/doppler-legacy-queries";
+
+export const RFM = ({ integration, idThirdPartyApp }) => {
+  const intl = useIntl();
+  const { data, isLoading, isError } = useGetIntegrationStatus(integration);
+  const navigate = useNavigate();
+  const [changed, setChanged] = useState(false);
+  const [active, setActive] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(null);
+  const [rfmChanges, setRfmChanges] = useState({
+    active: false,
+    period: 120,
+  });
+  const { mutate: updateRfmSettings, isLoading: updatingMutation } =
+    useUpdateRfmSettings();
+
+  useEffect(() => {
+    if (data?.rfm) {
+      setActive(data.rfm.active);
+    }
+  }, [data]);
+
+  const rfm = data?.rfm;
+
+  const handleToggle = () => {
+    setActive((prev) => !prev);
+    setChanged(true);
+  };
+
+  const handleBack = () => {
+    navigate(-1);
+  };
+
+  const handlePeriodChange = (e) => {
+    const value = parseInt(e.target.value, 10);
+    setRfmChanges((prev) => ({ ...prev, period: value }));
+    setChanged(true);
+  };
+
+  const handleUpdateRfmSettings = () => {
+    setSuccess(false);
+    setError(null);
+
+    updateRfmSettings(
+      { idThirdPartyApp, rfm: rfmChanges },
+      {
+        onSuccess: (response) => {
+          console.log("Respuesta de la mutación:", response);
+          setChanged(false);
+          setSuccess(true);
+        },
+        onError: (err) => {
+          console.error(err);
+          setError("Ocurrió un error al guardar los cambios");
+        },
+      },
+    );
+  };
+
+  return (
+    <>
+      {rfm.visible && (
+        <div className="dp-app-container">
+          <header className="hero-banner">
+            <div className="dp-container">
+              <div class="dp-rowflex">
+                <div class="col-sm-12 col-md-12 col-lg-12">
+                  <nav class="dp-breadcrumb">
+                    <ul>
+                      <li>
+                        <a href="/integrations">Integraciones</a>
+                      </li>
+                      <li>
+                        <a href="/integrations/shopify">Shopify</a>
+                      </li>
+                      <li>RFM</li>
+                    </ul>
+                  </nav>
+                  <h1>{intl.formatMessage({ id: "Rfm.title" })}</h1>
+                </div>
+              </div>
+            </div>
+          </header>
+          <section className="dp-container">
+            <div className="dp-rowflex">
+              <div class="col-lg-8 col-md-12 col-sm-12 m-b-24">
+                <p className="m-b-6">
+                  {intl.formatMessage({ id: "Rfm.subtitle" })}
+                </p>
+                <div>
+                  <ul className="dp-list-detail m-b-12">
+                    <li>
+                      <span className="dp-icodot">.</span>
+                      <span>
+                        <strong>
+                          {intl.formatMessage({ id: "Rfm.list_item_first" })}
+                        </strong>{" "}
+                        {intl.formatMessage({
+                          id: "Rfm.list_item_first_description",
+                        })}
+                      </span>
+                    </li>
+                    <li>
+                      <span className="dp-icodot">.</span>
+                      <span>
+                        <strong>
+                          {intl.formatMessage({ id: "Rfm.list_item_second" })}
+                        </strong>{" "}
+                        {intl.formatMessage({
+                          id: "Rfm.list_item_second_description",
+                        })}
+                      </span>
+                    </li>
+                    <li>
+                      <span className="dp-icodot">.</span>
+                      <span>
+                        <strong>
+                          {intl.formatMessage({ id: "Rfm.list_item_third" })}
+                        </strong>{" "}
+                        {intl.formatMessage({
+                          id: "Rfm.list_item_third_description",
+                        })}
+                      </span>
+                    </li>
+                  </ul>
+                  <p className="m-b-12 dp-color-lightgrey">
+                    {intl.formatMessage({ id: "Rfm.more_information" })}{" "}
+                    <a
+                      href="https://help.fromdoppler.com/es/que-es-la-segmentacion-rfm/"
+                      target="_blank"
+                    >
+                      {intl.formatMessage({ id: "Rfm.help_link_1" })}
+                    </a>
+                  </p>
+                </div>
+
+                <div className="dp-box-shadow p-l-24 p-r-24 p-t-24 p-b-24">
+                  <div style={{ display: "flex" }}>
+                    <div className="m-r-6">
+                      <div className="dp-switch">
+                        <input
+                          type="checkbox"
+                          id={"activeRfm"}
+                          checked={active}
+                          onChange={handleToggle}
+                        />
+                        <label htmlFor={"activeRfm"} aria-disabled={"false"}>
+                          <span></span>
+                        </label>
+                      </div>
+                    </div>
+                    <label>
+                      <p>
+                        <strong>
+                          {rfm.active
+                            ? intl.formatMessage({ id: "Rfm.rfm_on" })
+                            : intl.formatMessage({ id: "Rfm.rfm_off" })}
+                        </strong>
+                      </p>
+                    </label>
+                  </div>
+                  <hr className="m-t-6 m-b-6" />
+                  <div className="dp-rfm-period-row">
+                    <span>
+                      {intl.formatMessage({ id: "Rfm.period_start" })}
+                    </span>
+                    <select
+                      className="dp-rfm-select"
+                      id="select-period"
+                      name="select-period"
+                      value={rfmChanges.period}
+                      disabled={!active}
+                      onChange={handlePeriodChange}
+                    >
+                      <option value="120">120</option>
+                      <option value="60">60</option>
+                      <option value="30">30</option>
+                    </select>
+                    <span>
+                      <strong>
+                        {intl.formatMessage({ id: "Rfm.period_end" })}
+                      </strong>
+                    </span>
+                  </div>
+                  {rfm.date && (
+                    <div className="dp-library">
+                      <p className="dp-color-lightgrey m-t-6">
+                        {intl.formatMessage({ id: "Rfm.calculation_date" })}{" "}
+                        {rfm.date}
+                      </p>
+                    </div>
+                  )}
+                  <div className="dp-library">
+                    <p className="m-t-12 m-b-6">
+                      {intl.formatMessage({ id: "Rfm.user_notification" })}
+                    </p>
+                    <p className="dp-color-lightgrey">
+                      {intl.formatMessage({ id: "Rfm.more_information" })}{" "}
+                      <a
+                        href="https://help.fromdoppler.com/es/que-es-la-segmentacion-rfm"
+                        target="_blank"
+                      >
+                        {intl.formatMessage({ id: "Rfm.help_link_2" })}
+                      </a>
+                    </p>
+                    <div className="nav-button-bar flex-grid m-t-12">
+                      <div className="m-b-12 dp-wrap-message dp-wrap-info ng-binding ng-scope">
+                        <span className="dp-message-icon"></span>
+                        <div className="dp-content-message">
+                          <span id="messageBar">
+                            {intl.formatMessage({ id: "Rfm.info" })}
+                          </span>
+                        </div>
+                      </div>
+                      {success && (
+                        <div className="m-b-12 dp-wrap-message dp-wrap-success">
+                          <span className="dp-message-icon"></span>
+                          <div className="dp-content-message">
+                            <span id="messageBar">
+                              {intl.formatMessage({ id: "Rfm.save_success" })}
+                            </span>
+                          </div>
+                        </div>
+                      )}
+
+                      {error && (
+                        <div className="m-b-12 dp-wrap-message dp-wrap-cancel">
+                          <span className="dp-message-icon"></span>
+                          <div className="dp-content-message">
+                            <span id="messageBar">{error}</span>
+                          </div>
+                        </div>
+                      )}
+
+                      <div>
+                        <button
+                          type="button"
+                          className="dp-button button-medium primary-grey"
+                          onClick={handleBack}
+                        >
+                          {intl.formatMessage({ id: "General.back" })}
+                        </button>
+                        <button
+                          type="button"
+                          className={`dp-button button-medium primary-green m-l-24 ${
+                            updatingMutation ? "button--loading" : ""
+                          }`}
+                          onClick={handleUpdateRfmSettings}
+                          disabled={!changed || updatingMutation}
+                        >
+                          {intl.formatMessage({ id: "General.save" })}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      )}
+    </>
+  );
+};
