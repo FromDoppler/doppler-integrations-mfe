@@ -9,6 +9,8 @@ import {
 import { defaultAppConfiguration } from "./default-configuration";
 import { IntegrationsApiClientImpl } from "./implementations/integrations-api/IntegrationsApiClientImpl";
 import { DummyIntegrationsApiClient } from "./implementations/dummies/integrations-api-client";
+import { DummyDopplerLegacyClient } from "./implementations/dummies/doppler-legacy-client";
+import { DopplerLegacyClientImpl } from "./implementations/doppler-legacy/DopplerLegacyClientImpl";
 
 export const configureApp = (
   customConfiguration: Partial<AppConfiguration>,
@@ -40,10 +42,21 @@ export const configureApp = (
         appSessionStateAccessor,
         appConfiguration,
       }),
+    dopplerLegacyClientFactory: ({
+      axiosStatic,
+      appSessionStateAccessor,
+      appConfiguration,
+    }) =>
+      new DopplerLegacyClientImpl({
+        axiosStatic,
+        appSessionStateAccessor,
+        appConfiguration,
+      }),
   };
 
   const dummyFactories: Partial<ServicesFactories> = {
     integrationsApiClientFactory: () => new DummyIntegrationsApiClient(),
+    dopplerLegacyClientFactory: () => new DummyDopplerLegacyClient(),
   };
 
   const factories = appConfiguration.useDummies
