@@ -7,7 +7,3 @@ export type RfmStatus = {
 
 export type RfmStatusQueryKey = [{ scope: string }];
 export type UpdateRfmStatusQueryKey = [{ scope: string }];
-
-export type UpdateRfmSettings = {
-  rfm: RfmStatus;
-};

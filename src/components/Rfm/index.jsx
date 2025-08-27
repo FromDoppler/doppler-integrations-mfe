@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useIntl } from "react-intl";
-import {
-  useGetIntegrationStatus,
-  useUpdateRfmSettings,
-} from "../../queries/doppler-legacy-queries";
+import { useUpdateRfmSettings } from "../../queries/doppler-legacy-queries";
+import { useGetIntegrationStatus } from "../../queries/integrations-api-queries";
 
 export const RFM = ({ integration, idThirdPartyApp }) => {
   const intl = useIntl();
-  const { data, isLoading, isError } = useGetIntegrationStatus(integration);
+  const {
+    data: rfm,
+    isLoading,
+    isError,
+  } = useGetIntegrationStatus(idThirdPartyApp, integration);
   const navigate = useNavigate();
   const [changed, setChanged] = useState(false);
   const [active, setActive] = useState(false);
@@ -22,12 +24,10 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
     useUpdateRfmSettings();
 
   useEffect(() => {
-    if (data?.rfm) {
-      setActive(data.rfm.active);
+    if (rfm) {
+      setActive(rfm.active);
     }
-  }, [data]);
-
-  const rfm = data?.rfm;
+  }, [rfm]);
 
   const handleToggle = () => {
     setActive((prev) => !prev);
@@ -51,14 +51,12 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
     updateRfmSettings(
       { idThirdPartyApp, rfm: rfmChanges },
       {
-        onSuccess: (response) => {
-          console.log("Respuesta de la mutación:", response);
+        onSuccess: () => {
           setChanged(false);
           setSuccess(true);
         },
         onError: (err) => {
-          console.error(err);
-          setError("Ocurrió un error al guardar los cambios");
+          setError(err.message ?? String(err));
         },
       },
     );
@@ -66,7 +64,7 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
 
   return (
     <>
-      {!isLoading && !isError && rfm.visible && (
+      {!isLoading && !isError && rfm?.visible && (
         <div className="dp-app-container">
           <header className="hero-banner">
             <div className="dp-container">
@@ -75,12 +73,16 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
                   <nav className="dp-breadcrumb">
                     <ul>
                       <li>
-                        <a href="/integrations">Integraciones</a>
+                        <a href="/integrations">
+                          {intl.formatMessage({ id: "Integrations.title" })}
+                        </a>
                       </li>
                       <li>
-                        <a href="/integrations/shopify">Shopify</a>
+                        <a href={`/integrations/${integration}`}>
+                          {integration}
+                        </a>
                       </li>
-                      <li>RFM</li>
+                      <li>{intl.formatMessage({ id: "Rfm.rfm" })}</li>
                     </ul>
                   </nav>
                   <h1>{intl.formatMessage({ id: "Rfm.title" })}</h1>
@@ -134,6 +136,7 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
                     {intl.formatMessage({ id: "Rfm.more_information" })}{" "}
                     <a
                       href="https://help.fromdoppler.com/es/que-es-la-segmentacion-rfm/"
+                      rel="noreferrer"
                       target="_blank"
                     >
                       {intl.formatMessage({ id: "Rfm.help_link_1" })}
@@ -205,6 +208,7 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
                       {intl.formatMessage({ id: "Rfm.more_information" })}{" "}
                       <a
                         href="https://help.fromdoppler.com/es/que-es-la-segmentacion-rfm"
+                        rel="noreferrer"
                         target="_blank"
                       >
                         {intl.formatMessage({ id: "Rfm.help_link_2" })}

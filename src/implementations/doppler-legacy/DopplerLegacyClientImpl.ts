@@ -4,9 +4,7 @@ import {
   AppSessionStateAccessor,
 } from "../../abstractions/application";
 import { DopplerLegacyClient } from "../../abstractions/doppler-legacy-client";
-import { Result } from "../../abstractions/result-types";
-import { ShopifyIntegrationResult } from "../../abstractions/rfm/shopify/shopify-types";
-import { RfmStatus, UpdateRfmSettings } from "../../abstractions/rfm/rfm-types";
+import { RfmStatus } from "../../abstractions/rfm/rfm-types";
 
 export class DopplerLegacyClientImpl implements DopplerLegacyClient {
   private axios;
@@ -43,11 +41,9 @@ export class DopplerLegacyClientImpl implements DopplerLegacyClient {
     parameters: string[] | undefined,
     data: unknown = undefined,
   ) {
-    const { jwtToken } = this.getConnectionData();
     return this.axios.request<T>({
       method,
       url: `${url}${!!parameters ? `/${parameters.join("/")}` : ""}`,
-      headers: { Authorization: `Bearer ${jwtToken}` },
       data,
     });
   }
@@ -60,30 +56,15 @@ export class DopplerLegacyClientImpl implements DopplerLegacyClient {
     return this.request<T>("POST", url, undefined, data);
   }
 
-  async getShopifyIntegrationStatus(): Promise<
-    Result<ShopifyIntegrationResult>
-  > {
-    const response = await this.GET<any>(
-      "/Integration/Integration/GetShopifyIntegrationStatus",
-    );
-    return {
-      success: true,
-      value: response.data,
-    };
-  }
-
   async updateRfmSettings(
     idThirdPartyApp: number,
     rfm: RfmStatus,
-  ): Promise<Result<UpdateRfmSettings>> {
-    const response = await this.POST<any>(
+  ): Promise<RfmStatus> {
+    const response = await this.POST<RfmStatus>(
       "/Integration/Integration/UpdateRfmSettings",
       { idThirdPartyApp, rfm },
     );
 
-    return {
-      success: true,
-      value: response.data,
-    };
+    return response.data;
   }
 }
