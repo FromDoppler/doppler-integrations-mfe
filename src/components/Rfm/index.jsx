@@ -6,41 +6,41 @@ import { useGetIntegrationStatus } from "../../queries/integrations-api-queries"
 
 export const RFM = ({ integration, idThirdPartyApp }) => {
   const intl = useIntl();
+  const navigate = useNavigate();
+
   const {
     data: rfm,
     isLoading,
     isError,
   } = useGetIntegrationStatus(idThirdPartyApp, integration);
-  const navigate = useNavigate();
+
   const [changed, setChanged] = useState(false);
-  const [active, setActive] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
   const [rfmChanges, setRfmChanges] = useState({
     active: false,
     period: 120,
   });
+
   const { mutate: updateRfmSettings, isLoading: updatingMutation } =
     useUpdateRfmSettings();
 
   useEffect(() => {
     if (rfm) {
-      setActive(rfm.active);
+      setRfmChanges({
+        active: rfm.active,
+        period: rfm.period,
+      });
     }
   }, [rfm]);
 
   const handleToggle = () => {
-    setActive((prev) => !prev);
+    setRfmChanges((prev) => ({ ...prev, active: !prev.active }));
     setChanged(true);
   };
 
-  const handleBack = () => {
-    navigate(-1);
-  };
-
   const handlePeriodChange = (e) => {
-    const value = parseInt(e.target.value, 10);
-    setRfmChanges((prev) => ({ ...prev, period: value }));
+    setRfmChanges((prev) => ({ ...prev, period: e.target.value }));
     setChanged(true);
   };
 
@@ -49,7 +49,10 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
     setError(null);
 
     updateRfmSettings(
-      { idThirdPartyApp, rfm: rfmChanges },
+      {
+        idThirdPartyApp,
+        rfm: rfmChanges,
+      },
       {
         onSuccess: () => {
           setChanged(false);
@@ -60,6 +63,10 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
         },
       },
     );
+  };
+
+  const handleBack = () => {
+    navigate(-1);
   };
 
   return (
@@ -151,10 +158,10 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
                         <input
                           type="checkbox"
                           id={"activeRfm"}
-                          checked={active}
+                          checked={rfmChanges.active}
                           onChange={handleToggle}
                         />
-                        <label htmlFor={"activeRfm"} aria-disabled={"false"}>
+                        <label htmlFor="activeRfm" aria-disabled="false">
                           <span></span>
                         </label>
                       </div>
@@ -162,7 +169,7 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
                     <label>
                       <p>
                         <strong>
-                          {rfm.active
+                          {rfmChanges.active
                             ? intl.formatMessage({ id: "Rfm.rfm_on" })
                             : intl.formatMessage({ id: "Rfm.rfm_off" })}
                         </strong>
@@ -179,7 +186,7 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
                       id="select-period"
                       name="select-period"
                       value={rfmChanges.period}
-                      disabled={!active}
+                      disabled={!rfmChanges.active}
                       onChange={handlePeriodChange}
                     >
                       <option value="120">120</option>

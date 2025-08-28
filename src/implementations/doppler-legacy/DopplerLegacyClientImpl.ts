@@ -21,6 +21,7 @@ export class DopplerLegacyClientImpl implements DopplerLegacyClient {
   }) {
     this.axios = axiosStatic.create({
       baseURL: dopplerLegacyBaseUrl,
+      withCredentials: true,
     });
     this.appSessionStateAccessor = appSessionStateAccessor;
   }
@@ -61,8 +62,8 @@ export class DopplerLegacyClientImpl implements DopplerLegacyClient {
     rfm: RfmStatus,
   ): Promise<RfmStatus> {
     const response = await this.POST<RfmStatus>(
-      "/Integration/Integration/UpdateRfmSettings",
-      { idThirdPartyApp, rfm },
+      `/Integration/Integration/UpdateRfmSettings?idThirdPartyApp=${idThirdPartyApp}`,
+      rfm,
     );
 
     return response.data;
