@@ -1,25 +1,27 @@
 import { Routes, Route } from "react-router-dom";
-import { RequireAuth } from "./application";
 import { AssistedShoppingSection } from "./AssistedShopping";
-import { RFM } from "./Rfm";
+import { RequireAuth } from "./application";
+import { RfmRoutes } from "./Rfm/RfmRoutes";
 
-export const App = () => (
-  <Routes>
-    <Route
-      path="/assisted-shopping"
-      element={
-        <RequireAuth>
-          <AssistedShoppingSection />
-        </RequireAuth>
-      }
-    />
-    <Route
-      path="/shopify/rfm"
-      element={
-        <RequireAuth>
-          <RFM integration={"shopify"} idThirdPartyApp={7} />
-        </RequireAuth>
-      }
-    />
-  </Routes>
-);
+export const App = () => {
+  return (
+    <Routes>
+      <Route
+        path="/assisted-shopping"
+        element={
+          <RequireAuth>
+            <AssistedShoppingSection />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path=":integration/rfm"
+        element={
+          <RequireAuth>
+            <RfmRoutes />
+          </RequireAuth>
+        }
+      />
+    </Routes>
+  );
+};
