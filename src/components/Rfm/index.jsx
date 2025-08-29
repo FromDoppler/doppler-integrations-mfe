@@ -55,9 +55,13 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
         rfm: rfmChanges,
       },
       {
-        onSuccess: () => {
-          setChanged(false);
-          setSuccess(true);
+        onSuccess: (data) => {
+          if (data.success) {
+            setChanged(false);
+            setSuccess(true);
+          } else {
+            setError(data.errorMsg);
+          }
         },
         onError: (err) => {
           setError(err.message ?? String(err));

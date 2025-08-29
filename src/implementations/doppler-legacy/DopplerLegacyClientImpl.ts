@@ -4,7 +4,7 @@ import {
   AppSessionStateAccessor,
 } from "../../abstractions/application";
 import { DopplerLegacyClient } from "../../abstractions/doppler-legacy-client";
-import { RfmStatus } from "../../abstractions/rfm/rfm-types";
+import { RfmStatus, UpdateRfmResponse } from "../../abstractions/rfm/rfm-types";
 
 export class DopplerLegacyClientImpl implements DopplerLegacyClient {
   private axios;
@@ -60,8 +60,8 @@ export class DopplerLegacyClientImpl implements DopplerLegacyClient {
   async updateRfmSettings(
     idThirdPartyApp: number,
     rfm: RfmStatus,
-  ): Promise<RfmStatus> {
-    const response = await this.POST<RfmStatus>(
+  ): Promise<UpdateRfmResponse> {
+    const response = await this.POST<UpdateRfmResponse>(
       `/Integration/Integration/UpdateRfmSettings?idThirdPartyApp=${idThirdPartyApp}`,
       rfm,
     );

@@ -1,16 +1,19 @@
 import { DopplerLegacyClient } from "../../abstractions/doppler-legacy-client";
-import { RfmStatus } from "../../abstractions/rfm/rfm-types";
+import { RfmStatus, UpdateRfmResponse } from "../../abstractions/rfm/rfm-types";
 
 export class DummyDopplerLegacyClient implements DopplerLegacyClient {
-  updateRfmSettings: (
+  updateRfmSettings = async (
     idThirdPartyApp: number,
     rfm: RfmStatus,
-  ) => Promise<RfmStatus> = async () => {
+  ): Promise<UpdateRfmResponse> => {
     return {
-      visible: true,
-      active: true,
-      period: "120",
-      date: "22/08/2025",
+      success: true,
+      rfm: {
+        visible: true,
+        active: true,
+        period: "120",
+        date: "22/08/2025",
+      },
     };
   };
 }
