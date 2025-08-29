@@ -9,13 +9,13 @@ export const RfmRoutes = () => {
 
   if (thirdPartyConnections.isLoading) return <LoadingScreen />;
   if (thirdPartyConnections.isError)
-    return <div>Error al cargar integraciones</div>;
+    return null;
 
   const connection = thirdPartyConnections.data.find(
     (c) => c.thirdPartyApp.name.toLowerCase() === integration,
   );
 
-  if (!connection) return <div>Integración no encontrada</div>;
+  if (!connection) return null;
 
   return (
     <RequireAuth>
