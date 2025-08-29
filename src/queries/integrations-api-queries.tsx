@@ -128,18 +128,11 @@ export const useGetIntegrationStatus = (
   ];
 
   const queryFn: QueryFunction<RfmStatus> = async () => {
-    let result: RfmStatus;
-
-    switch (integration) {
-      case "shopify":
-        result =
-          await integrationsApiClient.getIntegrationStatus(idThirdPartyApp);
-        break;
-      default:
-        throw new Error(`Integration ${integration} not supported`);
+    if (!integration && !idThirdPartyApp) {
+      throw new Error("Integration is required");
     }
 
-    return result;
+    return integrationsApiClient.getIntegrationStatus(idThirdPartyApp);
   };
 
   return useQuery<RfmStatus, Error>({
