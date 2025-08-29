@@ -255,7 +255,7 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
                         </div>
                       )}
 
-                      <div>
+                      <div style={{ display: "flex", alignItems: "center" }}>
                         <button
                           type="button"
                           className="dp-button button-medium primary-grey"

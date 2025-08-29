@@ -8,8 +8,7 @@ export const RfmRoutes = () => {
   const thirdPartyConnections = useGetThirdPartyConnections();
 
   if (thirdPartyConnections.isLoading) return <LoadingScreen />;
-  if (thirdPartyConnections.isError)
-    return null;
+  if (thirdPartyConnections.isError) return null;
 
   const connection = thirdPartyConnections.data.find(
     (c) => c.thirdPartyApp.name.toLowerCase() === integration,
