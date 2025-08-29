@@ -5,5 +5,11 @@ export type RfmStatus = {
   date: string;
 };
 
+export type UpdateRfmResponse = {
+  success: boolean;
+  rfm: RfmStatus;
+  errorMsg?: string;
+};
+
 export type RfmStatusQueryKey = [{ scope: string }];
 export type UpdateRfmStatusQueryKey = [{ scope: string }];
