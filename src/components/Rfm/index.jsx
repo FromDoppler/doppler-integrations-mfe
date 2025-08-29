@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useIntl } from "react-intl";
 import { useUpdateRfmSettings } from "../../queries/doppler-legacy-queries";
 import { useGetIntegrationStatus } from "../../queries/integrations-api-queries";
+import { capitalize } from "../../utils/index";
 
 export const RFM = ({ integration, idThirdPartyApp }) => {
   const intl = useIntl();
@@ -86,7 +87,7 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
                       </li>
                       <li>
                         <a href={`/integrations/${integration}`}>
-                          {integration}
+                          {capitalize(integration)}
                         </a>
                       </li>
                       <li>{intl.formatMessage({ id: "Rfm.rfm" })}</li>
