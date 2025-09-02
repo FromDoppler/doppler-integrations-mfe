@@ -205,14 +205,14 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
                     </span>
                   </div>
                   {rfm.date && (
-                    <div className="dp-library">
+                    <div>
                       <p className="dp-color-lightgrey m-t-6">
                         {intl.formatMessage({ id: "Rfm.calculation_date" })}{" "}
                         {rfm.date}
                       </p>
                     </div>
                   )}
-                  <div className="dp-library">
+                  <div>
                     <p className="m-t-12 m-b-6">
                       {intl.formatMessage({ id: "Rfm.user_notification" })}
                     </p>
