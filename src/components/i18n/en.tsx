@@ -95,7 +95,7 @@ export const messages_en = {
   Rfm: {
     button: "Save",
     calculation_date: "Last calculation date: ",
-    help_link: "https://help.fromdoppler.com/es/que-es-la-segmentacion-rfm/",
+    help_link: "https://help.fromdoppler.com/en/que-es-la-segmentacion-rfm/",
     help_link_1: '"What is the RFM analysis and how is it calculated".',
     help_link_2: '"RFM segmentation, terminology, and associated behaviors".',
     info: "The results of the RFM analysis will be available within 24 hours.",

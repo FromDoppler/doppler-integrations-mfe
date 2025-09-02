@@ -147,7 +147,7 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
                   <p className="m-b-12 dp-color-lightgrey">
                     {intl.formatMessage({ id: "Rfm.more_information" })}{" "}
                     <a
-                      href="https://help.fromdoppler.com/es/que-es-la-segmentacion-rfm/"
+                      href={intl.formatMessage({ id: "Rfm.help_link" })}
                       rel="noreferrer"
                       target="_blank"
                     >
@@ -219,7 +219,7 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
                     <p className="dp-color-lightgrey">
                       {intl.formatMessage({ id: "Rfm.more_information" })}{" "}
                       <a
-                        href="https://help.fromdoppler.com/es/que-es-la-segmentacion-rfm"
+                        href={intl.formatMessage({ id: "Rfm.help_link" })}
                         rel="noreferrer"
                         target="_blank"
                       >
