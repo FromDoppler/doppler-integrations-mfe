@@ -64,6 +64,7 @@ export const messages_es = {
       integración. Obtén una completa visualización, seguimiento y medición de
       la facturación de tus Campañas y Automations.`,
       msUrl: "Integration/Integration/MercadoShopsSection",
+      shpUrl: "/integrations/shopify",
       storesTitle: "Elije la tienda que deseas vincular:",
       title: "Conecta Doppler con tu tienda",
       tnUrl: "Integration/Integration/TiendaNubeSection",

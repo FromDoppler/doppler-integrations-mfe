@@ -64,6 +64,7 @@ export const messages_en = {
       integration. Get complete visualization, monitoring and measurement of the
       billing of your Campaigns and Automations.`,
       msUrl: "Integration/Integration/MercadoShopsSection",
+      shpUrl: "/integrations/shopify",
       storesTitle: "Choose the store you want to link:",
       title: "Connect Doppler with your store",
       tnUrl: "Integration/Integration/TiendaNubeSection",
