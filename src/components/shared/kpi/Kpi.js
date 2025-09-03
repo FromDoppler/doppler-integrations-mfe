@@ -4,7 +4,7 @@ export const Kpi = ({ data }) => {
   const intl = useIntl();
 
   return (
-    <div className="dp-wrapper-as-kpi">
+    <div className="dp-wrapper-as-kpi col-lg-8 col-md-12 col-sm-12">
       <ul>
         {data.map((kpi, index) => (
           <li key={`kpi-${index}`}>
