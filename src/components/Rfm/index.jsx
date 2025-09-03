@@ -1,13 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useIntl } from "react-intl";
 import { useUpdateRfmSettings } from "../../queries/doppler-legacy-queries";
 import { useGetIntegrationStatus } from "../../queries/integrations-api-queries";
-import { capitalize } from "../../utils/index";
 
 export const RFM = ({ integration, idThirdPartyApp }) => {
   const intl = useIntl();
+  const containerRef = useRef(null);
   const navigate = useNavigate();
+  window.displayDopplerNavBar(false);
 
   const {
     data: rfm,
@@ -34,6 +35,22 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
       });
     }
   }, [rfm]);
+
+  useEffect(() => {
+    const sendHeight = () => {
+      if (containerRef.current) {
+        const height = containerRef.current.scrollHeight;
+        window.parent.postMessage({ type: "setHeight", height }, "*");
+      }
+    };
+
+    sendHeight();
+    window.addEventListener("resize", sendHeight);
+
+    return () => {
+      window.removeEventListener("resize", sendHeight);
+    };
+  }, [rfm, changed, success, error]);
 
   const handleToggle = () => {
     setRfmChanges((prev) => ({ ...prev, active: !prev.active }));
@@ -77,26 +94,11 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
   return (
     <>
       {!isLoading && !isError && rfm?.visible && (
-        <div className="dp-app-container">
+        <div className="dp-app-container" ref={containerRef}>
           <header className="hero-banner">
             <div className="dp-container">
               <div className="dp-rowflex">
                 <div className="col-sm-12 col-md-12 col-lg-12">
-                  <nav className="dp-breadcrumb">
-                    <ul>
-                      <li>
-                        <a href="/integrations">
-                          {intl.formatMessage({ id: "Integrations.title" })}
-                        </a>
-                      </li>
-                      <li>
-                        <a href={`/integrations/${integration}`}>
-                          {capitalize(integration)}
-                        </a>
-                      </li>
-                      <li>{intl.formatMessage({ id: "Rfm.rfm" })}</li>
-                    </ul>
-                  </nav>
                   <h1>{intl.formatMessage({ id: "Rfm.title" })}</h1>
                 </div>
               </div>
