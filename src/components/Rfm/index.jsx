@@ -4,6 +4,7 @@ import { useIntl } from "react-intl";
 import { useUpdateRfmSettings } from "../../queries/doppler-legacy-queries";
 import { useGetIntegrationStatus } from "../../queries/integrations-api-queries";
 import Button from "../ui/Button";
+import { LoadingScreen } from "../application";
 
 export const RFM = ({ integration, idThirdPartyApp }) => {
   const intl = useIntl();
@@ -91,6 +92,10 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
   const handleBack = () => {
     navigate(-1);
   };
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <>
