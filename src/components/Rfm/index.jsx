@@ -6,11 +6,14 @@ import { useGetIntegrationStatus } from "../../queries/integrations-api-queries"
 import Button from "../ui/Button";
 import { LoadingScreen } from "../application";
 
+if (window.displayDopplerNavBar) {
+  window.displayDopplerNavBar(false);
+}
+
 export const RFM = ({ integration, idThirdPartyApp }) => {
   const intl = useIntl();
   const containerRef = useRef(null);
   const navigate = useNavigate();
-  window.displayDopplerNavBar(false);
 
   const {
     data: rfm,
