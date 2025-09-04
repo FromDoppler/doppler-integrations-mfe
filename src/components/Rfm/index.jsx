@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useIntl } from "react-intl";
 import { useUpdateRfmSettings } from "../../queries/doppler-legacy-queries";
 import { useGetIntegrationStatus } from "../../queries/integrations-api-queries";
+import Button from "../ui/Button";
 
 export const RFM = ({ integration, idThirdPartyApp }) => {
   const intl = useIntl();
@@ -258,23 +259,23 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
                       )}
 
                       <div style={{ display: "flex", alignItems: "center" }}>
-                        <button
-                          type="button"
-                          className="dp-button button-medium primary-grey"
+                        <Button
+                          size="button-medium"
+                          color="primary-grey"
                           onClick={handleBack}
                         >
                           {intl.formatMessage({ id: "General.back" })}
-                        </button>
-                        <button
-                          type="button"
-                          className={`dp-button button-medium primary-green m-l-24 ${
-                            updatingMutation ? "button--loading" : ""
-                          }`}
+                        </Button>
+
+                        <Button
+                          size="button-medium"
+                          color="primary-green m-l-24"
                           onClick={handleUpdateRfmSettings}
                           disabled={!changed || updatingMutation}
+                          isLoading={updatingMutation}
                         >
                           {intl.formatMessage({ id: "General.save" })}
-                        </button>
+                        </Button>
                       </div>
                     </div>
                   </div>
