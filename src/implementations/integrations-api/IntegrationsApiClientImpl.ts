@@ -10,6 +10,7 @@ import {
 } from "../../abstractions/integrations-api-client";
 import { AxiosStatic, Method } from "axios";
 import { sanitizeDateStringToIsoFormat } from "../../utils";
+import { RfmStatus } from "../../abstractions/rfm/rfm-types";
 
 export class IntegrationsApiClientImpl implements IntegrationsApiClient {
   private axios;
@@ -144,5 +145,13 @@ export class IntegrationsApiClientImpl implements IntegrationsApiClient {
           )
         : [],
     };
+  }
+
+  async getIntegrationStatus(idThirdPartyApp: number): Promise<RfmStatus> {
+    const response = await this.GET<any>(
+      `integration/${idThirdPartyApp}/status`,
+    );
+
+    return response.data;
   }
 }

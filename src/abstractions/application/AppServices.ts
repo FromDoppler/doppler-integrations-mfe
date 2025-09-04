@@ -6,6 +6,7 @@ import {
 } from ".";
 import { AppConfigurationRenderer } from "../app-configuration-renderer";
 import { IntegrationsApiClient } from "../integrations-api-client";
+import { DopplerLegacyClient } from "../doppler-legacy-client";
 
 export type AppServices = {
   window: Window;
@@ -15,4 +16,5 @@ export type AppServices = {
   appSessionStateAccessor: AppSessionStateAccessor;
   appSessionStateMonitor: AppSessionStateMonitor;
   integrationsApiClient: IntegrationsApiClient;
+  dopplerLegacyClient: DopplerLegacyClient;
 };

@@ -6,6 +6,7 @@ import {
 import { useAppServices } from "../components/application";
 import { useState } from "react";
 import { addDays } from "../utils/index";
+import { RfmStatus, RfmStatusQueryKey } from "../abstractions/rfm/rfm-types";
 
 type getIntegrationsApiQueryKey = {
   scope: string;
@@ -114,4 +115,31 @@ export const useGetAssistedSales = () => {
   });
 
   return { query, setDateFilter, setIdThirdPartyApp };
+};
+
+export const useGetIntegrationStatus = (
+  idThirdPartyApp: number,
+  integration: string,
+) => {
+  const { integrationsApiClient } = useAppServices();
+
+  const queryKey: RfmStatusQueryKey = [
+    { scope: `${integration}-integration-status` },
+  ];
+
+  const queryFn: QueryFunction<RfmStatus> = async () => {
+    if (!integration && !idThirdPartyApp) {
+      throw new Error("Integration is required");
+    }
+
+    return integrationsApiClient.getIntegrationStatus(idThirdPartyApp);
+  };
+
+  return useQuery<RfmStatus, Error>({
+    queryKey,
+    queryFn,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+  });
 };

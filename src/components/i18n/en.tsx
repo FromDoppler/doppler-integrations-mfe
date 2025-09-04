@@ -86,6 +86,42 @@ export const messages_en = {
     },
     title: "Assisted Sales metrics Report",
   },
+  General: {
+    back: "Back",
+    save: "Save",
+  },
+  Integrations: {
+    title: "Integrations",
+  },
+  Rfm: {
+    button: "Save",
+    calculation_date: "Last calculation date: ",
+    help_link: "https://help.fromdoppler.com/en/que-es-la-segmentacion-rfm/",
+    help_link_1: '"What is the RFM analysis and how is it calculated".',
+    help_link_2: '"RFM segmentation, terminology, and associated behaviors".',
+    info: "The results of the RFM analysis will be available within 24 hours.",
+    list_item_first: "Recency:",
+    list_item_first_description: "days elapsed since the last purchase.",
+    list_item_second: "Frequency:",
+    list_item_second_description: "number of purchases per period.",
+    list_item_third: "Amount:",
+    list_item_third_description:
+      "the value of total purchases made by the customer during the analysis time.",
+    more_information: "Find more information in the article",
+    period_end: "days to calculate RFM variables.",
+    period_start: "Use data from the last",
+    rfm: "RFM",
+    rfm_off: "Enable automatic RFM segmentation",
+    rfm_on: "Disable automatic RFM segmentation",
+    save_success: "Changes successfully saved.",
+    subtitle:
+      "Activate RFM analysis and get new segments based on your customers' buying habits.",
+    title: "Segment your contacts automatically with RFM",
+    user_notification: `10 segments with the RFM tag will be created automatically,
+    and a name will be given to them based on your customers' behavior.
+    For instance, those who recently purchased, purchased frequently,
+    and spend more money than the others will be included in the top clients segment.`,
+  },
   footer: {
     copyright: `© ${year} Doppler LLC. All rights reserved.`,
     iso: "ISO Quality Certification 9001:2008",

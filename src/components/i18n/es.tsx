@@ -86,6 +86,43 @@ export const messages_es = {
     },
     title: "Reporte de métricas de Ventas Asistidas",
   },
+  General: {
+    back: "Atrás",
+    save: "Guardar",
+  },
+  Integrations: {
+    title: "Integraciones",
+  },
+  Rfm: {
+    button: "Guardar",
+    calculation_date: "Fecha de último cálculo: ",
+    help_link: "https://help.fromdoppler.com/es/que-es-la-segmentacion-rfm/",
+    help_link_1: '"Qué es el análisis RFM y cómo se calcular".',
+    help_link_2:
+      '"Segmentación RFM, nomenclatura y comportamientos asociados".',
+    info: "En 24 horas estarán disponibles los resultados del análisis RFM.",
+    list_item_first: "Recencia:",
+    list_item_first_description: "días transcurridos desde la última compra.",
+    list_item_second: "Frecuencia:",
+    list_item_second_description: "número de compras por período de tiempo.",
+    list_item_third: "Monto:",
+    list_item_third_description:
+      "valor de las compras totales realizadas por el cliente en el tiempo de análisis.",
+    more_information: "Encuentra más información en el artículo",
+    period_end: "días para calcular las variables de RFM.",
+    period_start: "Utilizar datos de los últimos",
+    rfm: "RFM",
+    rfm_off: "Habilitar segmentación automática por RFM",
+    rfm_on: "Deshabilitar segmentación automática por RFM",
+    save_success: "Cambios guardados con éxito.",
+    subtitle:
+      "Activa el análisis RFM y obtendrás nuevos segmentos basados en los hábitos de compra de tus clientes.",
+    title: "Segmenta tus contactos automáticamente con RFM",
+    user_notification: `Se crearán automáticamente 10 segmentos con la etiqueta RFM.
+    Se les asignará un nombre asociado al comportamiento de tus clientes.
+    Por ejemplo, aquellos que compraron recientemente, lo hacen con frecuencia
+    y gastan más dinero que el resto, estarán dentro del segmento clientes estrella.`,
+  },
   footer: {
     copyright: `© ${year} Doppler LLC. Todos los derechos reservados.`,
     iso: "Certificación de Calidad ISO 9001:2008",

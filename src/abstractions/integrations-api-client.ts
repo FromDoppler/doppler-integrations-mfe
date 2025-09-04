@@ -1,4 +1,5 @@
 import { Result } from "./result-types";
+import { RfmStatus } from "./rfm/rfm-types";
 
 export type ThirdPartyApp = {
   idThirdPartyApp: number;
@@ -42,4 +43,5 @@ export interface IntegrationsApiClient {
     dateFrom: Date,
     dateTo: Date,
   ) => Promise<Result<AssistedSales[]>>;
+  getIntegrationStatus: (idThirdPartyApp: number) => Promise<RfmStatus>;
 }

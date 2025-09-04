@@ -7,6 +7,7 @@ import {
   IntegrationsApiClient,
   ThirdPartyConnection,
 } from "../../abstractions/integrations-api-client";
+import { RfmStatus } from "../../abstractions/rfm/rfm-types";
 
 export class DummyIntegrationsApiClient implements IntegrationsApiClient {
   getConnections: () => Promise<Result<ThirdPartyConnection[]>> = async () => {
@@ -54,6 +55,22 @@ export class DummyIntegrationsApiClient implements IntegrationsApiClient {
     };
 
     console.log("End getAssistedSales", { result });
+    return result;
+  };
+
+  getIntegrationStatus: () => Promise<RfmStatus> = async () => {
+    console.log("Begin getIntegrationStatus...");
+    await timeout(1000);
+
+    const result = {
+      visible: true,
+      active: false,
+      period: "120",
+      date: "20/08/2025",
+    };
+
+    console.log("End getIntegrationStatus", { result });
+
     return result;
   };
 }

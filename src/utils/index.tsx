@@ -3,6 +3,12 @@ import { FormattedNumber } from "react-intl";
 
 const dateRegex: RegExp = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/;
 
+declare global {
+  interface Window {
+    displayDopplerNavBar?: (show: boolean) => void;
+  }
+}
+
 export const timeout = (ms: number) =>
   new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -69,3 +75,15 @@ export const sanitizeDateStringToIsoFormat = (dateString: string) => {
 
   return dateString;
 };
+
+export const capitalize = (text: string): string =>
+  text ? text.charAt(0).toUpperCase() + text.slice(1) : "";
+
+export function hideNavBar(): void {
+  const intervalId = setInterval(() => {
+    if (window.displayDopplerNavBar) {
+      window.displayDopplerNavBar(false);
+      clearInterval(intervalId);
+    }
+  }, 50);
+}

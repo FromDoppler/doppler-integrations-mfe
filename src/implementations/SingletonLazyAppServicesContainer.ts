@@ -53,4 +53,8 @@ export class SingletonLazyAppServicesContainer implements AppServices {
   get integrationsApiClient() {
     return this.singleton("integrationsApiClient");
   }
+
+  get dopplerLegacyClient() {
+    return this.singleton("dopplerLegacyClient");
+  }
 }
