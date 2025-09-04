@@ -6,9 +6,13 @@ import { useGetIntegrationStatus } from "../../queries/integrations-api-queries"
 import Button from "../ui/Button";
 import { LoadingScreen } from "../application";
 
-if (window.displayDopplerNavBar) {
-  window.displayDopplerNavBar(false);
-}
+(function hideNavBar() {
+  if (window.displayDopplerNavBar) {
+    window.displayDopplerNavBar(false);
+  } else {
+    setTimeout(hideNavBar, 50);
+  }
+})();
 
 export const RFM = ({ integration, idThirdPartyApp }) => {
   const intl = useIntl();
