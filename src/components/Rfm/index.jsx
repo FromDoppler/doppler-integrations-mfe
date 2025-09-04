@@ -5,7 +5,7 @@ import { useUpdateRfmSettings } from "../../queries/doppler-legacy-queries";
 import { useGetIntegrationStatus } from "../../queries/integrations-api-queries";
 import Button from "../ui/Button";
 import { LoadingScreen } from "../application";
-import hideNavBar from "../../utils/index";
+import { hideNavBar } from "../../utils";
 
 hideNavBar();
 
