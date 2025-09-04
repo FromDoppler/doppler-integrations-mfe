@@ -5,14 +5,9 @@ import { useUpdateRfmSettings } from "../../queries/doppler-legacy-queries";
 import { useGetIntegrationStatus } from "../../queries/integrations-api-queries";
 import Button from "../ui/Button";
 import { LoadingScreen } from "../application";
+import hideNavBar from "../../utils/index";
 
-(function hideNavBar() {
-  if (window.displayDopplerNavBar) {
-    window.displayDopplerNavBar(false);
-  } else {
-    setTimeout(hideNavBar, 50);
-  }
-})();
+hideNavBar();
 
 export const RFM = ({ integration, idThirdPartyApp }) => {
   const intl = useIntl();
