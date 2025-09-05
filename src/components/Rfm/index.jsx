@@ -103,7 +103,7 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
     <>
       {!isLoading && !isError && rfm?.visible && (
         <div className="dp-app-container" ref={containerRef}>
-          <section className="dp-container">
+          <section>
             <header className="dp-block">
               <div>
                 <h2>{intl.formatMessage({ id: "Rfm.title" })}</h2>
@@ -113,7 +113,7 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
               </div>
               <hr />
             </header>
-            <div>
+            <div className="dp-container">
               <div className="col-lg-8 col-md-12 col-sm-12 m-b-24">
                 <div>
                   <ul className="dp-list-detail m-b-12">
