@@ -97,9 +97,7 @@ export const messages_es = {
     button: "Guardar",
     calculation_date: "Fecha de último cálculo: ",
     help_link: "https://help.fromdoppler.com/es/que-es-la-segmentacion-rfm/",
-    help_link_1: '"Qué es el análisis RFM y cómo se calcular".',
-    help_link_2:
-      '"Segmentación RFM, nomenclatura y comportamientos asociados".',
+    help_link_1: '"Qué es el análisis RFM y cómo se calcula".',
     info: "En 24 horas estarán disponibles los resultados del análisis RFM.",
     list_item_first: "Recencia:",
     list_item_first_description: "días transcurridos desde la última compra.",
