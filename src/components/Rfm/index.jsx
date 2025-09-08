@@ -103,21 +103,18 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
     <>
       {!isLoading && !isError && rfm?.visible && (
         <div className="dp-app-container" ref={containerRef}>
-          <header className="hero-banner">
-            <div className="dp-container">
-              <div className="dp-rowflex">
-                <div className="col-sm-12 col-md-12 col-lg-12">
-                  <h1>{intl.formatMessage({ id: "Rfm.title" })}</h1>
-                </div>
-              </div>
-            </div>
-          </header>
-          <section className="dp-container">
-            <div className="dp-rowflex">
-              <div className="col-lg-8 col-md-12 col-sm-12 m-b-24">
+          <section className="p-t-24">
+            <header className="dp-block">
+              <div>
+                <h2>{intl.formatMessage({ id: "Rfm.title" })}</h2>
                 <p className="m-b-6">
                   {intl.formatMessage({ id: "Rfm.subtitle" })}
                 </p>
+              </div>
+              <hr />
+            </header>
+            <div className="dp-container">
+              <div className="col-lg-8 col-md-12 col-sm-12 m-b-24">
                 <div>
                   <ul className="dp-list-detail m-b-12">
                     <li>
@@ -265,7 +262,13 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
                         </div>
                       )}
 
-                      <div style={{ display: "flex", alignItems: "center" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "end",
+                        }}
+                      >
                         <Button
                           size="button-medium"
                           color="primary-grey"
