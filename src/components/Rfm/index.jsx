@@ -27,6 +27,7 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
 
   useEffect(() => {
     window.displayDopplerNavBar(false);
+    window.parent.postMessage({ type: "rfmReady" }, "*");
   }, []);
 
   const { mutate: updateRfmSettings, isLoading: updatingMutation } =
