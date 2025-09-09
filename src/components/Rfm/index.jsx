@@ -7,9 +7,16 @@ import Button from "../ui/Button";
 import { LoadingScreen } from "../application";
 import { hideNavBar } from "../../utils";
 
-hideNavBar();
-
 export const RFM = ({ integration, idThirdPartyApp }) => {
+  useEffect(() => {
+    hideNavBar();
+    return () => {
+      if (window.displayDopplerNavBar) {
+        window.displayDopplerNavBar(true);
+      }
+    };
+  }, []);
+
   const intl = useIntl();
   const containerRef = useRef(null);
   const navigate = useNavigate();
