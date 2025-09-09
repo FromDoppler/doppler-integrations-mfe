@@ -79,11 +79,14 @@ export const sanitizeDateStringToIsoFormat = (dateString: string) => {
 export const capitalize = (text: string): string =>
   text ? text.charAt(0).toUpperCase() + text.slice(1) : "";
 
-export function hideNavBar(): void {
-  const intervalId = setInterval(() => {
-    if (window.displayDopplerNavBar) {
-      window.displayDopplerNavBar(false);
-      clearInterval(intervalId);
-    }
-  }, 50);
+export function hideNavBarAsync(): Promise<void> {
+  return new Promise((resolve) => {
+    const intervalId = setInterval(() => {
+      if (window.displayDopplerNavBar) {
+        window.displayDopplerNavBar(false);
+        clearInterval(intervalId);
+        resolve();
+      }
+    }, 50);
+  });
 }

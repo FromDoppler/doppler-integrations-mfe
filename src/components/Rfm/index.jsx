@@ -5,18 +5,9 @@ import { useUpdateRfmSettings } from "../../queries/doppler-legacy-queries";
 import { useGetIntegrationStatus } from "../../queries/integrations-api-queries";
 import Button from "../ui/Button";
 import { LoadingScreen } from "../application";
-import { hideNavBar } from "../../utils";
+import { hideNavBarAsync } from "../../utils";
 
 export const RFM = ({ integration, idThirdPartyApp }) => {
-  useEffect(() => {
-    hideNavBar();
-    return () => {
-      if (window.displayDopplerNavBar) {
-        window.displayDopplerNavBar(true);
-      }
-    };
-  }, []);
-
   const intl = useIntl();
   const containerRef = useRef(null);
   const navigate = useNavigate();
@@ -34,6 +25,17 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
     active: false,
     period: 120,
   });
+  const [navHidden, setNavHidden] = useState(false);
+
+  useEffect(() => {
+    hideNavBarAsync().then(() => setNavHidden(true));
+
+    return () => {
+      if (window.displayDopplerNavBar) {
+        window.displayDopplerNavBar(true);
+      }
+    };
+  }, []);
 
   const { mutate: updateRfmSettings, isLoading: updatingMutation } =
     useUpdateRfmSettings();
@@ -102,7 +104,7 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
     navigate(-1);
   };
 
-  if (isLoading) {
+  if (!navHidden || isLoading) {
     return <LoadingScreen />;
   }
 
