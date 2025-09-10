@@ -223,16 +223,6 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
                     <p className="m-t-12 m-b-6">
                       {intl.formatMessage({ id: "Rfm.user_notification" })}
                     </p>
-                    <p className="dp-color-lightgrey">
-                      {intl.formatMessage({ id: "Rfm.more_information" })}{" "}
-                      <a
-                        href={intl.formatMessage({ id: "Rfm.help_link" })}
-                        rel="noreferrer"
-                        target="_blank"
-                      >
-                        {intl.formatMessage({ id: "Rfm.help_link_2" })}
-                      </a>
-                    </p>
                     <div className="nav-button-bar flex-grid m-t-12">
                       <div className="m-b-12 dp-wrap-message dp-wrap-info ng-binding ng-scope">
                         <span className="dp-message-icon"></span>
