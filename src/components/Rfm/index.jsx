@@ -5,9 +5,6 @@ import { useUpdateRfmSettings } from "../../queries/doppler-legacy-queries";
 import { useGetIntegrationStatus } from "../../queries/integrations-api-queries";
 import Button from "../ui/Button";
 import { LoadingScreen } from "../application";
-import { hideNavBar } from "../../utils";
-
-hideNavBar();
 
 export const RFM = ({ integration, idThirdPartyApp }) => {
   const intl = useIntl();
@@ -27,6 +24,11 @@ export const RFM = ({ integration, idThirdPartyApp }) => {
     active: false,
     period: 120,
   });
+
+  useEffect(() => {
+    window.displayDopplerNavBar(false);
+    window.parent.postMessage({ type: "rfmReady" }, "*");
+  }, []);
 
   const { mutate: updateRfmSettings, isLoading: updatingMutation } =
     useUpdateRfmSettings();
