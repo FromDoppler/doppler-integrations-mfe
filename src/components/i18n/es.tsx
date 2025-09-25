@@ -63,6 +63,7 @@ export const messages_es = {
       description: `Accede a la información detallada del progreso de tu negocio con esta
       integración. Obtén una completa visualización, seguimiento y medición de
       la facturación de tus Campañas y Automations.`,
+      etUrl: "Integration/Integration/EmpretiendaSection",
       msUrl: "Integration/Integration/MercadoShopsSection",
       shpUrl: "/integrations/shopify",
       storesTitle: "Elije la tienda que deseas vincular:",

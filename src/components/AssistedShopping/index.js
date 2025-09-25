@@ -23,7 +23,8 @@ import logo_MShops from "../shared/Images/Logo_MShops.png";
 import logo_Vtex from "../shared/Images/Logo_Vtex.png";
 import logo_Acommerce from "../shared/Images/Logo_ACommerce.png";
 import logo_WooCommerce from "../shared/Images/Logo_WooCommerce.png";
-import logo_shopify from "../shared/Images/Logo_Shopify.png";
+import logo_Shopify from "../shared/Images/Logo_Shopify.png";
+import logo_Empretienda from "../shared/Images/Logo_Shopify.png";
 
 export const AssistedShoppingSection = () => {
   const intl = useIntl();
@@ -125,9 +126,16 @@ export const AssistedShoppingSection = () => {
           },
           {
             name: "Shopify",
-            logo: logo_shopify,
+            logo: logo_Shopify,
             actionUrl: `${intl.formatMessage({
               id: `AssistedShopping.promotional.shpUrl`,
+            })}`,
+          },
+          {
+            name: "Empretienda",
+            logo: logo_Empretienda,
+            actionUrl: `${intl.formatMessage({
+              id: `AssistedShopping.promotional.etUrl`,
             })}`,
           },
         ]}
