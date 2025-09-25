@@ -134,9 +134,12 @@ export const AssistedShoppingSection = () => {
           {
             name: "Empretienda",
             logo: logo_Empretienda,
-            actionUrl: `${intl.formatMessage({
-              id: `AssistedShopping.promotional.etUrl`,
-            })}`,
+            actionUrl: dopplerLegacyBaseUrl.concat(
+              "/",
+              `${intl.formatMessage({
+                id: `AssistedShopping.promotional.etUrl`,
+              })}`,
+            ),
           },
         ]}
       />
