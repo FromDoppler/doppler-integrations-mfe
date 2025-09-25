@@ -24,7 +24,7 @@ import logo_Vtex from "../shared/Images/Logo_Vtex.png";
 import logo_Acommerce from "../shared/Images/Logo_ACommerce.png";
 import logo_WooCommerce from "../shared/Images/Logo_WooCommerce.png";
 import logo_Shopify from "../shared/Images/Logo_Shopify.png";
-import logo_Empretienda from "../shared/Images/Logo_Shopify.png";
+import logo_Empretienda from "../shared/Images/Logo_Empretienda.png";
 
 export const AssistedShoppingSection = () => {
   const intl = useIntl();
@@ -134,9 +134,12 @@ export const AssistedShoppingSection = () => {
           {
             name: "Empretienda",
             logo: logo_Empretienda,
-            actionUrl: `${intl.formatMessage({
-              id: `AssistedShopping.promotional.etUrl`,
-            })}`,
+            actionUrl: dopplerLegacyBaseUrl.concat(
+              "/",
+              `${intl.formatMessage({
+                id: `AssistedShopping.promotional.etUrl`,
+              })}`,
+            ),
           },
         ]}
       />
