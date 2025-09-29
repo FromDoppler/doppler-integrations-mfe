@@ -63,6 +63,7 @@ export const messages_en = {
       description: `Access detailed information on the progress of your business with this
       integration. Get complete visualization, monitoring and measurement of the
       billing of your Campaigns and Automations.`,
+      etUrl: "Integration/Integration/EmpretiendaSection",
       msUrl: "Integration/Integration/MercadoShopsSection",
       shpUrl: "/integrations/shopify",
       storesTitle: "Choose the store you want to link:",
