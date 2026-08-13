@@ -15,5 +15,8 @@ export type DopplerSessionState =
 declare global {
   interface Window {
     dopplerSessionState: DopplerSessionState;
+    ensureCollaboratorHasAccessOrRedirect: (
+      section?: number | string | null,
+    ) => boolean;
   }
 }
