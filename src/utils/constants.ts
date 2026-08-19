@@ -1,0 +1,16 @@
+export const COLLABORATOR_SECTION = {
+  Reports: 1,
+  Campaigns: 2,
+  Lists: 3,
+  ControlPanel: 4,
+  DownloadCenter: 5,
+  Steps: 8,
+  Automation: 10,
+  Integration: 11,
+  Templates: 12,
+  Approver: 13,
+  Dashboard: 14,
+  Conversations: 15,
+  PopUpHub: 16,
+  Landings: 18,
+} as const;

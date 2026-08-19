@@ -1,7 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import { AssistedShoppingSection } from "./AssistedShopping";
-import { RequireAuth } from "./application";
+import { PrivateRoute } from "./application";
 import { RfmRoutes } from "./Rfm/RfmRoutes";
+import { COLLABORATOR_SECTION } from "../utils/constants";
 
 export const App = () => {
   return (
@@ -9,17 +10,17 @@ export const App = () => {
       <Route
         path="/assisted-shopping"
         element={
-          <RequireAuth>
+          <PrivateRoute section={COLLABORATOR_SECTION.Reports}>
             <AssistedShoppingSection />
-          </RequireAuth>
+          </PrivateRoute>
         }
       />
       <Route
         path=":integration/rfm"
         element={
-          <RequireAuth>
+          <PrivateRoute section={COLLABORATOR_SECTION.Integration}>
             <RfmRoutes />
-          </RequireAuth>
+          </PrivateRoute>
         }
       />
     </Routes>

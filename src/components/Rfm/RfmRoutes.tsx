@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useGetThirdPartyConnections } from "../../queries/integrations-api-queries";
-import { LoadingScreen, RequireAuth } from "../application";
+import { LoadingScreen } from "../application";
 import { useAppServices } from "../application";
 import { RFM } from ".";
 
@@ -24,11 +24,9 @@ export const RfmRoutes = () => {
   }
 
   return (
-    <RequireAuth>
-      <RFM
-        integration={connection.thirdPartyApp.name.toLowerCase()}
-        idThirdPartyApp={connection.thirdPartyApp.idThirdPartyApp}
-      />
-    </RequireAuth>
+    <RFM
+      integration={connection.thirdPartyApp.name.toLowerCase()}
+      idThirdPartyApp={connection.thirdPartyApp.idThirdPartyApp}
+    />
   );
 };
