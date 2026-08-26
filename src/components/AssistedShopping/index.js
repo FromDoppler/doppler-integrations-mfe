@@ -280,20 +280,23 @@ const getKPIData = (assistedSales) => {
   ];
 };
 
+const getUtcDateKey = (dateValue) => {
+  const date = new Date(dateValue);
+
+  return [
+    date.getUTCFullYear(),
+    (date.getUTCMonth() + 1).toString().padStart(2, "0"),
+    date.getUTCDate().toString().padStart(2, "0"),
+  ].join("-");
+};
+
 const getAreaData = (assistedSales, intl) => {
   return [
     ...new Map(
       assistedSales.map((order) => [
-        new Date(order.orderDate).getUTCFullYear() +
-          new Date(order.orderDate).getUTCMonth() +
-          new Date(order.orderDate).getUTCDate(),
+        getUtcDateKey(order.orderDate),
         {
-          date:
-            new Date(order.orderDate).getUTCFullYear() +
-            "-" +
-            (new Date(order.orderDate).getUTCMonth() + 1) +
-            "-" +
-            new Date(order.orderDate).getUTCDate(),
+          date: getUtcDateKey(order.orderDate),
           [intl.formatMessage({
             id: `AssistedShopping.area_chart.deliveries`,
           })]: getUniqueCampaigs(
